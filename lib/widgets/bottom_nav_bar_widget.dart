@@ -83,7 +83,7 @@ class BottomNavBarWidget extends StatelessWidget {
                           child: Icon(data.icon[index],
                             color: data.activePage == index
                                 ? kOrange.withOpacity(0.7)
-                                : const Color(0xffd9d9d7),
+                                : kWhite,
                             size: 30,),
                         ),
                       )

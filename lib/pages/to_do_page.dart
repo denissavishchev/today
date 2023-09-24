@@ -1,10 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../providers/to_do_provider.dart';
-import '../widgets/fade_container_widget.dart';
 import '../widgets/side_button_widget.dart';
 import 'add_task_page.dart';
 
@@ -32,25 +30,29 @@ class ToDoPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: size.height * 0.07),
-                    FadeContainerWidget(
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            const Text('convertTime',
-                              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
-                            const Spacer(),
-                            SideButtonWidget(
-                              right: false,
-                              onTap: (){
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const AddTaskPage()));
-                              },
-                              child: Icon(Icons.add,
-                                color: kOrange.withOpacity(0.7),
-                                size: 40,),)
-                          ],
-                        )),
+                    Row(
+                      children: [
+                        SideButtonWidget(
+                          width: 220,
+                          onTap: (){
+                            data.selectLists(context);
+                          },
+                          child: Icon(Icons.list,
+                            color: kOrange.withOpacity(0.7),
+                            size: 40,),),
+                        const Spacer(),
+                        SideButtonWidget(
+                          right: false,
+                          onTap: (){
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AddTaskPage()));
+                          },
+                          child: Icon(Icons.add,
+                            color: kOrange.withOpacity(0.7),
+                            size: 40,),)
+                      ],
+                    ),
                     SizedBox(height: size.height * 0.02,),
                     Expanded(
                       child: Container(

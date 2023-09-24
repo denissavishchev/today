@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import '../constants.dart';
+import '../widgets/select_list_widget.dart';
 
 class ToDoProvider with ChangeNotifier {
 
+  List selectList = ['Default', 'Personal', 'Shopping', 'Wishlist', 'Work'];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   ScrollController scrollController = ScrollController();
@@ -12,6 +14,75 @@ class ToDoProvider with ChangeNotifier {
 
   Future addToBase(int time, String title, String comment) async {
 
+  }
+
+  Future selectLists(context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (context, setState) {
+                return Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    margin: const EdgeInsets.fromLTRB(32, 12, 32, 100),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.5),
+                        borderRadius: const BorderRadius.all(Radius.circular(24)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              // spreadRadius: 2,
+                              blurRadius: 3,
+                              offset: const Offset(1, 1)
+                          ),
+                        ]
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SelectListWidget(
+                          icon: Icons.home,
+                          text: 'All Lists',
+                          count: 3,),
+                        const SizedBox(height: 10,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: ScrollConfiguration(
+                            behavior: const ScrollBehavior().copyWith(overscroll: false),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: ListView.builder(
+                                itemCount: selectList.length,
+                                  itemBuilder: (context, index){
+                                    return SelectListWidget(
+                                      icon: Icons.list,
+                                      text: selectList[index],
+                                      count: 3,
+                                    );
+                                  }),
+                            ),
+                          ),
+                        ),
+                        // selectList.length > 4
+                        //     ? const SizedBox(height: 10,)
+                        //     : const SizedBox.shrink(),
+                        const SelectListWidget(
+                          icon: Icons.check_circle,
+                          text: 'Finished',
+                          count: 3,),
+                        const SelectListWidget(
+                          icon: Icons.playlist_add_sharp,
+                          text: 'New List',
+                          count: 3,),
+                      ],
+                    ),
+                );
+              }
+          );
+        });
   }
 
   Future<void> datePicker(context) async {
@@ -45,3 +116,5 @@ class ToDoProvider with ChangeNotifier {
   }
 
 }
+
+

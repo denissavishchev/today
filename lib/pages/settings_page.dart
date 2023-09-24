@@ -1,5 +1,5 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:today/constants.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -8,8 +8,21 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: kBlue.withOpacity(0.3),
-
+      backgroundColor: Colors.transparent,
+      body: Container(
+        height: size.height,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/bg04.png'),
+                fit: BoxFit.cover)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 0.1,
+            sigmaY: 0.1,
+          ),
+          child: Container(),
+        ),
+      ),
     );
   }
 }

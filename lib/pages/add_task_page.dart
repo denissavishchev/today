@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:today/pages/to_do_page.dart';
 import '../constants.dart';
 import '../providers/to_do_provider.dart';
 import '../widgets/fade_container_widget.dart';
@@ -129,10 +128,7 @@ class AddTaskPage extends StatelessWidget {
                           SideButtonWidget(
                             width: 250,
                               onTap: (){
-                                data.addToBase(
-                                  data.dateTime!.millisecondsSinceEpoch,
-                                  data.titleController.text.trim(),
-                                  data.descriptionController.text.trim());
+
                                 Navigator.of(context).pop();
                                 // data.scrollController.animateTo(
                                 //     data.scrollController.position.maxScrollExtent + 110,
