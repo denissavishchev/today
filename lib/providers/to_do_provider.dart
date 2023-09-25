@@ -3,9 +3,23 @@ import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import '../constants.dart';
 import '../widgets/select_list_widget.dart';
 
+enum Lists{
+  all,
+  common,
+  personal,
+  shopping,
+  wishlist,
+  work,
+  finished
+}
+
+dynamic selectedList = Lists.all;
+
 class ToDoProvider with ChangeNotifier {
 
-  List selectList = ['Default', 'Personal', 'Shopping', 'Wishlist', 'Work'];
+  String listTitle = 'All lists';
+  List selectList = ['Common', 'Personal', 'Shopping', 'Wishlist', 'Work'];
+  final TextEditingController quickNoteController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   ScrollController scrollController = ScrollController();
@@ -14,6 +28,15 @@ class ToDoProvider with ChangeNotifier {
 
   Future addToBase(int time, String title, String comment) async {
 
+  }
+
+  void changeListValue(String text){
+    listTitle = text;
+    if(text == 'All lists'){
+      text = 'All';
+    }
+    selectedList =  Lists.values.byName(text.toLowerCase());
+    notifyListeners();
   }
 
   Future selectLists(context) {
@@ -25,8 +48,8 @@ class ToDoProvider with ChangeNotifier {
           return StatefulBuilder(
               builder: (context, setState) {
                 return Container(
-                    height: MediaQuery.of(context).size.height * 0.7,
-                    margin: const EdgeInsets.fromLTRB(32, 12, 32, 100),
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.5),
@@ -43,9 +66,9 @@ class ToDoProvider with ChangeNotifier {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SelectListWidget(
+                        const SelectListWidget(
                           icon: Icons.home,
-                          text: 'All Lists',
+                          text: 'All lists',
                           count: 3,),
                         const SizedBox(height: 10,),
                         SizedBox(
@@ -72,10 +95,6 @@ class ToDoProvider with ChangeNotifier {
                         const SelectListWidget(
                           icon: Icons.check_circle,
                           text: 'Finished',
-                          count: 3,),
-                        const SelectListWidget(
-                          icon: Icons.playlist_add_sharp,
-                          text: 'New List',
                           count: 3,),
                       ],
                     ),

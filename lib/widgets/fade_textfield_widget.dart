@@ -16,6 +16,7 @@ class FadeTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeContainerWidget(
       child: TextField(
+        // autofocus: false,
         controller: textEditingController,
         cursorColor: Colors.white,
         style: const TextStyle(fontSize: 24, color: Colors.white),

@@ -32,14 +32,26 @@ class ToDoPage extends StatelessWidget {
                     SizedBox(height: size.height * 0.07),
                     Row(
                       children: [
-                        SideButtonWidget(
-                          width: 220,
-                          onTap: (){
-                            data.selectLists(context);
-                          },
-                          child: Icon(Icons.list,
-                            color: kOrange.withOpacity(0.7),
-                            size: 40,),),
+                        Stack(
+                          children: [
+                            SideButtonWidget(
+                              width: 220,
+                              onTap: (){
+                                data.selectLists(context);
+                              },
+                              child: Icon(Icons.list,
+                                color: kOrange.withOpacity(0.7),
+                                size: 40,),),
+                            Positioned.fill(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 40.0),
+                                    child: Text(data.listTitle, style: orangeStyle,),
+                                  )),
+                            ),
+                          ],
+                        ),
                         const Spacer(),
                         SideButtonWidget(
                           right: false,
@@ -138,6 +150,10 @@ class ToDoPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // FadeTextFieldWidget(
+                    //     textEditingController: data.quickNoteController,
+                    //     hintText: 'Quick note'),
+                    // const SizedBox(height: 100,),
                   ],
                 ),
               ),
