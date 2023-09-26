@@ -62,12 +62,24 @@ class AddTaskPage extends StatelessWidget {
                         child: Row(
                           children: [
                             const Spacer(),
-                            const Text(
-                              'Day',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(data.noDate,
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Visibility(
+                                  visible: data.noDate == 'Date not set',
+                                  child: Text(data.noNotification,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),),
+                                )
+                              ],
                             ),
                             const Spacer(),
                             Container(
@@ -124,14 +136,18 @@ class AddTaskPage extends StatelessWidget {
                         ),),
                       SizedBox(height: size.height * 0.02,),
                       Visibility(
-                        visible: true,
+                        visible: data.noDate != 'Date not set',
                         child: FadeContainerWidget(
                           child: Row(
                             children: [
                               const Spacer(),
-                              const Text(
-                                'Time',
-                                style: TextStyle(
+                              Text('${data.initialTime.hour < 10
+                                  ? '0${data.initialTime.hour}'
+                                  : '${data.initialTime.hour}'}'
+                                  ':${data.initialTime.minute < 10
+                                  ? '0${data.initialTime.minute}'
+                                  : '${data.initialTime.minute}'}',
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold),
@@ -154,7 +170,7 @@ class AddTaskPage extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: GestureDetector(
-                                      onTap: () => data.datePicker(context),
+                                      onTap: () => data.timePicker(context),
                                       child: Container(
                                         width: 48,
                                         height: 48,
@@ -191,16 +207,37 @@ class AddTaskPage extends StatelessWidget {
                           ),),
                       ),
                       SizedBox(height: size.height * 0.06,),
-                      FadeTextFieldWidget(
-                        textEditingController: data.descriptionController,
-                        hintText: 'List',),
+                      Row(
+                        children: [
+                          Stack(
+                            children: [
+                              SideButtonWidget(
+                                width: 220,
+                                onTap: (){
+                                  data.addSelectLists(context);
+                                },
+                                child: Icon(Icons.list,
+                                  color: kOrange.withOpacity(0.7),
+                                  size: 40,),),
+                              Positioned.fill(
+                                child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 40.0),
+                                      child: Text(data.addListTitle, style: orangeStyle,),
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       SizedBox(height: size.height * 0.06,),
                       Row(
                         children: [
                           SideButtonWidget(
                             width: 250,
                               onTap: (){
-
+                                data.addToBase();
                                 Navigator.of(context).pop();
                                 // data.scrollController.animateTo(
                                 //     data.scrollController.position.maxScrollExtent + 110,

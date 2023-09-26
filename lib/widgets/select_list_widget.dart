@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:today/constants.dart';
-
 import '../providers/to_do_provider.dart';
 import 'fade_container_widget.dart';
 
@@ -11,11 +10,13 @@ class SelectListWidget extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.count,
+    required this.onTap,
   });
 
   final IconData icon;
   final String text;
   final int count;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,9 @@ class SelectListWidget extends StatelessWidget {
         builder: (context, data, child){
           return GestureDetector(
             onTap: (){
-              data.changeListValue(text);
-              print(selectedList);
+              onTap();
+              print('List$selectedList');
+              print('Add list$addSelectedList');
               Navigator.of(context).pop();
             },
             child: FadeContainerWidget(

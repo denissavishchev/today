@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+import 'package:today/functions.dart';
 import '../constants.dart';
 import '../widgets/select_list_widget.dart';
 
@@ -13,21 +14,43 @@ enum Lists{
   finished
 }
 
+enum AddLists{
+  common,
+  personal,
+  shopping,
+  wishlist,
+  work,
+}
+
 dynamic selectedList = Lists.all;
+dynamic addSelectedList = AddLists.common;
 
 class ToDoProvider with ChangeNotifier {
 
   String listTitle = 'All lists';
+  String addListTitle = 'Common';
   List selectList = ['Common', 'Personal', 'Shopping', 'Wishlist', 'Work'];
-  final TextEditingController quickNoteController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   ScrollController scrollController = ScrollController();
-  DateTime initialDate = DateTime.now();
-  DateTime? dateTime = DateTime.now();
+  String noDate = 'Date not set';
+  String noNotification = '(without notification)';
+  DateTime dateTime = DateTime.now();
+  TimeOfDay initialTime = const TimeOfDay(hour: 8, minute: 00);
 
-  Future addToBase(int time, String title, String comment) async {
-
+  Future addToBase() async {
+    print('tittle: ${titleController.text.trim()}');
+    print('description: ${descriptionController.text.trim()}');
+    var date = convertTime(dateTime.millisecondsSinceEpoch);
+    var hour = initialTime.hour < 10
+        ? '0${initialTime.hour}'
+        : '${initialTime.hour}';
+    var minute = initialTime.minute < 10
+        ? '0${initialTime.minute}'
+        : '${initialTime.minute}';
+    print('day: $date');
+    print('time: $hour:$minute');
+    print('list: $addListTitle');
   }
 
   void changeListValue(String text){
@@ -37,6 +60,69 @@ class ToDoProvider with ChangeNotifier {
     }
     selectedList =  Lists.values.byName(text.toLowerCase());
     notifyListeners();
+  }
+
+  void changeAddListValue(String text){
+    addListTitle = text;
+    addSelectedList =  AddLists.values.byName(text.toLowerCase());
+    notifyListeners();
+  }
+
+  Future addSelectLists(context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (context, setState) {
+                return Container(
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            // spreadRadius: 2,
+                            blurRadius: 3,
+                            offset: const Offset(1, 1)
+                        ),
+                      ]
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        child: ScrollConfiguration(
+                          behavior: const ScrollBehavior().copyWith(overscroll: false),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 18.0),
+                            child: ListView.builder(
+                                itemCount: selectList.length,
+                                itemBuilder: (context, index){
+                                  return SelectListWidget(
+                                    icon: Icons.list,
+                                    text: selectList[index],
+                                    count: 3, 
+                                    onTap: () => changeAddListValue(selectList[index]),
+                                  );
+                                }),
+                          ),
+                        ),
+                      ),
+                      // selectList.length > 4
+                      //     ? const SizedBox(height: 10,)
+                      //     : const SizedBox.shrink(),
+                    ],
+                  ),
+                );
+              }
+          );
+        });
   }
 
   Future selectLists(context) {
@@ -57,7 +143,6 @@ class ToDoProvider with ChangeNotifier {
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.5),
-                              // spreadRadius: 2,
                               blurRadius: 3,
                               offset: const Offset(1, 1)
                           ),
@@ -66,10 +151,12 @@ class ToDoProvider with ChangeNotifier {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SelectListWidget(
+                        SelectListWidget(
                           icon: Icons.home,
                           text: 'All lists',
-                          count: 3,),
+                          count: 3, 
+                          onTap: () => changeListValue('All lists')
+                        ),
                         const SizedBox(height: 10,),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.4,
@@ -83,7 +170,8 @@ class ToDoProvider with ChangeNotifier {
                                     return SelectListWidget(
                                       icon: Icons.list,
                                       text: selectList[index],
-                                      count: 3,
+                                      count: 3, 
+                                      onTap: () => changeListValue(selectList[index]),
                                     );
                                   }),
                             ),
@@ -92,10 +180,11 @@ class ToDoProvider with ChangeNotifier {
                         // selectList.length > 4
                         //     ? const SizedBox(height: 10,)
                         //     : const SizedBox.shrink(),
-                        const SelectListWidget(
+                        SelectListWidget(
                           icon: Icons.check_circle,
                           text: 'Finished',
-                          count: 3,),
+                          count: 3, 
+                          onTap: () => changeListValue('Finished'),),
                       ],
                     ),
                 );
@@ -105,13 +194,13 @@ class ToDoProvider with ChangeNotifier {
   }
 
   Future<void> datePicker(context) async {
-    dateTime = await showRoundedDatePicker(
+    dateTime = (await showRoundedDatePicker(
       context: context,
-      initialDate: initialDate,
+      initialDate: DateTime.now(),
       firstDate: DateTime(DateTime.now().year - 1),
       lastDate: DateTime(DateTime.now().year + 1),
       borderRadius: 16,
-      imageHeader: const AssetImage('assets/images/bg09.png'),
+      imageHeader: const AssetImage('assets/images/date.png'),
         styleYearPicker: MaterialRoundedYearPickerStyle(
           textStyleYear: TextStyle(fontSize: 40, color: Colors.white.withOpacity(0.6)),
           textStyleYearSelected:
@@ -130,7 +219,22 @@ class ToDoProvider with ChangeNotifier {
         backgroundHeader: kOrange.withOpacity(0.5),
         decorationDateSelected: BoxDecoration(color: kOrange.withOpacity(0.7), shape: BoxShape.circle)
       )
-    );
+    )) ?? DateTime.now();
+    noDate = convertTime(dateTime.millisecondsSinceEpoch);
+    notifyListeners();
+  }
+
+  Future<void> timePicker(context) async {
+    initialTime = (await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child ?? Container(),
+        );
+      },
+    )) ?? const TimeOfDay(hour: 8, minute: 00);
     notifyListeners();
   }
 

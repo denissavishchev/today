@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:today/constants.dart';
 import 'package:today/pages/main_page.dart';
 import 'package:today/providers/main_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
@@ -22,9 +23,10 @@ class MyApp extends StatelessWidget {
           // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
         ],
       builder: (context, child) {
-          return const MaterialApp(
+          return MaterialApp(
+            theme: pickerTheme,
             debugShowCheckedModeBanner: false,
-            home: MainPage(),
+            home: const MainPage(),
           );
     },
     );
