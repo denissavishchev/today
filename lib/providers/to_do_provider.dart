@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:today/functions.dart';
+import 'package:today/model/boxes.dart';
+import 'package:today/model/to_do_model.dart';
 import '../constants.dart';
 import '../widgets/select_list_widget.dart';
 
@@ -39,18 +41,21 @@ class ToDoProvider with ChangeNotifier {
   TimeOfDay initialTime = const TimeOfDay(hour: 8, minute: 00);
 
   Future addToBase() async {
-    print('tittle: ${titleController.text.trim()}');
-    print('description: ${descriptionController.text.trim()}');
-    var date = convertTime(dateTime.millisecondsSinceEpoch);
-    var hour = initialTime.hour < 10
+    final date = convertTime(dateTime.millisecondsSinceEpoch);
+    final hour = initialTime.hour < 10
         ? '0${initialTime.hour}'
         : '${initialTime.hour}';
-    var minute = initialTime.minute < 10
+    final minute = initialTime.minute < 10
         ? '0${initialTime.minute}'
         : '${initialTime.minute}';
-    print('day: $date');
-    print('time: $hour:$minute');
-    print('list: $addListTitle');
+    final task =  ToDoModel()
+        ..task = titleController.text.trim()
+        ..description = descriptionController.text.trim()
+        ..date = date
+        ..time = '$hour:$minute'
+        ..list = addListTitle;
+    final box = Boxes.addToBase();
+    box.add(task);
   }
 
   void changeListValue(String text){
