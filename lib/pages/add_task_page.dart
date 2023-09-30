@@ -41,9 +41,14 @@ class AddTaskPage extends StatelessWidget {
                           children: [
                             SideButtonWidget(
                               onTap: (){
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const MainPage()));
+                                if (data.titleController.text != ''
+                                    || data.descriptionController.text != ''){
+                                  data. exitCheck(context);
+                                }else{
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const MainPage()));
+                                }
                               },
                               child: Icon(Icons.arrow_back,
                               color: kOrange.withOpacity(0.7),
@@ -239,10 +244,10 @@ class AddTaskPage extends StatelessWidget {
                                 onTap: (){
                                   data.addToBase();
                                   Navigator.of(context).pop();
-                                  // data.scrollController.animateTo(
-                                  //     data.scrollController.position.maxScrollExtent + 110,
-                                  //     duration: const Duration(milliseconds: 10),
-                                  //     curve: Curves.linear);
+                                  data.titleController.clear();
+                                  data.descriptionController.clear();
+                                  data.noDate = 'Date not set';
+                                  data.addListTitle = 'Common';
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(builder: (context) => const MainPage()));

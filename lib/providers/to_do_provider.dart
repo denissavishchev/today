@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+import 'package:hive/hive.dart';
 import 'package:today/functions.dart';
 import 'package:today/model/boxes.dart';
 import 'package:today/model/to_do_model.dart';
 import '../constants.dart';
+import '../pages/main_page.dart';
 import '../widgets/select_list_widget.dart';
+import '../widgets/side_button_widget.dart';
 
 enum Lists{
   all,
@@ -249,6 +252,161 @@ class ToDoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-}
+  Future exitCheck(context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height * 0.35,
+              margin: const EdgeInsets.fromLTRB(0, 12, 0, 220),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              decoration: BoxDecoration(
+                  border: const Border.symmetric(
+                      horizontal: BorderSide(width: 0.5, color: kOrange)),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/images/bg01.png'),
+                      fit: BoxFit.fitWidth),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        // spreadRadius: 2,
+                        blurRadius: 3,
+                        offset: const Offset(1, 1)
+                    ),
+                  ]
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          SideButtonWidget(
+                            width: 240,
+                            onTap: (){
+                              Navigator.of(context).pop();
+                              titleController.clear();
+                              descriptionController.clear();
+                              noDate = 'Date not set';
+                              addListTitle = 'Common';
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const MainPage()));
+                            },
+                            child: Icon(Icons.check,
+                              color: kOrange.withOpacity(0.7),
+                              size: 40,),),
+                          Positioned.fill(
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0, right: 40),
+                                  child: Text('Quit without saving?', style: orangeStyle,),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SideButtonWidget(
+                        width: 150,
+                        right: false,
+                        child: Icon(Icons.cancel,
+                          color: kOrange.withOpacity(0.7),
+                          size: 40,),
+                        onTap: () => Navigator.of(context).pop()),
+                  ),
+                  const SizedBox(height: 20,),
+                ],
+              )
+          );
+        });
+  }
 
+  Future deleteTask(int index, Box<ToDoModel> box, context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height * 0.35,
+              margin: const EdgeInsets.fromLTRB(0, 12, 0, 220),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              decoration: BoxDecoration(
+                  border: const Border.symmetric(
+                      horizontal: BorderSide(width: 0.5, color: kOrange)),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/images/bg01.png'),
+                      fit: BoxFit.fitWidth),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        // spreadRadius: 2,
+                        blurRadius: 3,
+                        offset: const Offset(1, 1)
+                    ),
+                  ]
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          SideButtonWidget(
+                            width: 240,
+                            onTap: (){
+                              box.deleteAt(index);
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(Icons.check,
+                              color: kOrange.withOpacity(0.7),
+                              size: 40,),),
+                          Positioned.fill(
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0, right: 40),
+                                  child: Text('Delete task?', style: orangeStyle,),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SideButtonWidget(
+                        width: 150,
+                        right: false,
+                        child: Icon(Icons.cancel,
+                          color: kOrange.withOpacity(0.7),
+                          size: 40,),
+                        onTap: () => Navigator.of(context).pop()),
+                  ),
+                  const SizedBox(height: 20,),
+                ],
+              )
+          );
+        });
+  }
+
+  void doneTask(int index, Box<ToDoModel> box, List<ToDoModel> tasks, context) {
+    box.putAt(index, ToDoModel()
+      ..task = tasks[index].task
+      ..description = tasks[index].description
+      ..date = tasks[index].date
+      ..time = tasks[index].time
+      ..list = 'Finished');
+  }
+}
 

@@ -111,9 +111,9 @@ class ToDoPage extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     if(tasks[index].list == data.listTitle){
-                                      return AllToDoLists(tasks: tasks, index: index,);
+                                      return AllToDoLists(tasks: tasks, index: index, box: box,);
                                     }if (data.listTitle == 'All lists'){
-                                      return AllToDoLists(tasks: tasks, index: index,);
+                                      return AllToDoLists(tasks: tasks, index: index, box: box,);
                                     } else{
                                       return Container();
                                     }

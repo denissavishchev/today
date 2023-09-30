@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+import 'package:today/providers/to_do_provider.dart';
 
 import '../constants.dart';
 import '../model/to_do_model.dart';
@@ -9,52 +12,71 @@ class AllToDoLists extends StatelessWidget {
     super.key,
     required this.tasks,
     required this.index,
+    required this.box,
   });
 
   final List<ToDoModel> tasks;
   final int index;
+  final Box<ToDoModel> box;
 
   @override
   Widget build(BuildContext context) {
-    return BasicContainerWidget(
-      height: 0.11,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SizedBox(
-                width: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Consumer<ToDoProvider>(
+        builder: (context, data, child){
+          return GestureDetector(
+            onLongPress: (){
+              data.deleteTask(index, box, context);
+            },
+            child: BasicContainerWidget(
+              height: 0.11,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
                   children: [
-                    Text(tasks[index].task,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: Colors.white,fontSize: 20),),
-                    Text(tasks[index].time,
-                      style: const TextStyle(color: kOrange, fontSize: 16),),
-                    Text(tasks[index].date,
-                      style: const TextStyle(color: kOrange, fontSize: 16),),
+                    SizedBox(
+                      width: 40,
+                      child: IconButton(
+                          onPressed: (){
+                            data.doneTask(index, box, tasks, context);
+                          },
+                          icon: const Icon(Icons.check, color: kOrange, size: 40,)),
+                    ),
+                    VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: SizedBox(
+                        width: 90,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(tasks[index].task,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(color: Colors.white,fontSize: 20),),
+                            Text(tasks[index].time,
+                              style: const TextStyle(color: kOrange, fontSize: 16),),
+                            Text(tasks[index].date,
+                              style: const TextStyle(color: kOrange, fontSize: 16),),
+                          ],
+                        ),
+                      ),
+                    ),
+                    VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        width: 140,
+                        height: 60,
+                        child: SingleChildScrollView(
+                          child: Text(tasks[index].description,
+                            style: const TextStyle(color: Colors.white, fontSize: 16),),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
-            Align(
-              alignment: Alignment.topCenter,
-              child: SizedBox(
-                width: 180,
-                height: 60,
-                child: SingleChildScrollView(
-                  child: Text(tasks[index].description,
-                    style: const TextStyle(color: Colors.white, fontSize: 16),),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }
