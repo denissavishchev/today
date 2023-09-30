@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:today/pages/daily_page.dart';
-import 'package:today/pages/habbit_page.dart';
+import 'package:today/pages/habit_page.dart';
 import 'package:today/pages/settings_page.dart';
 import '../pages/to_do_page.dart';
 
@@ -10,7 +10,7 @@ class MainProvider with ChangeNotifier {
   final List pages = [
     const ToDoPage(),
     const DailyPage(),
-    const HabbitPage(),
+    const HabitPage(),
     const SettingsPage(),
   ];
 
