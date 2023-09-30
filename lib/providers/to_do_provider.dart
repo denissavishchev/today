@@ -29,6 +29,8 @@ dynamic addSelectedList = AddLists.common;
 
 class ToDoProvider with ChangeNotifier {
 
+  Map<String, int> listCounts = {};
+  List<String> lists = [];
   String listTitle = 'All lists';
   String addListTitle = 'Common';
   List selectList = ['Common', 'Personal', 'Shopping', 'Wishlist', 'Work'];
@@ -58,12 +60,21 @@ class ToDoProvider with ChangeNotifier {
     box.add(task);
   }
 
+  int calculateLists(){
+    int sum = 0;
+    List values = listCounts.values.toList();
+    for(int value in values){
+      sum += value;
+    }
+    return sum;
+  }
+
   void changeListValue(String text){
     listTitle = text;
     if(text == 'All lists'){
       text = 'All';
     }
-    selectedList =  Lists.values.byName(text.toLowerCase());
+    selectedList = Lists.values.byName(text.toLowerCase());
     notifyListeners();
   }
 
@@ -159,7 +170,7 @@ class ToDoProvider with ChangeNotifier {
                         SelectListWidget(
                           icon: Icons.home,
                           text: 'All lists',
-                          count: 3, 
+                          count: calculateLists(),
                           onTap: () => changeListValue('All lists')
                         ),
                         const SizedBox(height: 10,),
@@ -175,7 +186,7 @@ class ToDoProvider with ChangeNotifier {
                                     return SelectListWidget(
                                       icon: Icons.list,
                                       text: selectList[index],
-                                      count: 3, 
+                                      count: int.parse(listCounts[selectList[index]].toString()),
                                       onTap: () => changeListValue(selectList[index]),
                                     );
                                   }),
@@ -188,7 +199,7 @@ class ToDoProvider with ChangeNotifier {
                         SelectListWidget(
                           icon: Icons.check_circle,
                           text: 'Finished',
-                          count: 3, 
+                          count: 0,
                           onTap: () => changeListValue('Finished'),),
                       ],
                     ),

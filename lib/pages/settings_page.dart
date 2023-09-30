@@ -14,7 +14,7 @@ class SettingsPage extends StatelessWidget {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/bg04.png'),
-                fit: BoxFit.cover)),
+                fit: BoxFit.fitWidth)),
         child: BackdropFilter(
           filter: ImageFilter.blur(
             sigmaX: 0.1,

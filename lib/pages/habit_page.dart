@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DailyPage extends StatelessWidget {
-  const DailyPage({Key? key}) : super(key: key);
+class HabitPage extends StatelessWidget {
+  const HabitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class DailyPage extends StatelessWidget {
         height: size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/bg02.png'),
+                image: AssetImage('assets/images/bg03.png'),
                 fit: BoxFit.fitWidth)),
       ),
 

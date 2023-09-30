@@ -25,8 +25,6 @@ class SelectListWidget extends StatelessWidget {
           return GestureDetector(
             onTap: (){
               onTap();
-              print('List$selectedList');
-              print('Add list$addSelectedList');
               Navigator.of(context).pop();
             },
             child: FadeContainerWidget(
