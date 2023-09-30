@@ -47,7 +47,7 @@ class AllToDoLists extends StatelessWidget {
                 width: 180,
                 height: 60,
                 child: SingleChildScrollView(
-                  child: Text(tasks[index].list,
+                  child: Text(tasks[index].description,
                     style: const TextStyle(color: Colors.white, fontSize: 16),),
                 ),
               ),

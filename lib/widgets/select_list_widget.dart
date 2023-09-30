@@ -11,12 +11,14 @@ class SelectListWidget extends StatelessWidget {
     required this.text,
     required this.count,
     required this.onTap,
+    this.visible = true,
   });
 
   final IconData icon;
   final String text;
   final int count;
   final Function() onTap;
+  final bool visible;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,9 @@ class SelectListWidget extends StatelessWidget {
                     const SizedBox(width: 12,),
                     Text(text, style: selectStyle),
                     const Spacer(),
-                    Text(count.toString(), style: selectStyle,),
+                    Visibility(
+                      visible: visible,
+                        child: Text(count.toString(), style: selectStyle,)),
                   ],
                 ),
               ),

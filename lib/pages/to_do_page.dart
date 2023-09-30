@@ -76,14 +76,13 @@ class ToDoPage extends StatelessWidget {
                         valueListenable: Boxes.addToBase().listenable(),
                         builder: (context, box, _){
                           final tasks = box.values.toList().cast<ToDoModel>();
+                          data.listCounts = {'Common' : 0, 'Personal' : 0, 'Shopping' : 0, 'Wishlist' : 0, 'Work' : 0};
                           for(var t in tasks){
                             data.lists.add(t.list);
                           }
-                          Map<String, int> count = {};
                           for (var l in data.lists) {
-                            count[l] = (count[l] ?? 0) + 1;
+                            data.listCounts[l] = (data.listCounts[l] ?? 0) + 1;
                           }
-                          data.listCounts = count;
                           data.lists.clear();
                           return Container(
                             clipBehavior: Clip.hardEdge,

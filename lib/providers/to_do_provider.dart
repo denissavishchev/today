@@ -93,7 +93,7 @@ class ToDoProvider with ChangeNotifier {
           return StatefulBuilder(
               builder: (context, setState) {
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   decoration: BoxDecoration(
@@ -108,32 +108,25 @@ class ToDoProvider with ChangeNotifier {
                         ),
                       ]
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        child: ScrollConfiguration(
-                          behavior: const ScrollBehavior().copyWith(overscroll: false),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: ListView.builder(
-                                itemCount: selectList.length,
-                                itemBuilder: (context, index){
-                                  return SelectListWidget(
-                                    icon: Icons.list,
-                                    text: selectList[index],
-                                    count: 3, 
-                                    onTap: () => changeAddListValue(selectList[index]),
-                                  );
-                                }),
-                          ),
-                        ),
-                      ),
-                      // selectList.length > 4
-                      //     ? const SizedBox(height: 10,)
-                      //     : const SizedBox.shrink(),
-                    ],
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 12, 0, 12),
+                      child: ListView.builder(
+                          itemCount: selectList.length,
+                          itemBuilder: (context, index){
+                            return SelectListWidget(
+                              icon: Icons.list,
+                              text: selectList[index],
+                              count: 0,
+                              visible: false,
+                              onTap: () {
+                                changeAddListValue(selectList[index]);
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              }
+                            );
+                          }),
+                    ),
                   ),
                 );
               }
@@ -237,6 +230,7 @@ class ToDoProvider with ChangeNotifier {
       )
     )) ?? DateTime.now();
     noDate = convertTime(dateTime.millisecondsSinceEpoch);
+    FocusManager.instance.primaryFocus?.unfocus();
     notifyListeners();
   }
 
@@ -251,6 +245,7 @@ class ToDoProvider with ChangeNotifier {
         );
       },
     )) ?? const TimeOfDay(hour: 8, minute: 00);
+    FocusManager.instance.primaryFocus?.unfocus();
     notifyListeners();
   }
 
