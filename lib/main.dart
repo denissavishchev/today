@@ -6,12 +6,33 @@ import 'package:today/pages/main_page.dart';
 import 'package:today/providers/main_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
+
+  AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+        channelKey: 'scheduled_channel',
+        channelGroupKey: 'basic_channel_group',
+        channelName: 'Scheduled Notifications',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        channelDescription: 'Notification channel for basic tests',)
+      ],
+      channelGroups: [
+        NotificationChannelGroup(
+            channelGroupKey: 'basic_channel_group',
+            channelGroupName: 'Basic group')
+      ],
+    debug: true
+  );
+
   runApp(const MyApp());
 }
 
@@ -24,7 +45,6 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
           ChangeNotifierProvider<ToDoProvider>(create: (_) => ToDoProvider()),
-          // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
           // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
           // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
         ],

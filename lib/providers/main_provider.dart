@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:today/pages/daily_page.dart';
 import 'package:today/pages/habit_page.dart';
@@ -6,6 +7,25 @@ import '../pages/to_do_page.dart';
 
 
 class MainProvider with ChangeNotifier {
+
+  void initNotifications(){
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
+  Future sendNotification() async{
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: DateTime.now().microsecondsSinceEpoch.remainder(200),
+            channelKey: 'scheduled_channel',
+            title: '${Emojis.money_coin + Emojis.plant_cactus} Hello',
+            body: 'World',
+        )
+    );
+  }
 
   final List pages = [
     const ToDoPage(),

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/main_provider.dart';
@@ -10,9 +9,12 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final initNotifications = Provider.of<MainProvider>(context, listen: false);
+    initNotifications.initNotifications();
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Consumer<MainProvider>(builder: (context, data, _){
+        body: Consumer<MainProvider>
+          (builder: (context, data, _){
           return Stack(
             children: [
               ScrollConfiguration(
@@ -26,6 +28,12 @@ class MainPage extends StatelessWidget {
                     }),
               ),
               const BottomNavBarWidget(),
+              Positioned(
+                top: 20,
+                child: ElevatedButton(
+                    onPressed: () => data.sendNotification(),
+                    child: Text('Noti')),
+              ),
             ],
           );
         })
