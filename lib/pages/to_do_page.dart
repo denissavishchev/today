@@ -77,11 +77,16 @@ class ToDoPage extends StatelessWidget {
                         builder: (context, box, _){
                           final tasks = box.values.toList().cast<ToDoModel>();
                           data.listCounts = {'Common' : 0, 'Personal' : 0, 'Shopping' : 0, 'Wishlist' : 0, 'Work' : 0};
+                          data.finishedListCount = 0;
                           for(var t in tasks){
                             data.lists.add(t.list);
                           }
                           for (var l in data.lists) {
-                            data.listCounts[l] = (data.listCounts[l] ?? 0) + 1;
+                            if(l != 'Finished'){
+                              data.listCounts[l] = (data.listCounts[l] ?? 0) + 1;
+                            }else{
+                              data.finishedListCount = data.finishedListCount + 1;
+                            }
                           }
                           data.lists.clear();
                           return Container(
@@ -112,7 +117,7 @@ class ToDoPage extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     if(tasks[index].list == data.listTitle){
                                       return AllToDoLists(tasks: tasks, index: index, box: box,);
-                                    }if (data.listTitle == 'All lists'){
+                                    }if (data.listTitle == 'All lists' && tasks[index].list != 'Finished'){
                                       return AllToDoLists(tasks: tasks, index: index, box: box,);
                                     } else{
                                       return Container();

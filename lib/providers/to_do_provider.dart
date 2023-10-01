@@ -33,6 +33,7 @@ dynamic addSelectedList = AddLists.common;
 class ToDoProvider with ChangeNotifier {
 
   Map<String, int> listCounts = {};
+  int finishedListCount = 0;
   List<String> lists = [];
   String listTitle = 'All lists';
   String addListTitle = 'Common';
@@ -45,6 +46,7 @@ class ToDoProvider with ChangeNotifier {
   DateTime dateTime = DateTime.now();
   TimeOfDay initialTime = const TimeOfDay(hour: 8, minute: 00);
 
+
   Future addToBase() async {
     final date = convertTime(dateTime.millisecondsSinceEpoch);
     final hour = initialTime.hour < 10
@@ -56,8 +58,8 @@ class ToDoProvider with ChangeNotifier {
     final task =  ToDoModel()
         ..task = titleController.text.trim()
         ..description = descriptionController.text.trim()
-        ..date = date
-        ..time = '$hour:$minute'
+        ..date = noDate == 'Date not set' ? '' : date
+        ..time = noDate == 'Date not set' ? '' : '$hour:$minute'
         ..list = addListTitle;
     final box = Boxes.addToBase();
     box.add(task);
@@ -195,7 +197,7 @@ class ToDoProvider with ChangeNotifier {
                         SelectListWidget(
                           icon: Icons.check_circle,
                           text: 'Finished',
-                          count: 0,
+                          count: finishedListCount,
                           onTap: () => changeListValue('Finished'),),
                       ],
                     ),
