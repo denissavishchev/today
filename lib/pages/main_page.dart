@@ -8,8 +8,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final initNotifications = Provider.of<MainProvider>(context, listen: false);
-    initNotifications.initNotifications();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Consumer<MainProvider>

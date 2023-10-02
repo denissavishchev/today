@@ -13,7 +13,6 @@ Future main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
-
   AwesomeNotifications().initialize(
       null,
       [
@@ -23,7 +22,6 @@ Future main() async{
         channelName: 'Scheduled Notifications',
         importance: NotificationImportance.High,
         channelShowBadge: true,
-        icon: Emojis.moon_full_moon,
         channelDescription: 'Notification channel for basic tests',)
       ],
       channelGroups: [
@@ -48,6 +46,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ToDoProvider>(create: (_) => ToDoProvider()),
         ],
       builder: (context, child) {
+        final initNotifications = Provider.of<MainProvider>(context, listen: false);
+        initNotifications.initNotifications();
           return MaterialApp(
             theme: pickerTheme,
             debugShowCheckedModeBanner: false,

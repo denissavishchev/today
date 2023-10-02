@@ -1,7 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name= "android.permission .SCHEDULE EXACT ALARM"/>
-    <uses-permission android:name= "android.permission .WAKE_LOCK" />
     <application
         android:label="today"
         android:name="${applicationName}"
@@ -33,4 +31,8 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name= "android.permission .SCHEDULE EXACT ALARM"/>
+    <uses-permission android:name= "android.permission .WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 </manifest>
