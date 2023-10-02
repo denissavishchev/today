@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:hive/hive.dart';
@@ -63,6 +64,35 @@ class ToDoProvider with ChangeNotifier {
         ..list = addListTitle;
     final box = Boxes.addToBase();
     box.add(task);
+
+    List splitDate = date.split('-');
+    int year = int.parse(splitDate[2]);
+    int month = int.parse(splitDate[1]);
+    int day = int.parse(splitDate[0]);
+
+    if(noDate != 'Date not set'){
+      sendNotification(year, month, day, int.parse(hour), int.parse(minute),
+          titleController.text.trim());
+    }
+  }
+
+  Future sendNotification(int year, int month, int day, int hour, int minute,
+      String title) async{
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: DateTime.now().microsecondsSinceEpoch.remainder(200),
+        channelKey: 'scheduled_channel',
+        title: '${Emojis.light_light_bulb} Today is a good day for',
+        body: title,
+      ),
+      schedule: NotificationCalendar(
+          year: year,
+          month: month,
+          day: day,
+          hour: hour,
+          minute: minute
+      ),
+    );
   }
 
   int calculateLists(){
@@ -191,9 +221,6 @@ class ToDoProvider with ChangeNotifier {
                             ),
                           ),
                         ),
-                        // selectList.length > 4
-                        //     ? const SizedBox(height: 10,)
-                        //     : const SizedBox.shrink(),
                         SelectListWidget(
                           icon: Icons.check_circle,
                           text: 'Finished',

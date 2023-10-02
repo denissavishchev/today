@@ -9,8 +9,6 @@ const kWhite = Color(0xffd9d9d7);
 
 const selectStyle = TextStyle( fontSize: 22, color: kWhite, fontWeight: FontWeight.bold);
 final orangeStyle = TextStyle( fontSize: 22, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold);
-// const textStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: fontColor);
-// final helpTextStyle = TextStyle(fontSize: 14, color: fontColor.withOpacity(0.7));
 
 final pickerTheme = ThemeData(
   timePickerTheme: TimePickerThemeData(

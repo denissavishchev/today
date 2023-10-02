@@ -23,6 +23,7 @@ Future main() async{
         channelName: 'Scheduled Notifications',
         importance: NotificationImportance.High,
         channelShowBadge: true,
+        icon: Emojis.moon_full_moon,
         channelDescription: 'Notification channel for basic tests',)
       ],
       channelGroups: [
@@ -45,8 +46,6 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
           ChangeNotifierProvider<ToDoProvider>(create: (_) => ToDoProvider()),
-          // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
-          // ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
         ],
       builder: (context, child) {
           return MaterialApp(

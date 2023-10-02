@@ -138,7 +138,8 @@ class AddTaskPage extends StatelessWidget {
                                 width: 30,
                               ),
                             ],
-                          ),),
+                          ),
+                        ),
                         SizedBox(height: size.height * 0.02,),
                         Visibility(
                           visible: data.noDate != 'Date not set',

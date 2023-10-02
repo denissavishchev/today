@@ -16,17 +16,6 @@ class MainProvider with ChangeNotifier {
     });
   }
 
-  Future sendNotification() async{
-    await AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: DateTime.now().microsecondsSinceEpoch.remainder(200),
-            channelKey: 'scheduled_channel',
-            title: '${Emojis.money_coin + Emojis.plant_cactus} Hello',
-            body: 'World',
-        )
-    );
-  }
-
   final List pages = [
     const ToDoPage(),
     const DailyPage(),

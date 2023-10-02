@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/to_do_provider.dart';
-
 import '../constants.dart';
 import '../model/to_do_model.dart';
 import 'basic_container_widget.dart';
@@ -23,6 +22,14 @@ class AllToDoLists extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ToDoProvider>(
         builder: (context, data, child){
+          List splitDate = tasks[index].date.split('-');
+          String year = splitDate[2];
+          String month = int.parse(splitDate[1]) < 10
+              ? '0${splitDate[1]}' : splitDate[1];
+          String day = int.parse(splitDate[0]) < 10
+              ? '0${splitDate[0]}' : splitDate[0];
+
+          var time = DateTime.parse('$year-$month-$day ${tasks[index].time}');
           return GestureDetector(
             onLongPress: (){
               data.deleteTask(index, box, context);
@@ -53,9 +60,11 @@ class AllToDoLists extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(color: Colors.white,fontSize: 20),),
                             Text(tasks[index].time,
-                              style: const TextStyle(color: kOrange, fontSize: 16),),
+                              style: TextStyle(color: time.isAfter(DateTime.now())
+                                  ? kOrange : kGrey, fontSize: 16),),
                             Text(tasks[index].date,
-                              style: const TextStyle(color: kOrange, fontSize: 16),),
+                              style: TextStyle(color: time.isAfter(DateTime.now())
+                                  ? kOrange : kGrey, fontSize: 16),),
                           ],
                         ),
                       ),

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../providers/main_provider.dart';
 import '../widgets/bottom_nav_bar_widget.dart';
 
-
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -28,12 +27,6 @@ class MainPage extends StatelessWidget {
                     }),
               ),
               const BottomNavBarWidget(),
-              Positioned(
-                top: 20,
-                child: ElevatedButton(
-                    onPressed: () => data.sendNotification(),
-                    child: Text('Noti')),
-              ),
             ],
           );
         })

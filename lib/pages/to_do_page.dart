@@ -92,7 +92,6 @@ class ToDoPage extends StatelessWidget {
                           return Container(
                             clipBehavior: Clip.hardEdge,
                             width: size.width * 0.9,
-                            // height: size.height * 0.7,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: const BorderRadius.all(Radius.circular(24)),
