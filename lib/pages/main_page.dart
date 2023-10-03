@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/main_provider.dart';
@@ -26,6 +27,24 @@ class MainPage extends StatelessWidget {
                     }),
               ),
               const BottomNavBarWidget(),
+              Positioned(
+                top: 20,
+                  left: 200,
+                  child: ElevatedButton(
+                    onPressed: () {
+                    context.setLocale(Locale('ru', 'RU'));
+                  },
+                    child: Text('ru'),
+                  )),
+              Positioned(
+                  top: 60,
+                  left: 200,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.setLocale(Locale('en', 'US'));
+                    },
+                    child: Text('en'),
+                  )),
             ],
           );
         })

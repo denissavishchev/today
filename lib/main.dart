@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:today/constants.dart';
@@ -8,11 +9,14 @@ import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
+import 'generated/codegen_loader.g.dart';
+
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
+  await EasyLocalization.ensureInitialized();
   AwesomeNotifications().initialize(
       null,
       [
@@ -32,7 +36,13 @@ Future main() async{
     debug: true
   );
 
-  runApp(const MyApp());
+  runApp(
+      EasyLocalization(
+          supportedLocales: const [Locale('en', 'US'), Locale('ru', 'RU'), Locale('pl', 'PL')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en', 'US'),
+          assetLoader: const CodegenLoader(),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -49,6 +59,9 @@ class MyApp extends StatelessWidget {
         final initNotifications = Provider.of<MainProvider>(context, listen: false);
         initNotifications.initNotifications();
           return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             theme: pickerTheme,
             debugShowCheckedModeBanner: false,
             home: const MainPage(),

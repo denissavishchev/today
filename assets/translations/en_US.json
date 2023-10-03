@@ -1,0 +1,14 @@
+{
+
+  "task": "Task",
+  "allTasks": "All lists",
+  "common": "Common",
+  "personal": "Personal",
+  "shopping": "Shopping",
+  "wishList": "Wishlist",
+  "work": "Work",
+  "finished": "Finished",
+  "description": "Description",
+  "dateNotSet": "Date not set",
+  "withoutNotification": "without notification"
+}

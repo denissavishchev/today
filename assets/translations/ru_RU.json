@@ -1,0 +1,13 @@
+{
+  "task": "Задача",
+  "allTasks": "Все списки",
+  "common": "Общий",
+  "personal": "Персональный",
+  "shopping": "Покупки",
+  "wishList": "Список желаний",
+  "work": "Работа",
+  "finished": "Законченный",
+  "description": "Описание",
+  "dateNotSet": "Дата не установлена",
+  "withoutNotification": "без уведомления"
+}

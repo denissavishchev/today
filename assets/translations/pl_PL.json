@@ -1,0 +1,14 @@
+{
+
+  "task": "Zadanie",
+  "allTasks": "Wszystkie listy",
+  "common": "Wspólna",
+  "personal": "Osobista",
+  "shopping": "Zakupy",
+  "wishList": "Lista życzeń",
+  "work": "Praca",
+  "finished": "Skończone",
+  "description": "Opis",
+  "dateNotSet": "Data nie została ustalona",
+  "withoutNotification": "bez powiadomienia"
+}

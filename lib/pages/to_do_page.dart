@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class ToDoPage extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 40.0),
-                                    child: Text(data.listTitle, style: orangeStyle,),
+                                    child: Text(data.listTitle.tr(), style: orangeStyle,),
                                   )),
                             ),
                           ],

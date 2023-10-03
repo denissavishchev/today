@@ -36,7 +36,7 @@ class ToDoProvider with ChangeNotifier {
   Map<String, int> listCounts = {};
   int finishedListCount = 0;
   List<String> lists = [];
-  String listTitle = 'All lists';
+  String listTitle = 'task';
   String addListTitle = 'Common';
   List selectList = ['Common', 'Personal', 'Shopping', 'Wishlist', 'Work'];
   final TextEditingController titleController = TextEditingController();
