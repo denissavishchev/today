@@ -34,41 +34,45 @@ class ToDoPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: size.height * 0.07),
-                    Row(
-                      children: [
-                        Stack(
-                          children: [
-                            SideButtonWidget(
-                              width: 220,
-                              onTap: (){
-                                data.selectLists(context);
-                              },
-                              child: Icon(Icons.list,
-                                color: kOrange.withOpacity(0.7),
-                                size: 40,),),
-                            Positioned.fill(
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 40.0),
-                                    child: Text(data.listTitle, style: orangeStyle,),
-                                  )),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        SideButtonWidget(
-                          right: false,
-                          onTap: (){
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) =>
-                                const AddTaskPage()));
-                          },
-                          child: Icon(Icons.add,
-                            color: kOrange.withOpacity(0.7),
-                            size: 40,),)
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child: Row(
+                        children: [
+                          Stack(
+                            children: [
+                              SideButtonWidget(
+                                both: true,
+                                width: 220,
+                                onTap: (){
+                                  data.selectLists(context);
+                                },
+                                child: Icon(Icons.list,
+                                  color: kOrange.withOpacity(0.7),
+                                  size: 40,),),
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 40.0),
+                                      child: Text(data.listTitle, style: orangeStyle,),
+                                    )),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          SideButtonWidget(
+                            right: false,
+                            onTap: (){
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>
+                                  const AddTaskPage()));
+                            },
+                            child: Icon(Icons.add,
+                              color: kOrange.withOpacity(0.7),
+                              size: 40,),)
+                        ],
+                      ),
                     ),
                     SizedBox(height: size.height * 0.02,),
                     Expanded(

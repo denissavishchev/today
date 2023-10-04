@@ -215,49 +215,57 @@ class AddTaskPage extends StatelessWidget {
                             ),),
                         ),
                         SizedBox(height: size.height * 0.06,),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                SideButtonWidget(
-                                  width: 220,
-                                  onTap: (){
-                                    data.addSelectLists(context);
-                                  },
-                                  child: Icon(Icons.list,
-                                    color: kOrange.withOpacity(0.7),
-                                    size: 40,),),
-                                Positioned.fill(
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 40.0),
-                                        child: Text(data.addListTitle, style: orangeStyle,),
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: Row(
+                            children: [
+                              Stack(
+                                children: [
+                                  SideButtonWidget(
+                                    both: true,
+                                    width: 220,
+                                    onTap: (){
+                                      data.addSelectLists(context);
+                                    },
+                                    child: Icon(Icons.list,
+                                      color: kOrange.withOpacity(0.7),
+                                      size: 40,),),
+                                  Positioned.fill(
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 40.0),
+                                          child: Text(data.addListTitle, style: orangeStyle,),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: size.height * 0.06,),
-                        Row(
-                          children: [
-                            SideButtonWidget(
-                              width: 250,
-                                onTap: (){
-                                  data.addToBase();
-                                  Navigator.of(context).pop();
-                                  data.titleController.clear();
-                                  data.descriptionController.clear();
-                                  data.noDate = 'Date not set';
-                                  data.addListTitle = 'Common';
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => const MainPage()));
-                                },
-                                child: Icon(Icons.upload, color: kOrange.withOpacity(0.8), size: 40,)),
-                            const Spacer(),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 48.0),
+                          child: Row(
+                            children: [
+                              SideButtonWidget(
+                                both: true,
+                                width: 200,
+                                  onTap: (){
+                                    data.addToBase();
+                                    Navigator.of(context).pop();
+                                    data.titleController.clear();
+                                    data.descriptionController.clear();
+                                    data.noDate = 'Date not set';
+                                    data.addListTitle = 'Common';
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const MainPage()));
+                                  },
+                                  child: Icon(Icons.upload, color: kOrange.withOpacity(0.8), size: 40,)),
+                              const Spacer(),
+                            ],
+                          ),
                         ),
                       ],
                     ),
