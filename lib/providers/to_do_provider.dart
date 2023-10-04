@@ -47,7 +47,6 @@ class ToDoProvider with ChangeNotifier {
   DateTime dateTime = DateTime.now();
   TimeOfDay initialTime = const TimeOfDay(hour: 8, minute: 00);
 
-
   Future addToBase() async {
     final date = convertTime(dateTime.millisecondsSinceEpoch);
     final hour = initialTime.hour < 10
