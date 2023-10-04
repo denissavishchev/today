@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../constants.dart';
 import '../providers/main_provider.dart';
 import '../widgets/bottom_nav_bar_widget.dart';
 
@@ -18,7 +19,7 @@ class MainPage extends StatelessWidget {
               ScrollConfiguration(
                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                 child: PageView.builder(
-                    controller: data.mainPageController,
+                    controller: mainPageController,
                     onPageChanged: (int index) => data.changePage(index),
                     itemCount: data.pages.length,
                     itemBuilder: (context, index) {

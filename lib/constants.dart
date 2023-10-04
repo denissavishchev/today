@@ -37,3 +37,6 @@ final pickerTheme = ThemeData(
     ),
   ),
 );
+
+PageController mainPageController = PageController(initialPage: 0);
+int activePage = 0;

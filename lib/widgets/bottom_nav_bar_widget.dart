@@ -33,7 +33,7 @@ class BottomNavBarWidget extends StatelessWidget {
               data.pages.length, (index) =>
                 GestureDetector(
                   onTap: (){
-                    data.mainPageController.animateToPage(
+                    mainPageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.easeIn);
@@ -60,7 +60,7 @@ class BottomNavBarWidget extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: const Color(0xff91918f),
                             border: Border.all(
-                                color: data.activePage == index
+                                color: activePage == index
                                     ? kOrange
                                     : Colors.grey,
                                 width: 0.5),
@@ -81,7 +81,7 @@ class BottomNavBarWidget extends StatelessWidget {
                             ]
                           ),
                           child: Icon(data.icon[index],
-                            color: data.activePage == index
+                            color: activePage == index
                                 ? kOrange.withOpacity(0.7)
                                 : kWhite,
                             size: 30,),
