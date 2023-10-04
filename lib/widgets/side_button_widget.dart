@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
+
 class SideButtonWidget extends StatelessWidget {
   const SideButtonWidget({
     super.key,
     this.right = true,
+    this.both = false,
     required this.child,
     this.width = 80,
     required this.onTap,
   });
 
   final bool right;
+  final bool both;
   final Widget child;
   final double width;
   final Function() onTap;
@@ -24,13 +27,15 @@ class SideButtonWidget extends StatelessWidget {
         height: 65,
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.5),
-            borderRadius: right
-                ? const BorderRadius.only(
-                topRight: Radius.circular(30),
-                bottomRight: Radius.circular(30))
-                : const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30)),
+            borderRadius: both
+                  ? const BorderRadius.all(Radius.circular(30))
+                  : right
+                  ? const BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  bottomRight: Radius.circular(30))
+                  : const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  bottomLeft: Radius.circular(30)),
             boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.5),
