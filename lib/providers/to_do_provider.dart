@@ -321,8 +321,9 @@ class ToDoProvider with ChangeNotifier {
                               descriptionController.clear();
                               noDate = 'Date not set';
                               addListTitle = 'Common';
-                              Navigator.push(
-                                  context,
+                              activePage = 0;
+                              mainPageController.initialPage = 0;
+                              Navigator.push(context,
                                   MaterialPageRoute(builder: (context) => const MainPage()));
                             },
                             child: Icon(Icons.check,

@@ -43,8 +43,10 @@ class AddTaskPage extends StatelessWidget {
                               onTap: (){
                                 if (data.titleController.text != ''
                                     || data.descriptionController.text != ''){
-                                  data. exitCheck(context);
+                                  data.exitCheck(context);
                                 }else{
+                                  activePage = 0;
+                                  mainPageController.initialPage = 0;
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(builder: (context) => const MainPage()));
