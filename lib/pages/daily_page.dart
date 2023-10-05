@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:today/pages/add_dayly_page.dart';
 
 import '../constants.dart';
 import '../providers/daily_provider.dart';
@@ -34,45 +35,42 @@ class DailyPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        SideButtonWidget(
+                          width: 90,
+                          onTap: (){
+
+                          },
+                          child: Icon(Icons.list,
+                            color: kOrange.withOpacity(0.7),
+                            size: 40,),),
                         Stack(
                           children: [
                             SideButtonWidget(
+                              both: true,
                               width: 160,
                               onTap: (){
 
                               },
-                              child: Icon(Icons.list,
+                              child: Icon(Icons.access_alarm,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
                             Positioned.fill(
                               child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 40.0),
-                                    child: Text('Title', style: orangeStyle,),
+                                    padding: const EdgeInsets.only(left: 24.0),
+                                    child: Text('00:00', style: orangeStyle,),
                                   )),
                             ),
                           ],
                         ),
                         SideButtonWidget(
-                          both: true,
-                          width: 70,
-                          onTap: (){
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(builder: (context) =>
-                            //     const AddTaskPage()));
-                          },
-                          child: Icon(Icons.access_alarm,
-                            color: kOrange.withOpacity(0.7),
-                            size: 40,),),
-                        SideButtonWidget(
                           right: false,
                           onTap: (){
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(builder: (context) =>
-                            //     const AddTaskPage()));
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) =>
+                                const AddDailyPage()));
                           },
                           child: Icon(Icons.add,
                             color: kOrange.withOpacity(0.7),

@@ -258,6 +258,8 @@ class AddTaskPage extends StatelessWidget {
                                     data.descriptionController.clear();
                                     data.noDate = 'Date not set';
                                     data.addListTitle = 'Common';
+                                    activePage = 0;
+                                    mainPageController.initialPage = 0;
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) => const MainPage()));
