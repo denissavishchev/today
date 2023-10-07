@@ -8,12 +8,15 @@ import 'package:today/providers/main_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'model/daily_model.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoModelAdapter());
+  Hive.registerAdapter(DailyModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
+  await Hive.openBox<DailyModel>('daily_page');
   AwesomeNotifications().initialize(
       null,
       [

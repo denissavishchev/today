@@ -1,11 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
-
 import '../constants.dart';
+import '../model/boxes.dart';
+import '../model/daily_model.dart';
 import '../providers/daily_provider.dart';
+import '../widgets/all_daily_lists_widget.dart';
 import '../widgets/side_button_widget.dart';
 
 class DailyPage extends StatelessWidget {
@@ -40,7 +42,7 @@ class DailyPage extends StatelessWidget {
                           onTap: (){
 
                           },
-                          child: Icon(Icons.list,
+                          child: Icon(Icons.insights,
                             color: kOrange.withOpacity(0.7),
                             size: 40,),),
                         Stack(
@@ -78,6 +80,45 @@ class DailyPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: size.height * 0.02,),
+                    Expanded(
+                        child: ValueListenableBuilder<Box<DailyModel>>(
+                          valueListenable: Boxes.addDailyToBase().listenable(),
+                          builder: (context, box, _){
+                            final tasks = box.values.toList().cast<DailyModel>();
+                            return Container(
+                              clipBehavior: Clip.hardEdge,
+                              width: size.width * 0.9,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.all(Radius.circular(24)),
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        kOrange.withOpacity(0.1),
+                                        Colors.transparent
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      stops: const [0.1, 0.8]
+                                  )
+                              ),
+                              child: ScrollConfiguration(
+                                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.only(bottom: size.height * 0.12),
+                                    itemCount: tasks.length,
+                                    controller: data.scrollController,
+                                    reverse: false,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                        return AllDailyLists(tasks: tasks, index: index, box: box,);
+
+                                    },
+                                  )
+                              ),
+                            );
+                          },
+                        )
+                    ),
                   ],
                 ),
               ),

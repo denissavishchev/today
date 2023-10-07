@@ -77,7 +77,7 @@ class ToDoPage extends StatelessWidget {
                     SizedBox(height: size.height * 0.02,),
                     Expanded(
                       child: ValueListenableBuilder<Box<ToDoModel>>(
-                        valueListenable: Boxes.addToBase().listenable(),
+                        valueListenable: Boxes.addTaskToBase().listenable(),
                         builder: (context, box, _){
                           final tasks = box.values.toList().cast<ToDoModel>();
                           data.listCounts = {'Common' : 0, 'Personal' : 0, 'Shopping' : 0, 'Wishlist' : 0, 'Work' : 0};

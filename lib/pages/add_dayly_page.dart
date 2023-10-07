@@ -114,6 +114,10 @@ class AddDailyPage extends StatelessWidget {
                                               stops: const [0, 0.75]),
                                         ),
                                         child: ListWheelScrollView(
+                                          onSelectedItemChanged: (index) {
+                                            FocusManager.instance.primaryFocus?.unfocus();
+                                            data.setNumber(index);
+                                          },
                                           physics: const FixedExtentScrollPhysics(),
                                             itemExtent: 58,
                                             children: List.generate(10, (index){
@@ -158,6 +162,10 @@ class AddDailyPage extends StatelessWidget {
                                       both: true,
                                       width: 200,
                                       onTap: (){
+                                        data.addToBase();
+                                        Navigator.of(context).pop();
+                                        data.titleController.clear();
+                                        data.descriptionController.clear();
                                         activePage = 1;
                                         mainPageController.initialPage = 1;
                                         Navigator.push(
