@@ -61,7 +61,7 @@ class ToDoProvider with ChangeNotifier {
         ..date = noDate == 'Date not set' ? '' : date
         ..time = noDate == 'Date not set' ? '' : '$hour:$minute'
         ..list = addListTitle;
-    final box = Boxes.addToBase();
+    final box = Boxes.addTaskToBase();
     box.add(task);
 
     List splitDate = date.split('-');
