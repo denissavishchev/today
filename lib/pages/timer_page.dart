@@ -251,6 +251,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                     size: 40,),
                                   onTap: (){
                                     _controller.reset();
+                                    _animationIconController.reverse();
                                     setState(() {
                                       isPlaying = false;
                                     });
