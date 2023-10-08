@@ -29,7 +29,7 @@ class DailyProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTask(int index, int done, Box<DailyModel> box, List<DailyModel> tasks, context) {
+  void updateTask(int index, int done, int howMany, Box<DailyModel> box, List<DailyModel> tasks, context) {
     if(done < howMany){
       box.putAt(index, DailyModel()
         ..task = tasks[index].task

@@ -68,7 +68,7 @@ class AllDailyLists extends StatelessWidget {
                                       (i) {
                                     return GestureDetector(
                                       onTap: () {
-                                        data.updateTask(index, tasks[index].done, box, tasks, context);
+                                        data.updateTask(index, tasks[index].done, tasks[index].howMany, box, tasks, context);
                                       } ,
                                       child: Container(
                                         margin: const EdgeInsets.symmetric(horizontal: 2),
