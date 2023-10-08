@@ -21,7 +21,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
 
   double progress = 1.0;
 
-  late AnimationController _animationController;
+  late AnimationController _animationIconController;
 
   void notify(){
     if(countText == '0:00:00') {
@@ -57,7 +57,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
         });
       }
     });
-    _animationController = AnimationController(
+    _animationIconController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
@@ -66,7 +66,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
   @override
   void dispose() {
     _controller.dispose();
-    _animationController.dispose();
+    _animationIconController.dispose();
     super.dispose();
   }
 
@@ -171,10 +171,24 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                 onTap: (){
                                   if(_controller.isDismissed){
                                     showModalBottomSheet(
+                                      backgroundColor: Colors.transparent,
                                         context: context,
                                         builder: (context){
-                                          return SizedBox(
-                                            height: 300,
+                                          return Container(
+                                            height: MediaQuery.of(context).size.height * 0.6,
+                                            margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
+                                            padding: const EdgeInsets.symmetric(vertical: 14),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white.withOpacity(0.8),
+                                                borderRadius: const BorderRadius.all(Radius.circular(24)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Colors.black.withOpacity(0.5),
+                                                      blurRadius: 3,
+                                                      offset: const Offset(1, 1)
+                                                  ),
+                                                ]
+                                            ),
                                             child: CupertinoTimerPicker(
                                               initialTimerDuration: _controller.duration!,
                                               onTimerDurationChanged: (time){
@@ -202,21 +216,21 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                               both: true,
                               child: Center(
                                 child: AnimatedIcon(
-                                  icon: AnimatedIcons.pause_play,
+                                  icon: AnimatedIcons.play_pause,
                                   color: kOrange.withOpacity(0.7),
                                   size: 40,
-                                  progress: _animationController,
+                                  progress: _animationIconController,
                                 ),
                               ),
                               onTap: (){
-                                if(_controller.isAnimating && _animationController.isDismissed){
+                                if(_controller.isAnimating && !_animationIconController.isDismissed){
                                   _controller.stop();
-                                  _animationController.forward();
+                                  _animationIconController.reverse();
                                   setState(() {
                                     isPlaying = false;
                                   });
                                 }else{
-                                  _animationController.reverse();
+                                  _animationIconController.forward();
                                   _controller.reverse(from: _controller.value == 0
                                       ? 1.0
                                       : _controller.value);
