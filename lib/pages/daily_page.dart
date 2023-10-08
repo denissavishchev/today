@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
+import 'package:today/pages/timer_page.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/daily_model.dart';
@@ -38,7 +39,6 @@ class DailyPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SideButtonWidget(
-                          width: 90,
                           onTap: (){
 
                           },
@@ -50,9 +50,10 @@ class DailyPage extends StatelessWidget {
                             SideButtonWidget(
                               both: true,
                               width: 160,
-                              onTap: (){
-
-                              },
+                              onTap: () => Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>
+                                  const TimerPage())),
                               child: Icon(Icons.access_alarm,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
@@ -68,12 +69,11 @@ class DailyPage extends StatelessWidget {
                         ),
                         SideButtonWidget(
                           right: false,
-                          onTap: (){
+                          onTap: () =>
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (context) =>
-                                const AddDailyPage()));
-                          },
+                                const AddDailyPage())),
                           child: Icon(Icons.add,
                             color: kOrange.withOpacity(0.7),
                             size: 40,),)
