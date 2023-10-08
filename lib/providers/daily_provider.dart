@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/daily_model.dart';
@@ -8,6 +7,7 @@ import '../widgets/side_button_widget.dart';
 
 class DailyProvider with ChangeNotifier {
 
+  String timeText = '00:00:00';
   int howMany = 0;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -109,5 +109,6 @@ class DailyProvider with ChangeNotifier {
           );
         });
   }
+
 
 }
