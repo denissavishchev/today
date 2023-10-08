@@ -45,29 +45,18 @@ class DailyPage extends StatelessWidget {
                           child: Icon(Icons.insights,
                             color: kOrange.withOpacity(0.7),
                             size: 40,),),
-                        Stack(
-                          children: [
-                            SideButtonWidget(
-                              both: true,
-                              width: 160,
-                              onTap: () => Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) =>
-                                  const TimerPage())),
-                              child: Icon(Icons.access_alarm,
-                                color: kOrange.withOpacity(0.7),
-                                size: 40,),),
-                            Positioned.fill(
-                              child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 24.0),
-                                    child: Text('00:00', style: orangeStyle,),
-                                  )),
-                            ),
-                          ],
-                        ),
                         SideButtonWidget(
+                          both: true,
+                          width: 90,
+                          onTap: () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                              const TimerPage())),
+                          child: Icon(Icons.access_alarm,
+                            color: kOrange.withOpacity(0.7),
+                            size: 40,),),
+                        SideButtonWidget(
+                          width: 100,
                           right: false,
                           onTap: () =>
                             Navigator.pushReplacement(

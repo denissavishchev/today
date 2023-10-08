@@ -19,6 +19,7 @@ dependencies:
   hive_flutter: ^1.0.0
   hive_generator: ^2.0.1
   awesome_notifications: ^0.7.7
+  flutter_ringtone_player: ^3.2.0
 
 dev_dependencies:
   flutter_test:
