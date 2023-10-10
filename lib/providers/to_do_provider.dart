@@ -58,8 +58,8 @@ class ToDoProvider with ChangeNotifier {
     final task =  ToDoModel()
         ..task = titleController.text.trim()
         ..description = descriptionController.text.trim()
-        ..date = noDate == 'Date not set' ? '' : date
-        ..time = noDate == 'Date not set' ? '' : '$hour:$minute'
+        ..date = noDate == 'Date not set' ? '0-0-0000' : date
+        ..time = noDate == 'Date not set' ? '00:00' : '$hour:$minute'
         ..list = addListTitle;
     final box = Boxes.addTaskToBase();
     box.add(task);

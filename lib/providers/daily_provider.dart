@@ -19,7 +19,8 @@ class DailyProvider with ChangeNotifier {
       ..task = titleController.text.trim()
       ..description = descriptionController.text.trim()
       ..howMany = howMany
-      ..done = done;
+      ..done = done
+      ..day = DateTime.now().day;
     final box = Boxes.addDailyToBase();
     box.add(task);
   }
@@ -35,8 +36,18 @@ class DailyProvider with ChangeNotifier {
         ..task = tasks[index].task
         ..description = tasks[index].description
         ..howMany = howMany
-        ..done = done + 1);
+        ..done = done + 1
+        ..day = DateTime.now().day);
     }
+  }
+
+  void resetTask(int index, int howMany, Box<DailyModel> box, List<DailyModel> tasks, context) {
+      box.putAt(index, DailyModel()
+        ..task = tasks[index].task
+        ..description = tasks[index].description
+        ..howMany = howMany
+        ..done = 0
+        ..day = DateTime.now().day);
   }
 
   Future deleteTask(int index, Box<DailyModel> box, context) {

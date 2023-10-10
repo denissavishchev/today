@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part 'daily_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 33)
 class DailyModel extends HiveObject{
   @HiveField(5)
   late String task;
@@ -11,4 +11,6 @@ class DailyModel extends HiveObject{
   late int howMany;
   @HiveField(8)
   late int done;
+  @HiveField(11)
+  late int day;
 }

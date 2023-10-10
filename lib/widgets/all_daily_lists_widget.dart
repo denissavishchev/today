@@ -22,6 +22,9 @@ class AllDailyLists extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DailyProvider>(
         builder: (context, data, child){
+          if(tasks[index].day != DateTime.now().day){
+            data.resetTask(index, tasks[index].howMany, box, tasks, context);
+          }
           return GestureDetector(
             onLongPress: (){
               data.deleteTask(index, box, context);
