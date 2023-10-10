@@ -59,10 +59,14 @@ class AllToDoLists extends StatelessWidget {
                             Text(tasks[index].task,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(color: Colors.white,fontSize: 20),),
-                            Text(tasks[index].time,
+                            Text(tasks[index].time == '00:00'
+                              ? ''
+                              : tasks[index].time,
                               style: TextStyle(color: time.isAfter(DateTime.now())
                                   ? kOrange : kGrey, fontSize: 16),),
-                            Text(tasks[index].date,
+                            Text(tasks[index].date == '0-0-0000'
+                              ? ''
+                              : tasks[index].date,
                               style: TextStyle(color: time.isAfter(DateTime.now())
                                   ? kOrange : kGrey, fontSize: 16),),
                           ],

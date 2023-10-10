@@ -8,7 +8,7 @@ part of 'daily_model.dart';
 
 class DailyModelAdapter extends TypeAdapter<DailyModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 33;
 
   @override
   DailyModel read(BinaryReader reader) {
@@ -20,13 +20,14 @@ class DailyModelAdapter extends TypeAdapter<DailyModel> {
       ..task = fields[5] as String
       ..description = fields[6] as String
       ..howMany = fields[7] as int
-      ..done = fields[8] as int;
+      ..done = fields[8] as int
+      ..day = fields[11] as int;
   }
 
   @override
   void write(BinaryWriter writer, DailyModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(5)
       ..write(obj.task)
       ..writeByte(6)
@@ -34,7 +35,9 @@ class DailyModelAdapter extends TypeAdapter<DailyModel> {
       ..writeByte(7)
       ..write(obj.howMany)
       ..writeByte(8)
-      ..write(obj.done);
+      ..write(obj.done)
+      ..writeByte(11)
+      ..write(obj.day);
   }
 
   @override
