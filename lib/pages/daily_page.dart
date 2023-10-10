@@ -10,6 +10,7 @@ import '../model/daily_model.dart';
 import '../providers/daily_provider.dart';
 import '../widgets/all_daily_lists_widget.dart';
 import '../widgets/side_button_widget.dart';
+import 'daily_statistic_page.dart';
 
 class DailyPage extends StatelessWidget {
   const DailyPage({Key? key}) : super(key: key);
@@ -39,9 +40,9 @@ class DailyPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SideButtonWidget(
-                          onTap: (){
-
-                          },
+                          onTap: ()=> Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) =>
+                              const DailyStatisticPage())),
                           child: Icon(Icons.insights,
                             color: kOrange.withOpacity(0.7),
                             size: 40,),),
