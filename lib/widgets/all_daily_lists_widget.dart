@@ -25,6 +25,47 @@ class AllDailyLists extends StatelessWidget {
           if(tasks[index].day != DateTime.now().day){
             data.resetTask(index, tasks[index].howMany, box, tasks, context);
           }
+
+          for(var d in tasks){
+            data.done.add(d.done);
+            print('done ${data.done}');
+
+          }
+
+
+          for(var h in tasks){
+            data.all.add(h.howMany);
+            print('done ${data.all}');
+          }
+
+
+          for (int i = 0; i < data.done.length; i++) {
+            int x = data.done[i] <= 0 ? 1 : data.done[i];
+            int y = data.all[i] <= 0 ? 1 : data.all[i];
+            final p = (x / y * 100).toInt();
+            data.percentage.add(p);
+          }
+          print(data.percentage);
+          data.all.clear();
+          data.done.clear();
+          data.percentage.clear();
+
+          // List<int>? getPercentage() {
+          //   List<int> a = [0, 2, 0];
+          //   List<int> b = [0, 3, 0];
+          //
+          //   List<int> percentage = [];
+          //   for (int i = 0; i < a.length; i++) {
+          //     int x = data.done[i] <= 0 ? 1 : data.done[i];
+          //     int y = data.all[i] <= 0 ? 1 : data.all[i];
+          //     final p = (x / y * 100).toInt();
+          //     percentage.add(p);
+          //   }
+          //   print(getPercentage());
+          //   return percentage;
+          // }
+
+
           return GestureDetector(
             onLongPress: (){
               data.deleteTask(index, box, context);
