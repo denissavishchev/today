@@ -9,14 +9,17 @@ import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'model/daily_model.dart';
+import 'model/percent_model.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoModelAdapter());
   Hive.registerAdapter(DailyModelAdapter());
+  Hive.registerAdapter(PercentModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
   await Hive.openBox<DailyModel>('daily_page');
+  await Hive.openBox<PercentModel>('percents');
   AwesomeNotifications().initialize(
       null,
       [
