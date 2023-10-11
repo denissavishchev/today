@@ -7,6 +7,9 @@ import '../widgets/side_button_widget.dart';
 
 class DailyProvider with ChangeNotifier {
 
+  List<int> done = [];
+  List<int> all = [];
+  List<int> percentage = [];
   String timeText = '00:00:00';
   int howMany = 0;
   final TextEditingController titleController = TextEditingController();
