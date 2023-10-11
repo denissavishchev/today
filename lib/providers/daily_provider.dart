@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/daily_model.dart';
+import '../model/percent_model.dart';
 import '../widgets/side_button_widget.dart';
 
 class DailyProvider with ChangeNotifier {
@@ -15,6 +16,34 @@ class DailyProvider with ChangeNotifier {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   ScrollController scrollController = ScrollController();
+
+  Future percentToBase(List<DailyModel> tasks) async{
+    for(var d in tasks){
+      done.add(d.done);
+    }
+    for(var h in tasks){
+      all.add(h.howMany);
+    }
+    for (int i = 0; i < done.length; i++) {
+      int x = done[i];
+      int y = all[i];
+      final p = (x / y * 100).toInt();
+      percentage.add(p);
+    }
+    var sum = percentage.reduce((a, b) => a + b);
+    var percent = sum ~/ percentage.length;
+    all.clear();
+    done.clear();
+    percentage.clear();
+
+    final percents =  PercentModel()
+      ..percent = percent
+      ..day = DateTime.now().day
+      ..month = DateTime.now().month
+      ..year = DateTime.now().year;
+    final box = Boxes.addPercentToBase();
+    box.add(percents);
+  }
 
   Future addToBase() async {
     int done = 0;
