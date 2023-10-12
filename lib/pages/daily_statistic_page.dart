@@ -88,8 +88,9 @@ class DailyStatisticPage extends StatelessWidget {
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) {
                                               return Container(
+                                                margin: EdgeInsets.only(bottom: 4),
                                                 width: 200,
-                                                height: 50,
+                                                height: 100,
                                                 color: Colors.yellow,
                                                 child: Column(
                                                   children: [

@@ -23,7 +23,6 @@ class AllDailyLists extends StatelessWidget {
     return Consumer<DailyProvider>(
         builder: (context, data, child){
           if(tasks[index].day != DateTime.now().day){
-            data.percentToBase(tasks);
             data.resetTask(index, tasks[index].howMany, box, tasks, context);
           }
           return GestureDetector(
