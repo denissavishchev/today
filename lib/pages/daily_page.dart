@@ -14,7 +14,6 @@ import 'daily_statistic_page.dart';
 
 class DailyPage extends StatelessWidget {
   const DailyPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,22 +43,17 @@ class DailyPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SideButtonWidget(
-                                onTap: () {
-                                    if(tasks.isNotEmpty && tasks[0].day != DateTime.now().day) {
-                                      data.percentToBase(tasks);
-                                    }
+                                onTap: () =>
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) =>
-                                      const DailyStatisticPage()));
-                                },
+                                      const DailyStatisticPage())),
                                 child: Icon(Icons.insights,
                                   color: kOrange.withOpacity(0.7),
                                   size: 40,),),
                               SideButtonWidget(
                                 both: true,
                                 width: 90,
-                                onTap: () => Navigator.pushReplacement(
-                                    context,
+                                onTap: () => Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) =>
                                     const TimerPage())),
                                 child: Icon(Icons.access_alarm,
@@ -69,8 +63,7 @@ class DailyPage extends StatelessWidget {
                                 width: 100,
                                 right: false,
                                 onTap: () =>
-                                    Navigator.pushReplacement(
-                                        context,
+                                    Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
                                         const AddDailyPage())),
                                 child: Icon(Icons.add,
@@ -105,6 +98,10 @@ class DailyPage extends StatelessWidget {
                                       reverse: false,
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) {
+                                        if(tasks[index].day != DateTime.now().day){
+                                        data.percentToBase(tasks);
+                                        data.resetTask(index, tasks[index].howMany, box, tasks, context);
+                                      }
                                         return AllDailyLists(tasks: tasks, index: index, box: box,);
                                       },
                                     )

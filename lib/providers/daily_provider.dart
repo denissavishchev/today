@@ -12,10 +12,31 @@ class DailyProvider with ChangeNotifier {
   List<int> all = [];
   List<int> percentage = [];
   String timeText = '00:00:00';
-  int howMany = 0;
+  int howMany = 1;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   ScrollController scrollController = ScrollController();
+
+  Future addToBase() async {
+    int done = 0;
+    final task =  DailyModel()
+      ..task = titleController.text.trim()
+      ..description = descriptionController.text.trim()
+      ..howMany = howMany
+      ..done = done
+      ..day = DateTime.now().day;
+    final box = Boxes.addDailyToBase();
+    box.add(task);
+  }
+
+  void resetTask(int index, int howMany, Box<DailyModel> box, List<DailyModel> tasks, context) {
+    box.putAt(index, DailyModel()
+      ..task = tasks[index].task
+      ..description = tasks[index].description
+      ..howMany = howMany
+      ..done = 0
+      ..day = DateTime.now().day);
+  }
 
   Future percentToBase(List<DailyModel> tasks) async{
     for(var d in tasks){
@@ -45,18 +66,6 @@ class DailyProvider with ChangeNotifier {
     box.add(percents);
   }
 
-  Future addToBase() async {
-    int done = 0;
-    final task =  DailyModel()
-      ..task = titleController.text.trim()
-      ..description = descriptionController.text.trim()
-      ..howMany = howMany
-      ..done = done
-      ..day = DateTime.now().day;
-    final box = Boxes.addDailyToBase();
-    box.add(task);
-  }
-
   void setNumber(int index){
     howMany = index + 1;
     notifyListeners();
@@ -71,15 +80,6 @@ class DailyProvider with ChangeNotifier {
         ..done = done + 1
         ..day = DateTime.now().day);
     }
-  }
-
-  void resetTask(int index, int howMany, Box<DailyModel> box, List<DailyModel> tasks, context) {
-      box.putAt(index, DailyModel()
-        ..task = tasks[index].task
-        ..description = tasks[index].description
-        ..howMany = howMany
-        ..done = 0
-        ..day = DateTime.now().day);
   }
 
   Future deleteTask(int index, Box<DailyModel> box, context) {

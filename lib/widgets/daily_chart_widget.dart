@@ -13,6 +13,7 @@ class DailyChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<int> chartValues = [33, 55, 47, 99, 45, 76, 35, 48, 95, 12, 54, 81, 8, 23, 37, 88, 34, 75];
+    List<int> chartDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
     return Consumer<DailyProvider>(
         builder: (context, data, child){
           return Container(
@@ -73,9 +74,14 @@ class DailyChartWidget extends StatelessWidget {
                                 end: Alignment.bottomCenter
                             )
                         ),
-                        spots: chartValues.asMap().entries.map((e) {
-                          return FlSpot((e.key + 1).toDouble(), e.value.toDouble());
-                        }).toList(),
+                        spots: List.generate(chartValues.length, (index) {
+                          return FlSpot(
+                              chartDays[index].toDouble(),
+                              chartValues[index].toDouble());
+                        }),
+                        // spots: chartValues.asMap().entries.map((e) {
+                        //   return FlSpot((e.key + 1).toDouble(), e.value.toDouble());
+                        // }).toList(),
                     )
                   ]
               ),
