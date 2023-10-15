@@ -87,18 +87,24 @@ class DailyStatisticPage extends StatelessWidget {
                                             reverse: false,
                                             shrinkWrap: true,
                                             itemBuilder: (context, index) {
-                                              return Container(
-                                                margin: EdgeInsets.only(bottom: 4),
-                                                width: 200,
-                                                height: 100,
-                                                color: Colors.yellow,
-                                                child: Column(
-                                                  children: [
-                                                    Text(percents[index].percent.toString()),
-                                                    Text(percents[index].day.toString()),
-                                                    Text(percents[index].month.toString()),
-                                                    Text(percents[index].year.toString()),
-                                                  ],
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  print(percents.length);
+                                                  box.deleteAt(index);
+                                                  },
+                                                child: Container(
+                                                  margin: EdgeInsets.only(bottom: 4),
+                                                  width: 200,
+                                                  height: 100,
+                                                  color: Colors.yellow,
+                                                  child: Column(
+                                                    children: [
+                                                      Text(percents[index].percent.toString()),
+                                                      Text(percents[index].day.toString()),
+                                                      Text(percents[index].month.toString()),
+                                                      Text(percents[index].year.toString()),
+                                                    ],
+                                                  ),
                                                 ),
                                               );
 
