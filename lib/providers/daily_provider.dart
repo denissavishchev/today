@@ -19,7 +19,7 @@ class DailyProvider with ChangeNotifier {
 
   Future addToBase() async {
     int done = 0;
-    final task =  DailyModel()
+    final task = DailyModel()
       ..task = titleController.text.trim()
       ..description = descriptionController.text.trim()
       ..howMany = howMany
@@ -57,13 +57,18 @@ class DailyProvider with ChangeNotifier {
     done.clear();
     percentage.clear();
 
-    final percents =  PercentModel()
+    final percents = PercentModel()
       ..percent = percent
       ..day = DateTime.now().day
       ..month = DateTime.now().month
       ..year = DateTime.now().year;
     final box = Boxes.addPercentToBase();
-    box.add(percents);
+    if (box.containsKey(DateTime.now().day)) {
+      print('OK');
+    }else{
+      await box.add(percents);
+    }
+
   }
 
   void setNumber(int index){

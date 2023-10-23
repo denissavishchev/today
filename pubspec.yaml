@@ -21,6 +21,8 @@ dependencies:
   awesome_notifications: ^0.7.7
   flutter_ringtone_player: ^3.2.0
   fl_chart: ^0.64.0
+  countup: ^0.1.4
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
