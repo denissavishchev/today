@@ -6,7 +6,7 @@ import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/percent_model.dart';
 import '../providers/to_do_provider.dart';
-import '../widgets/daily_chart_widget.dart';
+import '../widgets/bar_widget.dart';
 import '../widgets/side_button_widget.dart';
 import 'main_page.dart';
 
@@ -56,64 +56,22 @@ class DailyStatisticPage extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: size.height * 0.06,),
-                            const DailyChartWidget(),
-                            Expanded(
-                                child: ValueListenableBuilder<Box<PercentModel>>(
-                                  valueListenable: Boxes.addPercentToBase().listenable(),
-                                  builder: (context, box, _){
-                                    final percents = box.values.toList().cast<PercentModel>();
-                                    return Container(
-                                      clipBehavior: Clip.hardEdge,
-                                      width: size.width * 0.9,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: const BorderRadius.all(Radius.circular(24)),
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                kOrange.withOpacity(0.1),
-                                                Colors.transparent
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              stops: const [0.1, 0.8]
-                                          )
-                                      ),
-                                      child: ScrollConfiguration(
-                                          behavior: const ScrollBehavior().copyWith(overscroll: false),
-                                          child: ListView.builder(
-                                            padding: EdgeInsets.only(bottom: size.height * 0.12),
-                                            itemCount: percents.length,
-                                            controller: data.scrollController,
-                                            reverse: false,
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, index) {
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  print(percents.length);
-                                                  box.deleteAt(index);
-                                                  },
-                                                child: Container(
-                                                  margin: EdgeInsets.only(bottom: 4),
-                                                  width: 200,
-                                                  height: 100,
-                                                  color: Colors.yellow,
-                                                  child: Column(
-                                                    children: [
-                                                      Text(percents[index].percent.toString()),
-                                                      Text(percents[index].day.toString()),
-                                                      Text(percents[index].month.toString()),
-                                                      Text(percents[index].year.toString()),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-
-                                            },
-                                          )
-                                      ),
-                                    );
-                                  },
-                                )
+                            ValueListenableBuilder<Box<PercentModel>>(
+                              valueListenable: Boxes.addPercentToBase().listenable(),
+                              builder: (context, box, _){
+                                final percents = box.values.toList().cast<PercentModel>();
+                                return SizedBox(
+                                  height: size.height * 0.75,
+                                  child: ListView.builder(
+                                    itemCount: percents.length,
+                                      itemBuilder: (context, index){
+                                        return BarWidget(
+                                          day: percents[index].day,
+                                          percent: percents[index].percent,
+                                          color: kOrange,);
+                                      }),
+                                );
+                              },
                             ),
                           ],
                         ),

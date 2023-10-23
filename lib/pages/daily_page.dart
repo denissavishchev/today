@@ -14,6 +14,7 @@ import 'daily_statistic_page.dart';
 
 class DailyPage extends StatelessWidget {
   const DailyPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,6 +26,9 @@ class DailyPage extends StatelessWidget {
                 valueListenable: Boxes.addDailyToBase().listenable(),
                 builder: (context, box, _){
                   final tasks = box.values.toList().cast<DailyModel>();
+                  if(tasks.isNotEmpty && tasks.last.day != DateTime.now().day){
+                    data.percentToBase(tasks);
+                  }
                   return Container(
                     height: size.height,
                     decoration: const BoxDecoration(
@@ -99,7 +103,6 @@ class DailyPage extends StatelessWidget {
                                       shrinkWrap: true,
                                       itemBuilder: (context, index) {
                                         if(tasks[index].day != DateTime.now().day){
-                                        data.percentToBase(tasks);
                                         data.resetTask(index, tasks[index].howMany, box, tasks, context);
                                       }
                                         return AllDailyLists(tasks: tasks, index: index, box: box,);
