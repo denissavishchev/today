@@ -9,6 +9,9 @@ import '../widgets/side_button_widget.dart';
 class DailyProvider with ChangeNotifier {
 
   List<int> done = [];
+  List<int> totalPercents = [];
+  List<PercentModel> percents = [];
+  String productivity = '0';
   List<int> all = [];
   List<int> percentage = [];
   String timeText = '00:00:00';
@@ -38,6 +41,16 @@ class DailyProvider with ChangeNotifier {
       ..day = DateTime.now().day);
   }
 
+  void totalPercent(List<PercentModel> percents){
+    if(percents.isNotEmpty){
+      for(var p in percents){
+        totalPercents.add(p.percent);
+      }
+      var sum = totalPercents.reduce((a, b) => a + b);
+      productivity =  (sum / totalPercents.length).toStringAsFixed(0);
+    }
+  }
+
   Future percentToBase(List<DailyModel> tasks) async{
     for(var d in tasks){
       done.add(d.done);
@@ -64,7 +77,6 @@ class DailyProvider with ChangeNotifier {
       ..year = DateTime.now().year;
     final box = Boxes.addPercentToBase();
     if (box.containsKey(DateTime.now().day)) {
-      print('OK');
     }else{
       await box.add(percents);
     }

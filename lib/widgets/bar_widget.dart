@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:countup/countup.dart';
+import 'package:today/constants.dart';
 
 class BarWidget extends StatefulWidget {
 
-  final int day;
+  final String day;
   final int percent;
-  final Color color;
-
 
   const BarWidget({
-    Key? key, required this.day, required this.percent, required this.color,
+    Key? key, required this.day, required this.percent,
   }) : super(key: key);
 
   @override
@@ -57,26 +56,33 @@ class _AbilitiesState extends State<BarWidget> with SingleTickerProviderStateMix
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(widget.day.toString(), style: const TextStyle(color: Colors.white,
+                  Text(widget.day, style:
+                      TextStyle(color: Colors.white.withOpacity(0.8),
                       fontSize: 14,
                       fontWeight: FontWeight.bold),),
                   Container(
-                    width: 300,
+                    width: 250,
                     height: 10,
                     color: Colors.transparent,
                     child: LinearPercentIndicator(
                       barRadius: const Radius.circular(10),
                       lineHeight: 16,
                       percent: (widget.percent / 100) * _animationAbilities.value,
-                      progressColor: widget.color,
-                      backgroundColor: Colors.grey,
+                      progressColor: kOrange,
+                      backgroundColor: kGrey.withOpacity(0.8),
                     ),
                   ),
-                  Countup(begin: 0, end: widget.percent.toDouble(),
-                    duration: Duration(milliseconds: duration),
-                    style: const TextStyle(color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),)
+                  SizedBox(
+                    width: 26,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Countup(begin: 0, end: widget.percent.toDouble(),
+                        duration: Duration(milliseconds: duration),
+                        style: const TextStyle(color: kOrange,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),),
+                    ),
+                  )
                 ],
               ),
             ),
