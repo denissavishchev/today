@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:today/providers/daily_provider.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/percent_model.dart';
-import '../providers/to_do_provider.dart';
 import '../widgets/bar_widget.dart';
 import '../widgets/side_button_widget.dart';
 import 'main_page.dart';
@@ -18,71 +18,128 @@ class DailyStatisticPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-          body: Consumer<ToDoProvider>(
-            builder: (context, data, _) {
-              return ScrollConfiguration(
-                behavior: const ScrollBehavior().copyWith(overscroll: false),
-                child: SingleChildScrollView(
-                  child: Container(
-                    height: size.height,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/bg02.png'),
-                            fit: BoxFit.cover)),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 0.1,
-                        sigmaY: 0.1,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.07),
-                        child: Column(
+      child: Scaffold(body: Consumer<DailyProvider>(
+        builder: (context, data, _) {
+          return ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(overscroll: false),
+            child: SingleChildScrollView(
+              child: Container(
+                height: size.height,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/bg02.png'),
+                        fit: BoxFit.cover)),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 0.1,
+                    sigmaY: 0.1,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.07),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                SideButtonWidget(
-                                  onTap: (){
-                                    activePage = 1;
-                                    mainPageController.initialPage = 1;
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => const MainPage()));
-                                  },
-                                  child: Icon(Icons.arrow_back,
-                                    color: kOrange.withOpacity(0.7),
-                                    size: 40,),),
-                                const Spacer(),
-                              ],
+                            SideButtonWidget(
+                              onTap: () {
+                                activePage = 1;
+                                mainPageController.initialPage = 1;
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MainPage()));
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: kOrange.withOpacity(0.7),
+                                size: 40,
+                              ),
                             ),
-                            SizedBox(height: size.height * 0.06,),
-                            ValueListenableBuilder<Box<PercentModel>>(
+                            Stack(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 18.0),
+                                  child: SideButtonWidget(
+                                    width: 250,
+                                    both: true,
+                                      child: Center(
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Text('%', style: TextStyle(
+                                                    fontSize: 42,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kWhite.withOpacity(0.5)),),
+                                              Text(data.productivity,
+                                                style: const TextStyle(
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kOrange),),
+                                            ],
+                                          )),
+                                      onTap: () {}),
+                                ),
+                                Positioned.fill(
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 40.0),
+                                        child: Text('Productivity', style: orangeStyle,),
+                                      )),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
+                        Container(
+                          clipBehavior: Clip.hardEdge,
+                          margin: const EdgeInsets.symmetric(horizontal: 18),
+                          height: size.height * 0.8,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.all(Radius.circular(24)),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    kOrange.withOpacity(0.1),
+                                    Colors.transparent
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: const [0.1, 0.8]
+                              ),),
+                            child: ValueListenableBuilder<Box<PercentModel>>(
                               valueListenable: Boxes.addPercentToBase().listenable(),
-                              builder: (context, box, _){
+                                builder: (context, box, _) {
                                 final percents = box.values.toList().cast<PercentModel>();
-                                return SizedBox(
-                                  height: size.height * 0.75,
+                                percents.sort((b, a) => a.day.compareTo(b.day));
+                                data.totalPercent(percents);
+                                return ScrollConfiguration(
+                                  behavior: const ScrollBehavior().copyWith(overscroll: false),
                                   child: ListView.builder(
-                                    itemCount: percents.length,
-                                      itemBuilder: (context, index){
+                                      itemCount: percents.length < 33 ? percents.length : 33,
+                                      itemBuilder: (context, index) {
                                         return BarWidget(
-                                          day: percents[index].day,
+                                          day: '${percents[index].day}.${percents[index].month}',
                                           percent: percents[index].percent,
-                                          color: kOrange,);
+                                        );
                                       }),
                                 );
                               },
-                            ),
-                          ],
-                        ),
-                      ),
+                            ))
+                      ],
                     ),
                   ),
                 ),
-              );
-            },
-          )),
+              ),
+            ),
+          );
+        },
+      )),
     );
   }
 }
-
