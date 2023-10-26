@@ -41,13 +41,15 @@ class DailyProvider with ChangeNotifier {
       ..day = DateTime.now().day);
   }
 
-  void totalPercent(List<PercentModel> percents){
+  String totalPercent(){
     if(percents.isNotEmpty){
       for(var p in percents){
         totalPercents.add(p.percent);
       }
       var sum = totalPercents.reduce((a, b) => a + b);
-      productivity =  (sum / totalPercents.length).toStringAsFixed(0);
+      return productivity =  (sum / totalPercents.length).toStringAsFixed(0);
+    }else{
+      return '';
     }
   }
 
