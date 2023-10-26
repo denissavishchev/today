@@ -4,6 +4,7 @@ import 'package:today/constants.dart';
 import 'package:today/model/to_do_model.dart';
 import 'package:today/pages/main_page.dart';
 import 'package:today/providers/daily_provider.dart';
+import 'package:today/providers/habit_provider.dart';
 import 'package:today/providers/main_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<MainProvider>(create: (_) => MainProvider()),
           ChangeNotifierProvider<ToDoProvider>(create: (_) => ToDoProvider()),
           ChangeNotifierProvider<DailyProvider>(create: (_) => DailyProvider()),
+          ChangeNotifierProvider<HabitProvider>(create: (_) => HabitProvider()),
         ],
       builder: (context, child) {
         final initNotifications = Provider.of<MainProvider>(context, listen: false);

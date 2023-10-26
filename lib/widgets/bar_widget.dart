@@ -61,7 +61,7 @@ class _AbilitiesState extends State<BarWidget> with SingleTickerProviderStateMix
                       fontSize: 14,
                       fontWeight: FontWeight.bold),),
                   Container(
-                    width: 250,
+                    width: 240,
                     height: 10,
                     color: Colors.transparent,
                     child: LinearPercentIndicator(
