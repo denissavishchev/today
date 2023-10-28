@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
 import '../constants.dart';
+import '../widgets/all_habit_list_widget.dart';
 import '../widgets/side_button_widget.dart';
 
 class HabitPage extends StatelessWidget {
@@ -33,21 +34,21 @@ class HabitPage extends StatelessWidget {
                     children: [
                       SideButtonWidget(
                         onTap: () {},
-                        child: Icon(Icons.ac_unit,
+                        child: Icon(Icons.water_drop,
                           color: kOrange.withOpacity(0.7),
                           size: 40,),),
                       SideButtonWidget(
                         both: true,
                         width: 90,
                         onTap: () {},
-                        child: Icon(Icons.accessibility_sharp,
+                        child: Icon(Icons.flag,
                           color: kOrange.withOpacity(0.7),
                           size: 40,),),
                       SideButtonWidget(
                         width: 100,
                         right: false,
                         onTap: () {},
-                        child: Icon(Icons.account_balance_outlined,
+                        child: Icon(Icons.add,
                           color: kOrange.withOpacity(0.7),
                           size: 40,),)
                     ],
@@ -74,16 +75,18 @@ class HabitPage extends StatelessWidget {
                           behavior: const ScrollBehavior().copyWith(overscroll: false),
                           child: ListView.builder(
                             padding: EdgeInsets.only(bottom: size.height * 0.12),
-                            itemCount: 10,
+                            itemCount: data.names.length,
                             // controller: data.scrollController,
                             reverse: false,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.all(18),
-                                width: 200,
-                                height: 50,
-                                color: Colors.grey.withOpacity(0.5),
+                              return AllHabitListWidget(
+                                name: data.names[index],
+                                time: data.times[index],
+                                totalTime: data.totalTimes[index],
+                                isStarted: data.inProgress[index],
+                                index: index,
+                                onTap: () => data.isStarted(index),
                               );
                             },
                           )
