@@ -31,11 +31,11 @@ class AllHabitListWidget extends StatelessWidget {
 
             },
             child: BasicContainerWidget(
-              height: 0.11,
+              height: 0.12,
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
                       onTap: onTap,
@@ -47,7 +47,7 @@ class AllHabitListWidget extends StatelessWidget {
                             backgroundColor: kWhite,
                             progressColor: kOrange,
                             radius: 30,
-                            lineWidth: 8,
+                            lineWidth: 6,
                             percent: data.percentCompleted(time, totalTime, index) < 1
                                     ? data.percentCompleted(time, totalTime, index) : 1,
                           ),
@@ -57,21 +57,35 @@ class AllHabitListWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Column(
-                      children: [
-                        Text(name),
-                        Text('${data.percentCompleted(time, totalTime, index) < 1
-                            ? data.toMinSec(time) : 'Done'} / $totalTime min'),
-                        Text('${(data.percentCompleted(time, totalTime, index) * 100).toStringAsFixed(0)}%')
-                      ],
-                    ),
+                    VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.7),),
                     SizedBox(
-                      width: 40,
-                      child: IconButton(
-                          onPressed: (){
-
-                          },
-                          icon: const Icon(Icons.check, color: kOrange, size: 40,)),
+                      width: 120,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(name, style: orangeStyle,),
+                          Text('${data.percentCompleted(time, totalTime, index) < 1
+                              ? data.toMinSec(time) : 'Done'} / $totalTime min',
+                              style: selectStyle.copyWith(fontSize: 16),),
+                          Text('${(data.percentCompleted(time, totalTime, index)
+                              * 100).toStringAsFixed(0)}%',
+                            style: orangeStyle)
+                        ],
+                      ),
+                    ),
+                    VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.7),),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Days left: 23', style: orangeStyleSmall,),
+                        Text('Start day: 23.11', style: orangeStyleSmall,),
+                        Text('Skipped: 2', style: orangeStyleSmall,),
+                        // IconButton(
+                        //     onPressed: (){
+                        //
+                        //     },
+                        //     icon: const Icon(Icons.check, color: kOrange)),
+                      ],
                     ),
 
                   ],
