@@ -147,7 +147,7 @@ class DailyProvider with ChangeNotifier {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20.0, right: 40),
-                                  child: Text('Delete task?', style: orangeStyle,),
+                                  child: Text('Delete task?', style: kOrangeStyle,),
                                 )),
                           ),
                         ],

@@ -141,7 +141,7 @@ class AddDailyPage extends StatelessWidget {
                                                           blurRadius: 1,
                                                           offset: Offset(0, -1)),
                                                     ]),
-                                                child: Center(child: Text('${index + 1}', style: selectStyle,)),
+                                                child: Center(child: Text('${index + 1}', style: kWhiteStyle,)),
                                               );
                                             } ),
                                         )

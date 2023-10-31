@@ -63,13 +63,13 @@ class AllHabitListWidget extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(name, style: orangeStyle,),
+                          Text(name, style: kWhiteStyle,),
                           Text('${data.percentCompleted(time, totalTime, index) < 1
                               ? data.toMinSec(time) : 'Done'} / $totalTime min',
-                              style: selectStyle.copyWith(fontSize: 16),),
+                              style: kWhiteStyle.copyWith(fontSize: 16),),
                           Text('${(data.percentCompleted(time, totalTime, index)
                               * 100).toStringAsFixed(0)}%',
-                            style: orangeStyle)
+                            style: kWhiteStyle)
                         ],
                       ),
                     ),
@@ -77,9 +77,9 @@ class AllHabitListWidget extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Days left: 23', style: orangeStyleSmall,),
-                        Text('Start day: 23.11', style: orangeStyleSmall,),
-                        Text('Skipped: 2', style: orangeStyleSmall,),
+                        Text('Days left: 23', style: kWhiteStyleSmall,),
+                        Text('Start day: 23.11', style: kWhiteStyleSmall,),
+                        Text('Skipped: 2', style: kWhiteStyleSmall,),
                         // IconButton(
                         //     onPressed: (){
                         //

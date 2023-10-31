@@ -5,6 +5,7 @@ import 'package:today/providers/habit_provider.dart';
 import '../constants.dart';
 import '../widgets/all_habit_list_widget.dart';
 import '../widgets/side_button_widget.dart';
+import 'add_habit_page.dart';
 
 class HabitPage extends StatelessWidget {
   const HabitPage({Key? key}) : super(key: key);
@@ -47,7 +48,10 @@ class HabitPage extends StatelessWidget {
                       SideButtonWidget(
                         width: 100,
                         right: false,
-                        onTap: () {},
+                        onTap: () =>
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) =>
+                              const AddHabitPage())),
                         child: Icon(Icons.add,
                           color: kOrange.withOpacity(0.7),
                           size: 40,),)
