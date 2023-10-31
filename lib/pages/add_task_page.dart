@@ -235,7 +235,7 @@ class AddTaskPage extends StatelessWidget {
                                         alignment: Alignment.centerLeft,
                                         child: Padding(
                                           padding: const EdgeInsets.only(left: 40.0),
-                                          child: Text(data.addListTitle, style: orangeStyle,),
+                                          child: Text(data.addListTitle, style: kOrangeStyle,),
                                         )),
                                   ),
                                 ],

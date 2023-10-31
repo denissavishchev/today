@@ -54,7 +54,7 @@ class ToDoPage extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 40.0),
-                                      child: Text(data.listTitle, style: orangeStyle,),
+                                      child: Text(data.listTitle, style: kOrangeStyle,),
                                     )),
                               ),
                             ],

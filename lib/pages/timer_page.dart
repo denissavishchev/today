@@ -204,7 +204,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                 child: AnimatedBuilder(
                                   animation: _controller,
                                   builder: (context, child) {
-                                    return Text(countText, style: orangeStyle.copyWith(fontSize: 42),);
+                                    return Text(countText, style: kOrangeStyle.copyWith(fontSize: 42),);
                                   },
                                 ),
                               ),

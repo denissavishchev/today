@@ -83,7 +83,7 @@ class DailyStatisticPage extends StatelessWidget {
                                           alignment: Alignment.centerLeft,
                                           child: Padding(
                                             padding: const EdgeInsets.only(left: 40.0),
-                                            child: Text('Productivity', style: orangeStyle,),
+                                            child: Text('Productivity', style: kOrangeStyle,),
                                           )),
                                     ),
                                   ],

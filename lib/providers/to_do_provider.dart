@@ -333,7 +333,7 @@ class ToDoProvider with ChangeNotifier {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20.0, right: 40),
-                                  child: Text('Quit without saving?', style: orangeStyle,),
+                                  child: Text('Quit without saving?', style: kOrangeStyle,),
                                 )),
                           ),
                         ],
@@ -404,7 +404,7 @@ class ToDoProvider with ChangeNotifier {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20.0, right: 40),
-                                  child: Text('Delete task?', style: orangeStyle,),
+                                  child: Text('Delete task?', style: kOrangeStyle,),
                                 )),
                           ),
                         ],

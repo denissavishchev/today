@@ -38,11 +38,11 @@ class SelectListWidget extends StatelessWidget {
                   children: [
                     Icon(icon, size: 30, color: kWhite,),
                     const SizedBox(width: 12,),
-                    Text(text, style: selectStyle),
+                    Text(text, style: kWhiteStyle),
                     const Spacer(),
                     Visibility(
                       visible: visible,
-                        child: Text(count.toString(), style: selectStyle,)),
+                        child: Text(count.toString(), style: kWhiteStyle,)),
                   ],
                 ),
               ),
