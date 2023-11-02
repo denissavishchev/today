@@ -51,7 +51,9 @@ class AllHabitListWidget extends StatelessWidget {
                             percent: data.percentCompleted(time, totalTime, index) < 1
                                     ? data.percentCompleted(time, totalTime, index) : 1,
                           ),
-                          data.percentCompleted(time, totalTime, index) >= 1
+                          totalTime == 0
+                              ? Icon(Icons.cancel, color: kWhite, size: 34,)
+                              : data.percentCompleted(time, totalTime, index) >= 1
                           ? const Icon(Icons.check, color: kOrange, size: 34,)
                           : Icon(isStarted ? Icons.pause : Icons.play_arrow, size: 34, color: kWhite,),
                         ],

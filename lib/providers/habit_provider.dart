@@ -2,23 +2,53 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../model/boxes.dart';
+import '../model/habit_model.dart';
+
 class HabitProvider with ChangeNotifier {
 
-List<String> names = ['Exercise', 'Read', 'Run', 'Drink', 'Code', 'Meditate'];
-List<int> times = [0, 0, 0, 0, 0, 0];
-List<int> totalTimes = [2, 3, 4, 5, 1, 2];
-List<bool> inProgress = [false, false, false, false, false, false];
-List<bool> cancel = [false, false, false, false, false, false];
+int length = 0;
+late List<int> times = List.filled(length, 0);
+late List<bool> inProgress = List.filled(length, false);
+late List<bool> cancel = List.filled(length, false);
 
 final TextEditingController titleController = TextEditingController();
 final TextEditingController descriptionController = TextEditingController();
 
 bool isTimer = true;
 String days = '00';
-Duration initTime = const Duration(seconds: 0);
+int time = 1;
+
+Future addToBase() async {
+  final habit = HabitModel()
+    ..name = titleController.text.trim()
+    ..description = descriptionController.text.trim()
+    ..totalTime = isTimer ? time : 0
+    ..days = int.parse(days)
+    ..percent = 0.0
+    ..dateDay = DateTime.now().day
+    ..dateMonth = DateTime.now().month
+    ..dateYear = DateTime.now().year
+    ..skipped = 0
+    ..isTimer = isTimer;
+  final box = Boxes.addHabitToBase();
+  box.add(habit);
+}
+
+void reset(){
+  titleController.clear();
+  descriptionController.clear();
+  time = 1;
+  isTimer = true;
+}
 
 void setTimer(){
   isTimer = !isTimer;
+  notifyListeners();
+}
+
+void setTime(int index){
+  time = index + 1;
   notifyListeners();
 }
 
@@ -34,38 +64,6 @@ void setDays(int index, bool first){
 void resetDays(){
   days = '00';
   notifyListeners();
-}
-
-Future showTimer(context){
-  return showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context){
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.8),
-              borderRadius: const BorderRadius.all(Radius.circular(24)),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    blurRadius: 3,
-                    offset: const Offset(1, 1)
-                ),
-              ]
-          ),
-          child: CupertinoTimerPicker(
-            mode: CupertinoTimerPickerMode.ms,
-            initialTimerDuration: initTime,
-            onTimerDurationChanged: (time){
-                initTime = time;
-                notifyListeners();
-            },
-          ),
-        );
-      });
 }
 
 double percentCompleted(int time, int totalTime, int index){
