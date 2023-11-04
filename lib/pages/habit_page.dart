@@ -91,8 +91,11 @@ class HabitPage extends StatelessWidget {
                                   reverse: false,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
-                                    data.length = habits.length;
-                                    // data.times = List.filled(habits.length, 0);
+                                    if(data.times.length < habits.length){
+                                      data.times.add(0);
+                                      data.inProgress.add(false);
+                                      data.cancel.add(false);
+                                    }
                                     return AllHabitListWidget(
                                       box: box,
                                       time: data.times[index],

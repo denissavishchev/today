@@ -8,10 +8,9 @@ import '../widgets/side_button_widget.dart';
 
 class HabitProvider with ChangeNotifier {
 
-int length = 0;
-late List<int> times = List.filled(length, 0);
-late List<bool> inProgress = List.filled(length, false);
-late List<bool> cancel = List.filled(length, false);
+List<int> times = [];
+List<bool> inProgress = [];
+List<bool> cancel = [];
 
 final TextEditingController titleController = TextEditingController();
 final TextEditingController descriptionController = TextEditingController();
@@ -58,6 +57,9 @@ void reset(){
   descriptionController.clear();
   time = 1;
   isTimer = true;
+  // times = List.filled(times.length, 0);
+  // inProgress = List.filled(times.length, false);
+  // cancel = List.filled(times.length, false);
 }
 
 void setTimer(){
@@ -114,6 +116,8 @@ void isStarted(int index, Box<HabitModel> box, List<HabitModel> habits, context)
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if(!inProgress[index] || cancel[index]){
         finishTask(index, box, habits, context);
+        inProgress[index] = false;
+        times[index] = 0;
         timer.cancel();
       }
       var currentTime = DateTime.now();
