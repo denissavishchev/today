@@ -23,4 +23,6 @@ class HabitModel extends HiveObject{
   late int skipped;
   @HiveField(21)
   late bool isTimer;
+  @HiveField(22)
+  late bool isDone;
 }

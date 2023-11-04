@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:hive/hive.dart';
+import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/habit_model.dart';
+import '../widgets/side_button_widget.dart';
 
 class HabitProvider with ChangeNotifier {
 
@@ -19,6 +20,22 @@ bool isTimer = true;
 String days = '00';
 int time = 1;
 
+void finishTask(int index, Box<HabitModel> box, List<HabitModel> habits, context){
+  box.putAt(index, HabitModel()
+    ..name = habits[index].name
+    ..description = habits[index].description
+    ..totalTime = habits[index].totalTime
+    ..days = habits[index].days - 1
+    ..percent = 1.0
+    ..dateDay = habits[index].dateDay
+    ..dateMonth = habits[index].dateMonth
+    ..dateYear = habits[index].dateYear
+    ..skipped = 0
+    ..isTimer = habits[index].isTimer
+    ..isDone = true
+  );
+}
+
 Future addToBase() async {
   final habit = HabitModel()
     ..name = titleController.text.trim()
@@ -30,7 +47,8 @@ Future addToBase() async {
     ..dateMonth = DateTime.now().month
     ..dateYear = DateTime.now().year
     ..skipped = 0
-    ..isTimer = isTimer;
+    ..isTimer = isTimer
+    ..isDone = false;
   final box = Boxes.addHabitToBase();
   box.add(habit);
 }
@@ -87,7 +105,7 @@ String toMinSec(int seconds){
   return '$min:$sec';
 }
 
-void isStarted(int index){
+void isStarted(int index, Box<HabitModel> box, List<HabitModel> habits, context){
   var startTime = DateTime.now();
   int elapsed = times[index];
   inProgress[index] = !inProgress[index];
@@ -95,6 +113,7 @@ void isStarted(int index){
   if(inProgress[index]){
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if(!inProgress[index] || cancel[index]){
+        finishTask(index, box, habits, context);
         timer.cancel();
       }
       var currentTime = DateTime.now();
@@ -104,6 +123,77 @@ void isStarted(int index){
       notifyListeners();
     });
   }
+}
+
+Future deleteTask(int index, Box<HabitModel> box, context) {
+  return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Container(
+            height: MediaQuery.of(context).size.height * 0.35,
+            margin: const EdgeInsets.fromLTRB(0, 12, 0, 220),
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            decoration: BoxDecoration(
+                border: const Border.symmetric(
+                    horizontal: BorderSide(width: 0.5, color: kOrange)),
+                image: const DecorationImage(
+                    image: AssetImage('assets/images/bg03.png'),
+                    fit: BoxFit.fitWidth),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      // spreadRadius: 2,
+                      blurRadius: 3,
+                      offset: const Offset(1, 1)
+                  ),
+                ]
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Stack(
+                      children: [
+                        SideButtonWidget(
+                          width: 240,
+                          onTap: (){
+                            box.deleteAt(index);
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(Icons.check,
+                            color: kOrange.withOpacity(0.7),
+                            size: 40,),),
+                        Positioned.fill(
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 20.0, right: 40),
+                                child: Text('Delete task?', style: kOrangeStyle,),
+                              )),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: SideButtonWidget(
+                      width: 150,
+                      right: false,
+                      child: Icon(Icons.cancel,
+                        color: kOrange.withOpacity(0.7),
+                        size: 40,),
+                      onTap: () => Navigator.of(context).pop()),
+                ),
+                const SizedBox(height: 20,),
+              ],
+            )
+        );
+      });
 }
 
 }
