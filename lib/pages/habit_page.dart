@@ -96,6 +96,9 @@ class HabitPage extends StatelessWidget {
                                       data.inProgress.add(false);
                                       data.cancel.add(false);
                                     }
+                                    if(habits[index].dateDay != DateTime.now().day){
+                                      data.resetTask(index, box, habits, context);
+                                    }
                                     return AllHabitListWidget(
                                       box: box,
                                       time: data.times[index],
