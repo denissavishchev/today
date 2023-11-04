@@ -30,19 +30,22 @@ class AllHabitListWidget extends StatelessWidget {
     return Consumer<HabitProvider>(builder: (context, data, child) {
       return GestureDetector(
         onLongPress: () {
-          data.deleteTask(index, box, context);
+          if(!isStarted){
+            data.deleteTask(index, box, context);
+          }
         },
         child: BasicContainerWidget(
           height: 0.12,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                habits[index].totalTime == 0
-                    ? habits[index].isDone
-                      ? const Icon(Icons.check, color: kOrange, size: 60)
-                      : GestureDetector(
+            child: habits[index].days != 0
+                ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                habits[index].isDone
+                    ? const Icon(Icons.check, color: kOrange, size: 60)
+                    : habits[index].totalTime == 0
+                    ? GestureDetector(
                         onTap: () => data.finishTask(index, box, habits, context),
                         child: const Icon(Icons.cancel_outlined, color: kOrange, size: 60))
                     : GestureDetector(
@@ -119,7 +122,8 @@ class AllHabitListWidget extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
+            )
+                : Center(child: Text('Habit complete', style: kOrangeStyle,)),
           ),
         ),
       );
