@@ -27,6 +27,7 @@ class AllHabitListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Consumer<HabitProvider>(builder: (context, data, child) {
       return GestureDetector(
         onLongPress: () {
@@ -35,61 +36,75 @@ class AllHabitListWidget extends StatelessWidget {
           }
         },
         child: BasicContainerWidget(
-          height: 0.12,
+          height: 0.13,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-            child: habits[index].days != 0
+            padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
+            child: habits[index].days < 0
                 ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                habits[index].isDone
-                    ? const Icon(Icons.check, color: kOrange, size: 60)
-                    : habits[index].totalTime == 0
-                    ? GestureDetector(
-                        onTap: () => data.finishTask(index, box, habits, context),
-                        child: const Icon(Icons.cancel_outlined, color: kOrange, size: 60))
-                    : GestureDetector(
-                        onTap: onTap,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CircularPercentIndicator(
-                              circularStrokeCap: CircularStrokeCap.round,
-                              backgroundColor: kWhite,
-                              progressColor: kOrange,
-                              radius: 30,
-                              lineWidth: 6,
-                              percent: data.percentCompleted(time, habits[index].totalTime, index) < 1
-                                  ? data.percentCompleted(time, habits[index].totalTime, index)
-                                  : 1,
-                            ),
-                            data.percentCompleted(time, habits[index].totalTime, index) >= 1
-                                // || habits[index].isDone
-                                ? const Icon(Icons.check, color: kOrange, size: 34)
-                                : Icon(isStarted ? Icons.pause : Icons.play_arrow,
-                                    size: 34, color: kWhite),
-                          ],
-                        ),
-                ),
-                VerticalDivider(
-                  thickness: 2,
-                  color: kOrange.withOpacity(0.7),
-                ),
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Center(child: Text('Habit complete', style: kOrangeStyle,)),
+                      ElevatedButton(
+                          onPressed: (){},
+                          child: const Text('add to storage'))
+                    ],
+                  )
+                : Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
                 SizedBox(
-                  width: 120,
+                  width: size.width * 0.2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(habits[index].name, style: kWhiteStyle),
-                      Text(
-                        '${data.percentCompleted(time, habits[index].totalTime, index) < 1
-                            ? data.toMinSec(time)
-                            : 'Done'} / ${habits[index].totalTime} min',
-                        style: kWhiteStyle.copyWith(fontSize: 16),
+                      Visibility(
+                        visible: habits[index].totalTime != 0,
+                        child: Text(
+                            '${(data.percentCompleted(
+                                time, habits[index].totalTime, index) * 100).toStringAsFixed(0)}%',
+                            style: kWhiteStyle.copyWith(fontSize: 18)),
                       ),
-                      Text(
-                          '${(data.percentCompleted(time, habits[index].totalTime, index) * 100).toStringAsFixed(0)}%',
-                          style: kWhiteStyle)
+                      Padding(
+                        padding: EdgeInsets.zero,
+                        child: habits[index].isDone
+                            ? const Icon(Icons.check, color: kOrange, size: 40)
+                            : habits[index].totalTime == 0
+                            ? GestureDetector(
+                            onTap: () => data.finishTask(index, box, habits, context),
+                            child: const Icon(Icons.cancel_outlined, color: kOrange, size: 40))
+                            : GestureDetector(
+                          onTap: onTap,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              CircularPercentIndicator(
+                                circularStrokeCap: CircularStrokeCap.round,
+                                backgroundColor: kWhite,
+                                progressColor: kOrange,
+                                radius: 24,
+                                lineWidth: 6,
+                                percent: data.percentCompleted(time, habits[index].totalTime, index) < 1
+                                    ? data.percentCompleted(time, habits[index].totalTime, index)
+                                    : 1,
+                              ),
+                              data.percentCompleted(time, habits[index].totalTime, index) >= 1
+                              // || habits[index].isDone
+                                  ? const Icon(Icons.check, color: kOrange, size: 34)
+                                  : Icon(isStarted ? Icons.pause : Icons.play_arrow,
+                                  size: 34, color: kWhite),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: habits[index].totalTime != 0,
+                        child: Text(
+                          '${data.percentCompleted(time, habits[index].totalTime, index) < 1
+                              ? data.toMinSec(time)
+                              : 'Done'}/${habits[index].totalTime}m',
+                          style: kWhiteStyle.copyWith(fontSize: 16),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -97,33 +112,47 @@ class AllHabitListWidget extends StatelessWidget {
                   thickness: 2,
                   color: kOrange.withOpacity(0.7),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Days left: ${habits[index].days}',
-                      style: kWhiteStyleSmall,
-                    ),
-                    Text('Start day: '
-                        '${habits[index].dateDay.toString().padLeft(2, '0')}'
-                        ':${habits[index].dateMonth}',
-                      style: kWhiteStyleSmall,
-                    ),
-                    Text('Skipped: ${habits[index].skipped}',
-                      style: kWhiteStyleSmall,
-                    ),
-                    Text('done: ${habits[index].isDone}',
-                      style: kWhiteStyleSmall,
-                    ),
-                    // IconButton(
-                    //     onPressed: (){
-                    //
-                    //     },
-                    //     icon: const Icon(Icons.check, color: kOrange)),
-                  ],
+                SizedBox(
+                  width: size.width * 0.18,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Days left: ${habits[index].days}',
+                        style: kWhiteStyleSmall,
+                      ),
+                      Text('Start: '
+                          '${habits[index].dateDay.toString().padLeft(2, '0')}'
+                          ':${habits[index].dateMonth}',
+                        style: kWhiteStyleSmall,
+                      ),
+                      Text('Skipped: ${habits[index].skipped}',
+                        style: kWhiteStyleSmall,
+                      ),
+                      Text('done: ${habits[index].isDone}',
+                        style: kWhiteStyleSmall,
+                      ),
+                    ],
+                  ),
+                ),
+                VerticalDivider(
+                  thickness: 2,
+                  color: kOrange.withOpacity(0.7),
+                ),
+                SizedBox(
+                  width: size.width * 0.28,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(habits[index].name, style: kOrangeStyle),
+                      Text(habits[index].description,
+                        style: kWhiteStyleSmall,
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            )
-                : Center(child: Text('Habit complete', style: kOrangeStyle,)),
+            ),
           ),
         ),
       );
