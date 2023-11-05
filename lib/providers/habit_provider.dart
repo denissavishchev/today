@@ -32,6 +32,7 @@ class HabitProvider with ChangeNotifier {
       ..skipped = 0
       ..isTimer = habits[index].isTimer
       ..isDone = true
+      ..currentDay = DateTime.now().day
     );
   }
 
@@ -47,7 +48,8 @@ class HabitProvider with ChangeNotifier {
       ..dateYear = DateTime.now().year
       ..skipped = 0
       ..isTimer = isTimer
-      ..isDone = false;
+      ..isDone = false
+      ..currentDay = DateTime.now().day;
     final box = Boxes.addHabitToBase();
     box.add(habit);
   }
@@ -142,6 +144,7 @@ class HabitProvider with ChangeNotifier {
           : habits[index].skipped + 1
       ..isTimer = habits[index].isTimer
       ..isDone = false
+      ..currentDay = DateTime.now().day
     );
   }
 
