@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
-import 'package:today/pages/timer_page.dart';
+import 'package:today/pages/daily_timer_page.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/daily_model.dart';

@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/habit_model.dart';
+import '../model/habit_storage_model.dart';
 import '../widgets/side_button_widget.dart';
 
 class HabitProvider with ChangeNotifier {
@@ -33,6 +34,7 @@ class HabitProvider with ChangeNotifier {
       ..isTimer = habits[index].isTimer
       ..isDone = true
       ..currentDay = DateTime.now().day
+      ..statisticDays = habits[index].statisticDays
     );
   }
 
@@ -49,9 +51,23 @@ class HabitProvider with ChangeNotifier {
       ..skipped = 0
       ..isTimer = isTimer
       ..isDone = false
-      ..currentDay = DateTime.now().day;
+      ..currentDay = DateTime.now().day
+      ..statisticDays = int.parse(days);
     final box = Boxes.addHabitToBase();
     box.add(habit);
+  }
+
+  Future addToStorage(
+      Box<HabitModel> habitBox,
+      int index, String name, String description, int days, int skipped) async {
+    final habit = HabitStorageModel()
+      ..name = name
+      ..description = description
+      ..days = days
+      ..skipped = skipped;
+    final box = Boxes.addHabitStorageToBase();
+    box.add(habit);
+    habitBox.deleteAt(index);
   }
 
   void reset(){
@@ -145,6 +161,7 @@ class HabitProvider with ChangeNotifier {
       ..isTimer = habits[index].isTimer
       ..isDone = false
       ..currentDay = DateTime.now().day
+      ..statisticDays = habits[index].statisticDays
     );
   }
 
