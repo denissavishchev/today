@@ -42,14 +42,21 @@ class HabitPage extends StatelessWidget {
                           children: [
                             SideButtonWidget(
                               onTap: () {},
-                              child: Icon(Icons.water_drop,
+                              child: Icon(Icons.history_edu,
+                                color: kOrange.withOpacity(0.7),
+                                size: 40,),),
+                            SideButtonWidget(
+                              both: true,
+                              width: 70,
+                              onTap: () {},
+                              child: Icon(Icons.flag,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
                             SideButtonWidget(
                               both: true,
                               width: 90,
                               onTap: () {},
-                              child: Icon(Icons.flag,
+                              child: Icon(Icons.water_drop,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
                             SideButtonWidget(
@@ -96,7 +103,7 @@ class HabitPage extends StatelessWidget {
                                       data.inProgress.add(false);
                                       data.cancel.add(false);
                                     }
-                                    if(habits[index].dateDay != DateTime.now().day){
+                                    if(habits[index].currentDay != DateTime.now().day){
                                       data.resetTask(index, box, habits, context);
                                     }
                                     return AllHabitListWidget(
