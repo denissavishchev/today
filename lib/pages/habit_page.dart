@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:today/pages/habit_statistic_page.dart';
 import 'package:today/providers/habit_provider.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
@@ -41,7 +42,10 @@ class HabitPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SideButtonWidget(
-                              onTap: () {},
+                              onTap: () =>
+                                Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) =>
+                                const HabitStatisticPage())),
                               child: Icon(Icons.history_edu,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),

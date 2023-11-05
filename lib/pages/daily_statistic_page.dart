@@ -95,7 +95,7 @@ class DailyStatisticPage extends StatelessWidget {
                             ),
                             Container(
                                 clipBehavior: Clip.hardEdge,
-                                margin: const EdgeInsets.symmetric(horizontal: 18),
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
                                 height: size.height * 0.8,
                                 decoration: BoxDecoration(
                                   color: Colors.white,

@@ -27,4 +27,6 @@ class HabitModel extends HiveObject{
   late bool isDone;
   @HiveField(23)
   late int currentDay;
+  @HiveField(24)
+  late int statisticDays;
 }

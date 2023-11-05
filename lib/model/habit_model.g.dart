@@ -28,13 +28,14 @@ class HabitModelAdapter extends TypeAdapter<HabitModel> {
       ..skipped = fields[20] as int
       ..isTimer = fields[21] as bool
       ..isDone = fields[22] as bool
-      ..currentDay = fields[23] as int;
+      ..currentDay = fields[23] as int
+      ..statisticDays = fields[24] as int;
   }
 
   @override
   void write(BinaryWriter writer, HabitModel obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(12)
       ..write(obj.name)
       ..writeByte(13)
@@ -58,7 +59,9 @@ class HabitModelAdapter extends TypeAdapter<HabitModel> {
       ..writeByte(22)
       ..write(obj.isDone)
       ..writeByte(23)
-      ..write(obj.currentDay);
+      ..write(obj.currentDay)
+      ..writeByte(24)
+      ..write(obj.statisticDays);
   }
 
   @override
