@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/habit_storage_model.dart';

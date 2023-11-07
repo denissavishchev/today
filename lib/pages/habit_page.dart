@@ -51,27 +51,7 @@ class HabitPage extends StatelessWidget {
                               child: Icon(Icons.history_edu,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
-                            Stack(
-                              children: [
-                                SideButtonWidget(
-                                  both: true,
-                                  width: 180,
-                                  onTap: (){
-
-                                  },
-                                  child: Icon(Icons.flag,
-                                    color: kOrange.withOpacity(0.7),
-                                    size: 40,),),
-                                Positioned.fill(
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 20.0),
-                                        child: Text(data.steps, style: kOrangeStyle,),
-                                      )),
-                                ),
-                              ],
-                            ),
+                            const Spacer(),
                             SideButtonWidget(
                               width: 100,
                               right: false,
