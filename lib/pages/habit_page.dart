@@ -17,6 +17,8 @@ class HabitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final model = Provider.of<HabitProvider>(context, listen: false);
+    model.initPlatformState();
     return Scaffold(
       body: Consumer<HabitProvider>(
         builder: (context, data, _){
@@ -49,20 +51,27 @@ class HabitPage extends StatelessWidget {
                               child: Icon(Icons.history_edu,
                                 color: kOrange.withOpacity(0.7),
                                 size: 40,),),
-                            SideButtonWidget(
-                              both: true,
-                              width: 70,
-                              onTap: () {},
-                              child: Icon(Icons.flag,
-                                color: kOrange.withOpacity(0.7),
-                                size: 40,),),
-                            SideButtonWidget(
-                              both: true,
-                              width: 90,
-                              onTap: () {},
-                              child: Icon(Icons.water_drop,
-                                color: kOrange.withOpacity(0.7),
-                                size: 40,),),
+                            Stack(
+                              children: [
+                                SideButtonWidget(
+                                  both: true,
+                                  width: 180,
+                                  onTap: (){
+
+                                  },
+                                  child: Icon(Icons.flag,
+                                    color: kOrange.withOpacity(0.7),
+                                    size: 40,),),
+                                Positioned.fill(
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 20.0),
+                                        child: Text(data.steps, style: kOrangeStyle,),
+                                      )),
+                                ),
+                              ],
+                            ),
                             SideButtonWidget(
                               width: 100,
                               right: false,
