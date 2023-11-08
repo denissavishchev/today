@@ -17,8 +17,6 @@ class HabitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final model = Provider.of<HabitProvider>(context, listen: false);
-    model.initPlatformState();
     return Scaffold(
       body: Consumer<HabitProvider>(
         builder: (context, data, _){

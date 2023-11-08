@@ -7,12 +7,14 @@ import 'package:today/pages/main_page.dart';
 import 'package:today/providers/daily_provider.dart';
 import 'package:today/providers/habit_provider.dart';
 import 'package:today/providers/main_provider.dart';
+import 'package:today/providers/water_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'model/daily_model.dart';
 import 'model/habit_model.dart';
 import 'model/percent_model.dart';
+
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ToDoProvider>(create: (_) => ToDoProvider()),
           ChangeNotifierProvider<DailyProvider>(create: (_) => DailyProvider()),
           ChangeNotifierProvider<HabitProvider>(create: (_) => HabitProvider()),
+          ChangeNotifierProvider<WaterProvider>(create: (_) => WaterProvider()),
         ],
       builder: (context, child) {
         final initNotifications = Provider.of<MainProvider>(context, listen: false);
