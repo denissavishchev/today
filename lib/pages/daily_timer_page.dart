@@ -3,6 +3,7 @@ import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import '../widgets/circular_background_painter.dart';
 import '../widgets/side_button_widget.dart';
 import 'main_page.dart';
 
@@ -121,8 +122,8 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                             children: [
                               Container(
                                   margin: const EdgeInsets.symmetric(horizontal: 2),
-                                  width: 280,
-                                  height: 280,
+                                  width: 276,
+                                  height: 276,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                     const BorderRadius.all(Radius.circular(140)),
@@ -136,26 +137,9 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                         stops: const [0, 0.75]),
                                   ),
                                   child: Center(
-                                    child: Container(
-                                      width: 260,
-                                      height: 260,
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xff91918f),
-                                          border:
-                                          Border.all(color: kOrange, width: 0.5),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(130)),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black,
-                                                blurRadius: 3,
-                                                offset: Offset(0, 2)),
-                                            BoxShadow(
-                                                color: Color(0xff5e5e5c),
-                                                blurRadius: 1,
-                                                offset: Offset(0, -1)),
-                                          ]),
-                                    ),
+                                      child: CustomPaint(
+                                        painter: CircularBackgroundPainter(),
+                                      ),
                                   )),
                               SizedBox(
                                 width: 235,

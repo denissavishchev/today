@@ -6,7 +6,6 @@ import '../model/boxes.dart';
 import '../model/habit_model.dart';
 import '../model/habit_storage_model.dart';
 import '../widgets/side_button_widget.dart';
-import 'package:pedometer/pedometer.dart';
 
 class HabitProvider with ChangeNotifier {
 
@@ -20,19 +19,6 @@ class HabitProvider with ChangeNotifier {
   bool isTimer = true;
   String days = '00';
   int time = 1;
-
-  late Stream<StepCount> _stepCountStream;
-  String steps = '0';
-
-  void onStepCount(StepCount event) {
-    steps = event.steps.toString();
-    notifyListeners();
-  }
-
-  void initPlatformState() {
-    _stepCountStream = Pedometer.stepCountStream;
-    _stepCountStream.listen(onStepCount);
-  }
 
   void finishTask(int index, Box<HabitModel> box, List<HabitModel> habits, context){
     box.putAt(index, HabitModel()
