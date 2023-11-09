@@ -132,7 +132,7 @@ class AllHabitListWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Days left: ${habits[index].days}',
+                            Text('Days: ${habits[index].days}/${habits[index].statisticDays}',
                               style: kWhiteStyleSmall,
                             ),
                             Text('Start: '

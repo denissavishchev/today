@@ -61,7 +61,7 @@ class WaterPage extends StatelessWidget {
                           width: 235,
                           height: 235,
                           child: CircularProgressIndicator(
-                            value: 0.23,
+                            value: data.percent / 100,
                             backgroundColor: kOrange.withOpacity(0.2),
                             strokeWidth: 20,
                             color: kOrange,
