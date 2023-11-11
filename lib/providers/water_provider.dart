@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:today/model/water_model.dart';
+
+import '../model/boxes.dart';
 
 class WaterProvider with ChangeNotifier {
 
@@ -17,13 +20,12 @@ class WaterProvider with ChangeNotifier {
   }
 
   Future addToBase() async {
-    // final task = WaterModel()
-    //   ..task = weightController.text.trim()
-    //   ..howMany = howMany
-    //   ..done = done
-    //   ..day = DateTime.now().day;
-    // final box = Boxes.addWaterToBase();
-    // box.add(task);
+    final settings = WaterSettingsModel()
+      ..target = target
+      ..wakeUpTime = initialWakeUpTime.toString()
+      ..bedTime = initialBedTime.toString();
+    final box = Boxes.addWaterSettingsToBase();
+    box.add(settings);
   }
 
   void setWeight(int index, int order){
