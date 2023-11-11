@@ -1,7 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:today/model/water_model.dart';
 import '../constants.dart';
+import '../model/boxes.dart';
 import '../providers/water_provider.dart';
 import '../widgets/fade_container_widget.dart';
 import '../widgets/side_button_widget.dart';
@@ -50,6 +53,26 @@ class WaterSettingsPage extends StatelessWidget {
                                     color: kOrange.withOpacity(0.7),
                                     size: 40,),),
                                 const Spacer(),
+                                ValueListenableBuilder(
+                                    valueListenable: Boxes.addWaterSettingsToBase().listenable(),
+                                    builder: (context, box, _){
+                                      final settings = box.values.toList().cast<WaterSettingsModel>();
+                                      return Container(
+                                        color: Colors.white,
+                                        height: 50,
+                                          width: 200,
+                                          child: ListView.builder(
+                                            itemCount: settings.length,
+                                              itemBuilder: (context, index){
+                                                return Column(
+                                                  children: [
+                                                    Text(settings[index].target.toString()),
+                                                    Text(settings[index].wakeUpTime.toString()),
+                                                    Text(settings[index].bedTime.toString()),
+                                                  ],
+                                                );
+                                              }));
+                                    })
                               ],
                             ),
                             SizedBox(height: size.height * 0.06,),
@@ -351,7 +374,7 @@ class WaterSettingsPage extends StatelessWidget {
                                       ),
                                       child: Center(
                                         child: GestureDetector(
-                                          onTap: () => data.wakeUpTimePicker(context),
+                                          onTap: () => data.bedTimePicker(context),
                                           child: Container(
                                             width: 48,
                                             height: 48,

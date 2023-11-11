@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:today/constants.dart';
 import 'package:today/model/habit_storage_model.dart';
 import 'package:today/model/to_do_model.dart';
+import 'package:today/model/water_model.dart';
 import 'package:today/pages/main_page.dart';
 import 'package:today/providers/daily_provider.dart';
 import 'package:today/providers/habit_provider.dart';
@@ -24,11 +25,13 @@ Future main() async{
   Hive.registerAdapter(PercentModelAdapter());
   Hive.registerAdapter(HabitModelAdapter());
   Hive.registerAdapter(HabitStorageModelAdapter());
+  Hive.registerAdapter(WaterSettingsModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
   await Hive.openBox<DailyModel>('daily_page');
   await Hive.openBox<PercentModel>('percents');
   await Hive.openBox<HabitModel>('habits');
   await Hive.openBox<HabitStorageModel>('storage');
+  await Hive.openBox<WaterSettingsModel>('water_settings');
   AwesomeNotifications().initialize(
       null,
       [
