@@ -122,7 +122,8 @@ class WaterPage extends StatelessWidget {
                       const SizedBox(height: 20,),
                       DrinkButton(
                           onTap: () => data.selectQuantity(context),
-                          quantity: 'Custom')
+                          quantity: 'Custom'),
+
                     ],
                   )
                 ],

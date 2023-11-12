@@ -121,7 +121,9 @@ class WaterSettingsPage extends StatelessWidget {
                                                     height: 98,
                                                     child: ListWheelScrollView(
                                                       controller: FixedExtentScrollController(
-                                                          initialItem: int.parse(settings[0].weight.toString().substring(0, 1))),
+                                                          initialItem: settings.isEmpty
+                                                          ? 0
+                                                          : int.parse(settings[0].weight.toString().substring(0, 1))),
                                                       onSelectedItemChanged: (index) {
                                                         FocusManager.instance.primaryFocus?.unfocus();
                                                         data.setWeight(index, 0);
@@ -159,7 +161,9 @@ class WaterSettingsPage extends StatelessWidget {
                                                     height: 98,
                                                     child: ListWheelScrollView(
                                                       controller: FixedExtentScrollController(
-                                                          initialItem: int.parse(settings[0].weight.toString().substring(1, 2))),
+                                                          initialItem: settings.isEmpty
+                                                          ? 0
+                                                          : int.parse(settings[0].weight.toString().substring(1, 2))),
                                                       onSelectedItemChanged: (index) {
                                                         FocusManager.instance.primaryFocus?.unfocus();
                                                         data.setWeight(index, 1);
@@ -198,7 +202,9 @@ class WaterSettingsPage extends StatelessWidget {
                                                     height: 98,
                                                     child: ListWheelScrollView(
                                                       controller: FixedExtentScrollController(
-                                                          initialItem: int.parse(settings[0].weight.toString().substring(2, 3))),
+                                                          initialItem: settings.isEmpty
+                                                          ? 0
+                                                          : int.parse(settings[0].weight.toString().substring(2, 3))),
                                                       onSelectedItemChanged: (index) {
                                                         FocusManager.instance.primaryFocus?.unfocus();
                                                         data.setWeight(index, 2);
