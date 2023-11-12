@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:today/model/water_model.dart';
 
 import '../model/boxes.dart';
@@ -11,7 +12,6 @@ class WaterProvider with ChangeNotifier {
   int target = 0;
   TimeOfDay initialWakeUpTime = const TimeOfDay(hour: 8, minute: 00);
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
-  final TextEditingController weightController = TextEditingController();
 
   void addWater(){
     water+=100;
@@ -19,13 +19,24 @@ class WaterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future addToBase() async {
-    final settings = WaterSettingsModel()
-      ..target = target
-      ..wakeUpTime = initialWakeUpTime.toString()
-      ..bedTime = initialBedTime.toString();
-    final box = Boxes.addWaterSettingsToBase();
-    box.add(settings);
+  Future addToBase(Box<WaterSettingsModel> box) async {
+    if(box.isEmpty){
+      final settings = WaterSettingsModel()
+        ..target = target
+        ..wakeUpTime = initialWakeUpTime.toString().substring(10, 15)
+        ..bedTime = initialBedTime.toString().substring(10, 15)
+        ..weight = weight;
+      final box = Boxes.addWaterSettingsToBase();
+      box.add(settings);
+    }else{
+      box.putAt(0, WaterSettingsModel()
+        ..target = target
+        ..wakeUpTime = initialWakeUpTime.toString().substring(10, 15)
+        ..bedTime = initialBedTime.toString().substring(10, 15)
+        ..weight = weight
+      );
+    }
+
   }
 
   void setWeight(int index, int order){

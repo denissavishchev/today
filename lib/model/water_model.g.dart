@@ -8,7 +8,7 @@ part of 'water_model.dart';
 
 class WaterSettingsModelAdapter extends TypeAdapter<WaterSettingsModel> {
   @override
-  final int typeId = 67;
+  final int typeId = 68;
 
   @override
   WaterSettingsModel read(BinaryReader reader) {
@@ -19,19 +19,22 @@ class WaterSettingsModelAdapter extends TypeAdapter<WaterSettingsModel> {
     return WaterSettingsModel()
       ..target = fields[0] as int
       ..wakeUpTime = fields[1] as String
-      ..bedTime = fields[2] as String;
+      ..bedTime = fields[2] as String
+      ..weight = fields[3] as String;
   }
 
   @override
   void write(BinaryWriter writer, WaterSettingsModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.target)
       ..writeByte(1)
       ..write(obj.wakeUpTime)
       ..writeByte(2)
-      ..write(obj.bedTime);
+      ..write(obj.bedTime)
+      ..writeByte(3)
+      ..write(obj.weight);
   }
 
   @override

@@ -1,11 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:today/pages/water_settings_page.dart';
 import 'package:today/providers/water_provider.dart';
-
 import '../constants.dart';
 import '../widgets/circular_background_painter.dart';
+import '../widgets/settings_button.dart';
 import '../widgets/side_button_widget.dart';
 
 class WaterPage extends StatelessWidget {
@@ -44,18 +43,9 @@ class WaterPage extends StatelessWidget {
                           color: kOrange.withOpacity(0.7),
                           size: 40,),),
                       const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 18.0),
-                        child: SideButtonWidget(
-                          width: 100,
-                          both: true,
-                          onTap: () =>
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) =>
-                                  const WaterSettingsPage())),
-                          child: Icon(Icons.settings,
-                            color: kOrange.withOpacity(0.7),
-                            size: 40,),),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 18.0),
+                        child: SettingsButton(),
                       ),
                     ],
                   ),
@@ -121,3 +111,4 @@ class WaterPage extends StatelessWidget {
     );
   }
 }
+
