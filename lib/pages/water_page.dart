@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:today/providers/water_provider.dart';
 import '../constants.dart';
 import '../widgets/circular_background_painter.dart';
+import '../widgets/drink_button.dart';
 import '../widgets/settings_button.dart';
 import '../widgets/side_button_widget.dart';
 
@@ -92,16 +93,38 @@ class WaterPage extends StatelessWidget {
                           children: [
                             Text(
                               '${data.percent.toStringAsFixed(0)}%', style: kOrangeStyle.copyWith(fontSize: 42),),
-                            Text('${data.water}/3000', style: kOrangeStyle.copyWith(fontSize: 38),),
+                            Text('${data.water}/${data.target}', style: kOrangeStyle.copyWith(fontSize: 38),),
                           ],
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: size.height * 0.08,),
-                  ElevatedButton(
-                      onPressed: () => data.addWater(),
-                      child: Text('Drink 100ml'))
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          DrinkButton(
+                            onTap: () => data.addWater(500),
+                            quantity: '500 ml',
+                          ),
+                          DrinkButton(
+                            onTap: () => data.addWater(400),
+                            quantity: '400 ml',
+                          ),
+                          DrinkButton(
+                            onTap: () => data.addWater(300),
+                            quantity: '300 ml',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20,),
+                      DrinkButton(
+                          onTap: () => data.selectQuantity(context),
+                          quantity: 'Custom')
+                    ],
+                  )
                 ],
               ),
             ),
