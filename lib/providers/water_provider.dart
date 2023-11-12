@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:today/model/water_model.dart';
-
 import '../model/boxes.dart';
 
 class WaterProvider with ChangeNotifier {
@@ -13,8 +12,8 @@ class WaterProvider with ChangeNotifier {
   TimeOfDay initialWakeUpTime = const TimeOfDay(hour: 8, minute: 00);
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
 
-  void addWater(){
-    water+=100;
+  void addWater(int quantity){
+    water+=quantity;
     percent = (water / 3000) * 100;
     notifyListeners();
   }
@@ -83,6 +82,37 @@ class WaterProvider with ChangeNotifier {
     )) ?? const TimeOfDay(hour: 22, minute: 00);
     FocusManager.instance.primaryFocus?.unfocus();
     notifyListeners();
+  }
+
+  Future selectQuantity(context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (context, setState) {
+                return Container(
+                  height: MediaQuery.of(context).size.height * 0.45,
+                  margin: const EdgeInsets.fromLTRB(32, 12, 32, 100),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            // spreadRadius: 2,
+                            blurRadius: 3,
+                            offset: const Offset(1, 1)
+                        ),
+                      ]
+                  ),
+                  child: Text('custom'),
+                );
+              }
+          );
+        });
   }
 
 
