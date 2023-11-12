@@ -50,7 +50,6 @@ Future main() async{
       ],
     debug: true
   );
-
   runApp(const MyApp());
 }
 
