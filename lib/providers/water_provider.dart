@@ -13,8 +13,8 @@ class WaterProvider with ChangeNotifier {
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
 
   void addWater(int quantity){
-    water+=quantity;
-    percent = (water / 3000) * 100;
+    water = water + quantity;
+    percent = (water / target) * 100;
     notifyListeners();
   }
 
