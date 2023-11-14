@@ -8,6 +8,7 @@ import '../model/boxes.dart';
 import '../model/water_model.dart';
 import '../widgets/circular_background_painter.dart';
 import '../widgets/drink_button.dart';
+import '../widgets/only_button.dart';
 import '../widgets/settings_button.dart';
 import '../widgets/side_button_widget.dart';
 
@@ -107,31 +108,48 @@ class WaterPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: size.height * 0.08,),
+                        SizedBox(height: size.height * 0.04,),
                         Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                DrinkButton(
-                                  onTap: () => data.addWater(500),
-                                  quantity: '500 ml',
+                            SizedBox(
+                              width: size.width,
+                              height: 60,
+                              child: SingleChildScrollView(
+                                physics: const ScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    ListView.builder(
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: data.ml.length,
+                                        itemBuilder: (context, index){
+                                          return Padding(
+                                            padding: const EdgeInsets.only(right: 4),
+                                            child: DrinkButton(
+                                              onLongPress: () {
+                                                data.deleteMl(index, context);
+                                              },
+                                              onTap: () => data.addWater(data.ml[index]),
+                                              quantity: '${data.ml[index]}',
+                                            ),
+                                          );
+                                        }
+                                    ),
+                                    OnlyButton(
+                                      onTap: () => data.createMl(context, true),
+                                      icon: Icons.add,
+                                    ),
+                                  ],
                                 ),
-                                DrinkButton(
-                                  onTap: () => data.addWater(400),
-                                  quantity: '400 ml',
-                                ),
-                                DrinkButton(
-                                  onTap: () => data.addWater(300),
-                                  quantity: '300 ml',
-                                ),
-                              ],
+                              ),
                             ),
-                            const SizedBox(height: 20,),
+                            const SizedBox(height: 40,),
                             DrinkButton(
-                                onTap: () => data.selectQuantity(context),
+                              onLongPress: (){},
+                                onTap: () => data.createMl(context, false),
                                 quantity: 'Custom'),
-
                           ],
                         )
                       ],

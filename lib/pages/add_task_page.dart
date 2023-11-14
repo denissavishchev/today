@@ -5,6 +5,7 @@ import '../constants.dart';
 import '../providers/to_do_provider.dart';
 import '../widgets/fade_container_widget.dart';
 import '../widgets/fade_textfield_widget.dart';
+import '../widgets/only_button.dart';
 import '../widgets/side_button_widget.dart';
 import 'main_page.dart';
 
@@ -91,51 +92,10 @@ class AddTaskPage extends StatelessWidget {
                                 ],
                               ),
                               const Spacer(),
-                              Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    const BorderRadius.all(Radius.circular(30)),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          const Color(0xffbebebc).withOpacity(0.5),
-                                          const Color(0xff1a1a18).withOpacity(0.8),
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter,
-                                        stops: const [0, 0.75]),
-                                  ),
-                                  child: Center(
-                                    child: GestureDetector(
-                                      onTap: () => data.datePicker(context),
-                                      child: Container(
-                                        width: 48,
-                                        height: 48,
-                                        decoration: BoxDecoration(
-                                            color: const Color(0xff91918f),
-                                            border:
-                                            Border.all(color: kOrange, width: 0.5),
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(25)),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                  color: Colors.black,
-                                                  blurRadius: 3,
-                                                  offset: Offset(0, 2)),
-                                              BoxShadow(
-                                                  color: Color(0xff5e5e5c),
-                                                  blurRadius: 1,
-                                                  offset: Offset(0, -1)),
-                                            ]),
-                                        child: Icon(
-                                          Icons.calendar_month,
-                                          color: kOrange.withOpacity(0.7),
-                                          size: 30,
-                                        ),
-                                      ),
-                                    ),
-                                  )),
+                              OnlyButton(
+                                onTap: () => data.datePicker(context),
+                                icon: Icons.calendar_month,
+                              ),
                               const SizedBox(
                                 width: 30,
                               ),
@@ -281,6 +241,8 @@ class AddTaskPage extends StatelessWidget {
     );
   }
 }
+
+
 
 
 

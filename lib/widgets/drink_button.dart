@@ -6,14 +6,17 @@ class DrinkButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.quantity,
+    required this.onLongPress,
   });
 
   final Function() onTap;
+  final Function() onLongPress;
   final String quantity;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: onLongPress,
       onTap: onTap,
       child: Container(
         width: 120,
