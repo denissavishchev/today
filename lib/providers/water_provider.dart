@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:today/model/water_daily_model.dart';
 import 'package:today/model/water_model.dart';
 import 'package:today/widgets/drink_button.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
+import '../model/buttons_model.dart';
 import '../widgets/side_button_widget.dart';
 
 class WaterProvider with ChangeNotifier {
@@ -14,20 +16,16 @@ class WaterProvider with ChangeNotifier {
   int target = 0;
   TimeOfDay initialWakeUpTime = const TimeOfDay(hour: 8, minute: 00);
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
-  List<int> ml = [500, 400, 300];
+  List<int> ml = [];
 
-  void addWater(int quantity){
-    water = water + quantity;
-    percent = (water / target) * 100;
-    notifyListeners();
+  Future addButton(int value) async{
+    final button = ButtonsModel()
+      ..buttons = value;
+    final box = Boxes.addButtonToBase();
+    box.add(button);
   }
 
-  void addMl(int value){
-    ml.add(value);
-    notifyListeners();
-  }
-
-  Future createMl(context, bool button) {
+  Future createMl(context, bool button, Box<WaterDailyModel> box, String date) {
     return showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -62,12 +60,12 @@ class WaterProvider with ChangeNotifier {
                   child: DrinkButton(
                       onTap: () {
                         if(button){
-                          addMl((index + 1) * 100);
+                          addButton((index + 1) * 100);
                         }else{
-                          addWater((index + 1) * 100);
+                          addPortionToBase((index + 1) * 100, box, date);
                         }
                         Navigator.of(context).pop();
-                      } ,
+                      },
                       quantity: '${(index + 1) * 100}',
                       onLongPress: (){}),
                 );
@@ -77,7 +75,7 @@ class WaterProvider with ChangeNotifier {
         });
   }
 
-  Future deleteMl(int index, context) {
+  Future deleteMl(int index, context, Box<ButtonsModel> box) {
     return showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -112,8 +110,7 @@ class WaterProvider with ChangeNotifier {
                           SideButtonWidget(
                             width: 240,
                             onTap: (){
-                              ml.removeAt(index);
-                              notifyListeners();
+                              box.deleteAt(index);
                               Navigator.of(context).pop();
                             },
                             child: Icon(Icons.check,
@@ -149,7 +146,35 @@ class WaterProvider with ChangeNotifier {
         });
   }
 
-  Future addToBase(Box<WaterSettingsModel> box) async {
+  Future addPortionToBase(int quantity, Box<WaterDailyModel> box, String date) async {
+    water = water + quantity;
+    percent = (water / target) * 100;
+    if(box.isEmpty) {
+      final waterDaily = WaterDailyModel()
+        ..dateMl = DateTime.now().day.toString()
+        ..targetMl = target
+        ..portionMl = water
+        ..percentMl = percent.toInt();
+      final box = Boxes.addWaterDailyToBase();
+      box.add(waterDaily);
+    }else if(box.isNotEmpty && date == DateTime.now().day.toString()){
+        box.putAt(box.length - 1, WaterDailyModel()
+          ..dateMl = date
+          ..targetMl = target
+          ..portionMl = water
+          ..percentMl = percent.toInt());
+      }else{
+        final waterDaily = WaterDailyModel()
+          ..dateMl = DateTime.now().day.toString()
+          ..targetMl = target
+          ..portionMl = water
+          ..percentMl = percent.toInt();
+        final box = Boxes.addWaterDailyToBase();
+        box.add(waterDaily);
+      }
+  }
+
+  Future addSettingsToBase(Box<WaterSettingsModel> box) async {
     if(box.isEmpty){
       final settings = WaterSettingsModel()
         ..target = target

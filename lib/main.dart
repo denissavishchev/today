@@ -12,9 +12,11 @@ import 'package:today/providers/water_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'model/buttons_model.dart';
 import 'model/daily_model.dart';
 import 'model/habit_model.dart';
 import 'model/percent_model.dart';
+import 'model/water_daily_model.dart';
 
 
 Future main() async{
@@ -26,12 +28,16 @@ Future main() async{
   Hive.registerAdapter(HabitModelAdapter());
   Hive.registerAdapter(HabitStorageModelAdapter());
   Hive.registerAdapter(WaterSettingsModelAdapter());
+  Hive.registerAdapter(WaterDailyModelAdapter());
+  Hive.registerAdapter(ButtonsModelAdapter());
   await Hive.openBox<ToDoModel>('to_do_page');
   await Hive.openBox<DailyModel>('daily_page');
   await Hive.openBox<PercentModel>('percents');
   await Hive.openBox<HabitModel>('habits');
   await Hive.openBox<HabitStorageModel>('storage');
   await Hive.openBox<WaterSettingsModel>('water_settings');
+  await Hive.openBox<WaterDailyModel>('water_daily');
+  await Hive.openBox<ButtonsModel>('buttons');
   AwesomeNotifications().initialize(
       null,
       [

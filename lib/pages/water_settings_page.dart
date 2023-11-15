@@ -414,7 +414,7 @@ class WaterSettingsPage extends StatelessWidget {
                                             both: true,
                                             width: 200,
                                             onTap: (){
-                                              data.addToBase(box);
+                                              data.addSettingsToBase(box);
                                               Navigator.of(context).pop();
                                               activePage = 3;
                                               mainPageController.initialPage = 3;
