@@ -143,10 +143,12 @@ class WaterPage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          '${daily.isNotEmpty
-                                              ? daily.last.percentMl : 0}%', style: kOrangeStyle.copyWith(fontSize: 42),),
-                                        Text('${daily.isNotEmpty
-                                             ? daily.last.portionMl : 0}/${data.target}', style: kOrangeStyle.copyWith(fontSize: 38),),
+                                          '${daily.isEmpty
+                                              || daily.last.dateMl != DateTime.now().day.toString()
+                                              ? 0 : daily.last.percentMl}%', style: kOrangeStyle.copyWith(fontSize: 42),),
+                                        Text('${daily.isEmpty
+                                              || daily.last.dateMl != DateTime.now().day.toString()
+                                              ? 0 : daily.last.portionMl}/${data.target}', style: kOrangeStyle.copyWith(fontSize: 38),),
                                       ],
                                     ),
                                   ],
