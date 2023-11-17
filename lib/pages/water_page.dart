@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:today/pages/water_statistic_page.dart';
 import 'package:today/providers/water_provider.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
@@ -61,10 +62,10 @@ class WaterPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   SideButtonWidget(
-                                    onTap: () {},
-                                    // Navigator.pushReplacement(context,
-                                    //     MaterialPageRoute(builder: (context) =>
-                                    //     const HabitStatisticPage())),
+                                    onTap: () =>
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: (context) =>
+                                        const WaterStatisticPage())),
                                     child: Icon(Icons.history_edu,
                                       color: kOrange.withOpacity(0.7),
                                       size: 40,),),
@@ -76,32 +77,6 @@ class WaterPage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: size.height * 0.02,),
-                              Row(
-                                children: [
-                                  Container(
-                                    color: Colors.white,
-                                    width: size.width * 0.8,
-                                    height: 40,
-                                    child: ListView.builder(
-                                      itemCount: daily.length,
-                                        itemBuilder: (context, index){
-                                          return Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Day ${daily[index].dateMl}'),
-                                              Text('Portion ${daily[index].portionMl}'),
-                                              Text('Target ${daily[index].targetMl}'),
-                                              Text('${daily[index].percentMl}%'),
-                                            ],
-                                          );
-                                        }
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                      onPressed: () => Hive.box<WaterDailyModel>('water_daily').clear(),
-                                      child: const Text('c'))
-                                ],
-                              ),
                               SizedBox(
                                 width: size.width,
                                 height: size.height * 0.4,

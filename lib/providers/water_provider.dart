@@ -17,6 +17,7 @@ class WaterProvider with ChangeNotifier {
   TimeOfDay initialWakeUpTime = const TimeOfDay(hour: 8, minute: 00);
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
   List<int> ml = [];
+  List<WaterDailyModel> waterDaily = [];
 
   Future addButton(int value) async{
     final button = ButtonsModel()

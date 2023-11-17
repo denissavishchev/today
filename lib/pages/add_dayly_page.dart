@@ -80,7 +80,7 @@ class AddDailyPage extends StatelessWidget {
                                   ),
                                 ),
                                 Stack(
-                                  alignment: Alignment.center,
+                      alignment: Alignment.center,
                                   children: [
                                     Container(
                                       width: 64,

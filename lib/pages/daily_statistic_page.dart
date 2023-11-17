@@ -18,7 +18,8 @@ class DailyStatisticPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(body: Consumer<DailyProvider>(
+      child: Scaffold(
+          body: Consumer<DailyProvider>(
         builder: (context, data, _) {
           return ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(overscroll: false),
