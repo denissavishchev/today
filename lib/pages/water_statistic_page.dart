@@ -41,7 +41,7 @@ class WaterStatisticPage extends StatelessWidget {
                             valueListenable: Boxes.addWaterDailyToBase().listenable(),
                             builder: (context, box, _){
                               final water = box.values.toList().cast<WaterDailyModel>();
-                              water.sort((b, a) => a.dateMl.compareTo(b.dateMl));
+                              water.sort((b, a) => a.dateTime.compareTo(b.dateTime));
                               data.waterDaily = water;
                               return Column(
                                 children: [
@@ -64,7 +64,31 @@ class WaterStatisticPage extends StatelessWidget {
                                           size: 40,
                                         ),
                                       ),
-                                     const Spacer(),
+                                      Stack(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 18.0),
+                                            child: SideButtonWidget(
+                                                width: 220,
+                                                both: true,
+                                                child: Center(
+                                                    child: Text(data.totalPercentWater(),
+                                                      style: const TextStyle(
+                                                          fontSize: 30,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: kOrange),)),
+                                                onTap: () {}),
+                                          ),
+                                          Positioned.fill(
+                                            child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 40.0),
+                                                  child: Text('Hydration', style: kOrangeStyle,),
+                                                )),
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -92,7 +116,8 @@ class WaterStatisticPage extends StatelessWidget {
                                           itemCount: water.length < 33 ? water.length : 33,
                                           itemBuilder: (context, index) {
                                             return BarWidget(
-                                              day: water[index].dateMl,
+                                              day: '${DateTime.parse(water[index].dateTime).day}'
+                                                  '.${DateTime.parse(water[index].dateTime).month}',
                                               percent: water[index].percentMl,
                                             );
                                           }),

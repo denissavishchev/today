@@ -11,4 +11,6 @@ class WaterDailyModel extends HiveObject{
   late int portionMl;
   @HiveField(3)
   late int percentMl;
+  @HiveField(4)
+  late String dateTime;
 }

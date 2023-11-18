@@ -18,6 +18,52 @@ class WaterProvider with ChangeNotifier {
   TimeOfDay initialBedTime = const TimeOfDay(hour: 22, minute: 00);
   List<int> ml = [];
   List<WaterDailyModel> waterDaily = [];
+  List<int> totalPercents = [];
+  String hydration = '0';
+
+  String totalPercentWater(){
+    if(waterDaily.isNotEmpty){
+      for(var p in waterDaily){
+        totalPercents.add(p.percentMl);
+      }
+      var sum = totalPercents.reduce((a, b) => a + b);
+      return hydration =  (sum / totalPercents.length).toStringAsFixed(0);
+    }else{
+      return '';
+    }
+  }
+
+  // Future percentToBase(List<DailyModel> tasks) async{
+  //   for(var d in tasks){
+  //     done.add(d.done);
+  //   }
+  //   for(var h in tasks){
+  //     all.add(h.howMany);
+  //   }
+  //   for (int i = 0; i < done.length; i++) {
+  //     int x = done[i];
+  //     int y = all[i];
+  //     final p = (x / y * 100).toInt();
+  //     percentage.add(p);
+  //   }
+  //   var sum = percentage.reduce((a, b) => a + b);
+  //   var percent = sum ~/ percentage.length;
+  //   all.clear();
+  //   done.clear();
+  //   percentage.clear();
+  //
+  //   final percents = PercentModel()
+  //     ..percent = percent
+  //     ..day = DateTime.now().day
+  //     ..month = DateTime.now().month
+  //     ..year = DateTime.now().year
+  //     ..dateTime = DateTime.now().toString();
+  //   final box = Boxes.addPercentToBase();
+  //   if (box.containsKey(DateTime.now().day)) {
+  //   }else{
+  //     await box.add(percents);
+  //   }
+  // }
 
   Future addButton(int value) async{
     final button = ButtonsModel()
@@ -155,7 +201,8 @@ class WaterProvider with ChangeNotifier {
         ..dateMl = DateTime.now().day.toString()
         ..targetMl = target
         ..portionMl = water
-        ..percentMl = percent.toInt();
+        ..percentMl = percent.toInt()
+        ..dateTime = DateTime.now().toString();
       final box = Boxes.addWaterDailyToBase();
       box.add(waterDaily);
     }else if(box.isNotEmpty && date == DateTime.now().day.toString()){
@@ -163,13 +210,15 @@ class WaterProvider with ChangeNotifier {
           ..dateMl = date
           ..targetMl = target
           ..portionMl = water
-          ..percentMl = percent.toInt());
+          ..percentMl = percent.toInt()
+          ..dateTime = DateTime.now().toString());
       }else{
         final waterDaily = WaterDailyModel()
           ..dateMl = DateTime.now().day.toString()
           ..targetMl = target
           ..portionMl = water
-          ..percentMl = percent.toInt();
+          ..percentMl = percent.toInt()
+          ..dateTime = DateTime.now().toString();
         final box = Boxes.addWaterDailyToBase();
         box.add(waterDaily);
       }

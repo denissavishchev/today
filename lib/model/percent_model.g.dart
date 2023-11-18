@@ -20,13 +20,14 @@ class PercentModelAdapter extends TypeAdapter<PercentModel> {
       ..percent = fields[12] as int
       ..day = fields[13] as int
       ..month = fields[14] as int
-      ..year = fields[15] as int;
+      ..year = fields[15] as int
+      ..dateTime = fields[16] as String;
   }
 
   @override
   void write(BinaryWriter writer, PercentModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(12)
       ..write(obj.percent)
       ..writeByte(13)
@@ -34,7 +35,9 @@ class PercentModelAdapter extends TypeAdapter<PercentModel> {
       ..writeByte(14)
       ..write(obj.month)
       ..writeByte(15)
-      ..write(obj.year);
+      ..write(obj.year)
+      ..writeByte(16)
+      ..write(obj.dateTime);
   }
 
   @override

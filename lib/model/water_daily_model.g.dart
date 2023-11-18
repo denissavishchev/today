@@ -20,13 +20,14 @@ class WaterDailyModelAdapter extends TypeAdapter<WaterDailyModel> {
       ..dateMl = fields[0] as String
       ..targetMl = fields[1] as int
       ..portionMl = fields[2] as int
-      ..percentMl = fields[3] as int;
+      ..percentMl = fields[3] as int
+      ..dateTime = fields[4] as String;
   }
 
   @override
   void write(BinaryWriter writer, WaterDailyModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.dateMl)
       ..writeByte(1)
@@ -34,7 +35,9 @@ class WaterDailyModelAdapter extends TypeAdapter<WaterDailyModel> {
       ..writeByte(2)
       ..write(obj.portionMl)
       ..writeByte(3)
-      ..write(obj.percentMl);
+      ..write(obj.percentMl)
+      ..writeByte(4)
+      ..write(obj.dateTime);
   }
 
   @override

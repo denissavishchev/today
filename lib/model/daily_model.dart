@@ -13,4 +13,6 @@ class DailyModel extends HiveObject{
   late int done;
   @HiveField(11)
   late int day;
+  @HiveField(12)
+  late String dateTime;
 }

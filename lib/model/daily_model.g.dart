@@ -21,13 +21,14 @@ class DailyModelAdapter extends TypeAdapter<DailyModel> {
       ..description = fields[6] as String
       ..howMany = fields[7] as int
       ..done = fields[8] as int
-      ..day = fields[11] as int;
+      ..day = fields[11] as int
+      ..dateTime = fields[12] as String;
   }
 
   @override
   void write(BinaryWriter writer, DailyModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(5)
       ..write(obj.task)
       ..writeByte(6)
@@ -37,7 +38,9 @@ class DailyModelAdapter extends TypeAdapter<DailyModel> {
       ..writeByte(8)
       ..write(obj.done)
       ..writeByte(11)
-      ..write(obj.day);
+      ..write(obj.day)
+      ..writeByte(12)
+      ..write(obj.dateTime);
   }
 
   @override

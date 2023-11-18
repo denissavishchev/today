@@ -27,7 +27,8 @@ class DailyProvider with ChangeNotifier {
       ..description = descriptionController.text.trim()
       ..howMany = howMany
       ..done = done
-      ..day = DateTime.now().day;
+      ..day = DateTime.now().day
+      ..dateTime = DateTime.now().toString();
     final box = Boxes.addDailyToBase();
     box.add(task);
   }
@@ -38,7 +39,8 @@ class DailyProvider with ChangeNotifier {
       ..description = tasks[index].description
       ..howMany = howMany
       ..done = 0
-      ..day = DateTime.now().day);
+      ..day = DateTime.now().day
+      ..dateTime = DateTime.now().toString());
   }
 
   String totalPercent(){
@@ -76,7 +78,8 @@ class DailyProvider with ChangeNotifier {
       ..percent = percent
       ..day = DateTime.now().day
       ..month = DateTime.now().month
-      ..year = DateTime.now().year;
+      ..year = DateTime.now().year
+      ..dateTime = DateTime.now().toString();
     final box = Boxes.addPercentToBase();
     if (box.containsKey(DateTime.now().day)) {
     }else{
@@ -97,7 +100,8 @@ class DailyProvider with ChangeNotifier {
         ..description = tasks[index].description
         ..howMany = howMany
         ..done = done + 1
-        ..day = DateTime.now().day);
+        ..day = DateTime.now().day
+        ..dateTime = tasks[index].dateTime);
     }
   }
 

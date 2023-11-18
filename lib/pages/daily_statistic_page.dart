@@ -41,7 +41,7 @@ class DailyStatisticPage extends StatelessWidget {
                       valueListenable: Boxes.addPercentToBase().listenable(),
                       builder: (context, box, _){
                         final percents = box.values.toList().cast<PercentModel>();
-                        percents.sort((b, a) => a.day.compareTo(b.day));
+                        percents.sort((b, a) => a.dateTime.compareTo(b.dateTime));
                         data.percents = percents;
                         return Column(
                           children: [

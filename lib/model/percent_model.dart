@@ -11,4 +11,6 @@ class PercentModel extends HiveObject{
   late int month;
   @HiveField(15)
   late int year;
+  @HiveField(16)
+  late String dateTime;
 }
