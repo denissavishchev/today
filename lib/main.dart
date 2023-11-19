@@ -30,9 +30,10 @@ Future main() async{
   Hive.registerAdapter(WaterSettingsModelAdapter());
   Hive.registerAdapter(WaterDailyModelAdapter());
   Hive.registerAdapter(ButtonsModelAdapter());
+  // Hive.ignoreTypeId(65);
   await Hive.openBox<ToDoModel>('to_do_page');
-  await Hive.openBox<DailyModel>('daily_page');
-  await Hive.openBox<PercentModel>('percents');
+  await Hive.openBox<DailyModel>('daily');
+  await Hive.openBox<PercentModel>('percent');
   await Hive.openBox<HabitModel>('habits');
   await Hive.openBox<HabitStorageModel>('storage');
   await Hive.openBox<WaterSettingsModel>('water_settings');

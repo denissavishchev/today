@@ -8,7 +8,7 @@ part of 'percent_model.dart';
 
 class PercentModelAdapter extends TypeAdapter<PercentModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 48;
 
   @override
   PercentModel read(BinaryReader reader) {

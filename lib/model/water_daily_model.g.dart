@@ -8,7 +8,7 @@ part of 'water_daily_model.dart';
 
 class WaterDailyModelAdapter extends TypeAdapter<WaterDailyModel> {
   @override
-  final int typeId = 78;
+  final int typeId = 79;
 
   @override
   WaterDailyModel read(BinaryReader reader) {

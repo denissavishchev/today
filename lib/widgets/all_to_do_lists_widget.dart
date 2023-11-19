@@ -35,7 +35,7 @@ class AllToDoLists extends StatelessWidget {
               data.deleteTask(index, box, context);
             },
             child: BasicContainerWidget(
-              height: 0.11,
+              height: 0.12,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(

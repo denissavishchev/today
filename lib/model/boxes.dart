@@ -12,9 +12,9 @@ class Boxes {
   static Box<ToDoModel> addTaskToBase() =>
       Hive.box<ToDoModel>('to_do_page');
   static Box<DailyModel> addDailyToBase() =>
-      Hive.box<DailyModel>('daily_page');
+      Hive.box<DailyModel>('daily');
   static Box<PercentModel> addPercentToBase() =>
-      Hive.box<PercentModel>('percents');
+      Hive.box<PercentModel>('percent');
   static Box<HabitModel> addHabitToBase() =>
       Hive.box<HabitModel>('habits');
   static Box<HabitStorageModel> addHabitStorageToBase() =>

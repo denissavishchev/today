@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part 'water_daily_model.g.dart';
 
-@HiveType(typeId: 78)
+@HiveType(typeId: 79)
 class WaterDailyModel extends HiveObject{
   @HiveField(0)
   late String dateMl;
