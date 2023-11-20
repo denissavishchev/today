@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:today/model/water_daily_model.dart';
@@ -20,6 +23,7 @@ class WaterProvider with ChangeNotifier {
   List<WaterDailyModel> waterDaily = [];
   List<int> totalPercents = [];
   String hydration = '0';
+  late Timer timer;
 
   String totalPercentWater(){
     if(waterDaily.isNotEmpty){
@@ -287,6 +291,41 @@ class WaterProvider with ChangeNotifier {
     )) ?? const TimeOfDay(hour: 22, minute: 00);
     FocusManager.instance.primaryFocus?.unfocus();
     notifyListeners();
+  }
+
+  // int daysBetween(DateTime from, DateTime to) {
+  //   from = DateTime(from.year, from.month, from.day);
+  //   to = DateTime(to.year, to.month, to.day);
+  //   return (to.difference(from).inHours / 24).round();
+  // }
+
+  Future sendNotification(TimeOfDay start, TimeOfDay end) async{
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: DateTime.now().microsecondsSinceEpoch.remainder(200),
+        channelKey: 'scheduled',
+        title: '${Emojis.symbols_potable_water} Drink some water',
+        body: 'Start: ${DateTime.now().hour}',
+      ),
+      schedule: NotificationCalendar(
+          hour: start.hour,
+          minute: end.minute,
+          // repeats: true
+      ),
+    );
+      timer = Timer.periodic(const Duration(hours: 1), (timer) async {
+        await AwesomeNotifications().createNotification(
+          content: NotificationContent(
+            id: DateTime.now().microsecondsSinceEpoch.remainder(200),
+            channelKey: 'scheduled',
+            title: '${Emojis.symbols_potable_water} Drink some water',
+            body: 'End: ${DateTime.now().hour}',
+          ),
+        );
+      });
+    if(TimeOfDay.now() == end){
+      timer.cancel();
+    }
   }
 
 }

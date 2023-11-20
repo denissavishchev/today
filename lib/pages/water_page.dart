@@ -44,6 +44,7 @@ class WaterPage extends StatelessWidget {
                         data.water = 0;
                         data.percent = 0;
                       }
+                      data.sendNotification(data.initialWakeUpTime, data.initialBedTime);
                       return Container(
                         height: size.height,
                         decoration: const BoxDecoration(

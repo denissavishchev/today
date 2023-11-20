@@ -418,8 +418,7 @@ class WaterSettingsPage extends StatelessWidget {
                                               Navigator.of(context).pop();
                                               activePage = 3;
                                               mainPageController.initialPage = 3;
-                                              Navigator.push(
-                                                  context,
+                                              Navigator.push(context,
                                                   MaterialPageRoute(builder: (context) => const MainPage()));
                                             },
                                             child: Icon(Icons.upload, color: kOrange.withOpacity(0.8), size: 40,)),

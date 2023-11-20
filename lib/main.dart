@@ -30,7 +30,6 @@ Future main() async{
   Hive.registerAdapter(WaterSettingsModelAdapter());
   Hive.registerAdapter(WaterDailyModelAdapter());
   Hive.registerAdapter(ButtonsModelAdapter());
-  // Hive.ignoreTypeId(65);
   await Hive.openBox<ToDoModel>('to_do_page');
   await Hive.openBox<DailyModel>('daily');
   await Hive.openBox<PercentModel>('percent');
@@ -43,7 +42,7 @@ Future main() async{
       null,
       [
         NotificationChannel(
-        channelKey: 'scheduled_channel',
+        channelKey: 'scheduled',
         channelGroupKey: 'basic_channel_group',
         channelName: 'Scheduled Notifications',
         importance: NotificationImportance.High,
@@ -55,7 +54,7 @@ Future main() async{
             channelGroupKey: 'basic_channel_group',
             channelGroupName: 'Basic group')
       ],
-    debug: true
+    debug: false
   );
   runApp(const MyApp());
 }

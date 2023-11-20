@@ -80,7 +80,7 @@ class ToDoProvider with ChangeNotifier {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: DateTime.now().microsecondsSinceEpoch.remainder(200),
-        channelKey: 'scheduled_channel',
+        channelKey: 'scheduled',
         title: '${Emojis.light_light_bulb} Today is a good day for',
         body: title,
       ),
