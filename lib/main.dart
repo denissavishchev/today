@@ -17,6 +17,7 @@ import 'model/daily_model.dart';
 import 'model/habit_model.dart';
 import 'model/percent_model.dart';
 import 'model/water_daily_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 Future main() async{
@@ -75,10 +76,13 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final initNotifications = Provider.of<MainProvider>(context, listen: false);
         initNotifications.initNotifications();
-          return MaterialApp(
-            theme: pickerTheme,
-            debugShowCheckedModeBanner: false,
-            home: const MainPage(),
+          return ScreenUtilInit(
+            designSize: const Size(360, 780),
+            builder: (_, child) => MaterialApp(
+              theme: pickerTheme,
+              debugShowCheckedModeBanner: false,
+              home: const MainPage(),
+            ),
           );
     },
     );

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../providers/to_do_provider.dart';
@@ -35,7 +36,7 @@ class AddTaskPage extends StatelessWidget {
                     sigmaY: 0.1,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(top: size.height * 0.07),
+                    padding: EdgeInsets.only(top: size.height * 0.07.h),
                     child: Column(
                       children: [
                         Row(
@@ -59,15 +60,15 @@ class AddTaskPage extends StatelessWidget {
                             const Spacer(),
                           ],
                         ),
-                        SizedBox(height: size.height * 0.06,),
+                        SizedBox(height: size.height * 0.06.h,),
                         FadeTextFieldWidget(
                           textEditingController: data.titleController,
                           hintText: 'Task',),
-                        SizedBox(height: size.height * 0.06,),
+                        SizedBox(height: size.height * 0.06.h,),
                         FadeTextFieldWidget(
                           textEditingController: data.descriptionController,
                           hintText: 'Description',),
-                        SizedBox(height: size.height * 0.06,),
+                        SizedBox(height: size.height * 0.06.h,),
                         FadeContainerWidget(
                           child: Row(
                             children: [
@@ -96,13 +97,11 @@ class AddTaskPage extends StatelessWidget {
                                 onTap: () => data.datePicker(context),
                                 icon: Icons.calendar_month,
                               ),
-                              const SizedBox(
-                                width: 30,
-                              ),
+                              SizedBox(width: 30.w),
                             ],
                           ),
                         ),
-                        SizedBox(height: size.height * 0.02,),
+                        SizedBox(height: size.height * 0.02.h),
                         Visibility(
                           visible: data.noDate != 'Date not set',
                           child: FadeContainerWidget(
@@ -168,15 +167,13 @@ class AddTaskPage extends StatelessWidget {
                                         ),
                                       ),
                                     )),
-                                const SizedBox(
-                                  width: 30,
-                                ),
+                                SizedBox(width: 30.w),
                               ],
                             ),),
                         ),
-                        SizedBox(height: size.height * 0.06,),
+                        SizedBox(height: size.height * 0.06.h,),
                         Padding(
-                          padding: const EdgeInsets.only(left: 18.0),
+                          padding: EdgeInsets.only(left: 18.w),
                           child: Row(
                             children: [
                               Stack(
@@ -194,7 +191,7 @@ class AddTaskPage extends StatelessWidget {
                                     child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(left: 40.0),
+                                          padding: EdgeInsets.only(left: 40.w),
                                           child: Text(data.addListTitle, style: kOrangeStyle,),
                                         )),
                                   ),
@@ -203,9 +200,9 @@ class AddTaskPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: size.height * 0.06,),
+                        SizedBox(height: size.height * 0.06.h),
                         Padding(
-                          padding: const EdgeInsets.only(left: 48.0),
+                          padding: EdgeInsets.only(left: 48.w),
                           child: Row(
                             children: [
                               SideButtonWidget(

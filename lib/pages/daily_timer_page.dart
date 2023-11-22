@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import '../widgets/circular_background_painter.dart';
 import '../widgets/side_button_widget.dart';
@@ -91,7 +92,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                 sigmaY: 0.1,
               ),
               child: Padding(
-                padding: EdgeInsets.only(top: size.height * 0.07),
+                padding: EdgeInsets.only(top: size.height * 0.07.h),
                 child: Column(
                   children: [
                     Row(
@@ -111,8 +112,8 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                       ],
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size. height * 0.7,
+                      width: size.width,
+                      height: size.height * 0.7.h,
                       color: Colors.transparent,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,7 +122,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                             alignment: Alignment.center,
                             children: [
                               Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                                  margin: EdgeInsets.symmetric(horizontal: 2.w),
                                   width: 276,
                                   height: 276,
                                   decoration: BoxDecoration(
@@ -159,7 +160,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                         context: context,
                                         builder: (context){
                                           return Container(
-                                            height: MediaQuery.of(context).size.height * 0.6,
+                                            height: size.height * 0.6.h,
                                             margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
                                             padding: const EdgeInsets.symmetric(vertical: 14),
                                             decoration: BoxDecoration(
@@ -194,7 +195,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                               ),
                             ],
                           ),
-                          SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+                          SizedBox(height: size.height * 0.01.h,),
                           SideButtonWidget(
                             width: 160,
                               both: true,
@@ -226,7 +227,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const SizedBox(width: 40,),
+                              SizedBox(width: 40.w),
                               SideButtonWidget(
                                 both: true,
                                   width: 120,

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/habit_statistic_page.dart';
@@ -37,7 +38,7 @@ class HabitPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: size.height * 0.07),
+                        SizedBox(height: size.height * 0.07.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -62,11 +63,11 @@ class HabitPage extends StatelessWidget {
                                 size: 40,),)
                           ],
                         ),
-                        SizedBox(height: size.height * 0.02,),
+                        SizedBox(height: size.height * 0.02.h,),
                         Expanded(
                           child: Container(
                             clipBehavior: Clip.hardEdge,
-                            width: size.width * 0.98,
+                            width: size.width * 0.9.w,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: const BorderRadius.all(Radius.circular(24)),
@@ -83,7 +84,7 @@ class HabitPage extends StatelessWidget {
                             child: ScrollConfiguration(
                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                                 child: ListView.builder(
-                                  padding: EdgeInsets.only(bottom: size.height * 0.12),
+                                  padding: EdgeInsets.only(bottom: size.height * 0.12.h),
                                   itemCount: habits.length,
                                   // controller: data.scrollController,
                                   reverse: false,

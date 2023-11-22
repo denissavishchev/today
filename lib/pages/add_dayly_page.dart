@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../providers/daily_provider.dart';
@@ -34,7 +35,7 @@ class AddDailyPage extends StatelessWidget {
                         sigmaY: 0.1,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.07),
+                        padding: EdgeInsets.only(top: size.height * 0.07.h),
                         child: Column(
                           children: [
                             Row(
@@ -53,15 +54,15 @@ class AddDailyPage extends StatelessWidget {
                                 const Spacer(),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.06,),
+                            SizedBox(height: size.height * 0.06.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.titleController,
                               hintText: 'Task',),
-                            SizedBox(height: size.height * 0.06,),
+                            SizedBox(height: size.height * 0.06.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.descriptionController,
                               hintText: 'Description',),
-                            SizedBox(height: size.height * 0.1,),
+                            SizedBox(height: size.height * 0.1.h,),
                             Row(
                               children: [
                                 SizedBox(
@@ -80,14 +81,14 @@ class AddDailyPage extends StatelessWidget {
                                   ),
                                 ),
                                 Stack(
-                      alignment: Alignment.center,
+                                  alignment: Alignment.center,
                                   children: [
                                     Container(
                                       width: 64,
                                       height: 104,
                                       decoration: BoxDecoration(
                                           color: Colors.white.withOpacity(0.5),
-                                          borderRadius: const BorderRadius.all(Radius.circular(30)),
+                                          borderRadius: const BorderRadius.all(Radius.circular(32)),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: Colors.black.withOpacity(0.5),
@@ -141,19 +142,18 @@ class AddDailyPage extends StatelessWidget {
                                                           blurRadius: 1,
                                                           offset: Offset(0, -1)),
                                                     ]),
-                                                child: Center(child: Text('${index + 1}', style: kWhiteStyle,)),
+                                                child: Center(child: Text('${index + 1}',
+                                                  style: kWhiteStyle,)),
                                               );
                                             } ),
                                         )
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  width: 30,
-                                ),
+                                SizedBox(width: 20.h,),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.1,),
+                            SizedBox(height: size.height * 0.1.h,),
                             Padding(
                               padding: const EdgeInsets.only(left: 48.0),
                               child: Row(

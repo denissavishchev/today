@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/to_do_model.dart';
@@ -33,9 +34,9 @@ class ToDoPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: size.height * 0.07),
+                    SizedBox(height: size.height * 0.07.h),
                     Padding(
-                      padding: const EdgeInsets.only(left: 18.0),
+                      padding: EdgeInsets.only(left: 18.w),
                       child: Row(
                         children: [
                           Stack(
@@ -53,7 +54,7 @@ class ToDoPage extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 40.0),
+                                      padding: EdgeInsets.only(left: 40.w),
                                       child: Text(data.listTitle, style: kOrangeStyle,),
                                     )),
                               ),
@@ -74,7 +75,7 @@ class ToDoPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: size.height * 0.02,),
+                    SizedBox(height: size.height * 0.02.h),
                     Expanded(
                       child: ValueListenableBuilder<Box<ToDoModel>>(
                         valueListenable: Boxes.addTaskToBase().listenable(),
@@ -95,7 +96,7 @@ class ToDoPage extends StatelessWidget {
                           data.lists.clear();
                           return Container(
                             clipBehavior: Clip.hardEdge,
-                            width: size.width * 0.98,
+                            width: size.width * 0.9.w,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: const BorderRadius.all(Radius.circular(24)),
@@ -112,7 +113,7 @@ class ToDoPage extends StatelessWidget {
                             child: ScrollConfiguration(
                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                                 child: ListView.builder(
-                                  padding: EdgeInsets.only(bottom: size.height * 0.12),
+                                  padding: EdgeInsets.only(bottom: size.height * 0.12.h),
                                   itemCount: tasks.length,
                                   controller: data.scrollController,
                                   reverse: false,

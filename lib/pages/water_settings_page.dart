@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/water_model.dart';
@@ -40,7 +41,7 @@ class WaterSettingsPage extends StatelessWidget {
                               sigmaY: 0.1,
                             ),
                             child: Padding(
-                              padding: EdgeInsets.only(top: size.height * 0.07),
+                              padding: EdgeInsets.only(top: size.height * 0.07.h),
                               child: Column(
                                 children: [
                                   Row(
@@ -59,15 +60,15 @@ class WaterSettingsPage extends StatelessWidget {
                                       const Spacer(),
                                           ],
                                         ),
-                                  SizedBox(height: size.height * 0.06,),
+                                  SizedBox(height: size.height * 0.06.h),
                                   Row(
                                     children: [
                                       SizedBox(
                                         width: size.width * 0.44,
-                                        child: const FadeContainerWidget(
+                                        child: FadeContainerWidget(
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 12.0),
-                                            child: Row(
+                                            padding: EdgeInsets.only(left: 12.w),
+                                            child: const Row(
                                               children: [
                                                 Text('Weight (kg)',
                                                   style: TextStyle(
@@ -132,7 +133,7 @@ class WaterSettingsPage extends StatelessWidget {
                                                       itemExtent: 58,
                                                       children: List.generate(10, (index){
                                                         return Container(
-                                                          margin: const EdgeInsets.symmetric(vertical: 4),
+                                                          margin: EdgeInsets.symmetric(vertical: 4.w),
                                                           width: 50,
                                                           height: 50,
                                                           decoration: BoxDecoration(
@@ -172,7 +173,7 @@ class WaterSettingsPage extends StatelessWidget {
                                                       itemExtent: 58,
                                                       children: List.generate(10, (index){
                                                         return Container(
-                                                          margin: const EdgeInsets.symmetric(vertical: 4),
+                                                          margin: EdgeInsets.symmetric(vertical: 4.w),
                                                           width: 50,
                                                           height: 50,
                                                           decoration: BoxDecoration(
@@ -213,7 +214,7 @@ class WaterSettingsPage extends StatelessWidget {
                                                       itemExtent: 58,
                                                       children: List.generate(10, (index){
                                                         return Container(
-                                                          margin: const EdgeInsets.symmetric(vertical: 4),
+                                                          margin: EdgeInsets.symmetric(vertical: 4.w),
                                                           width: 50,
                                                           height: 50,
                                                           decoration: BoxDecoration(
@@ -243,15 +244,13 @@ class WaterSettingsPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        width: 26,
-                                      ),
+                                      SizedBox(width: 22.w),
                                     ],
                                   ),
                                   SizedBox(height: size.height * 0.06,),
                                   FadeContainerWidget(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 12.0, right: 32),
+                                        padding: EdgeInsets.only(left: 12.w, right: 32.w),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -267,7 +266,7 @@ class WaterSettingsPage extends StatelessWidget {
                                         ),
                                       )
                                   ),
-                                  SizedBox(height: size.height * 0.06,),
+                                  SizedBox(height: size.height * 0.06.h),
                                   FadeContainerWidget(
                                     child: Row(
                                       children: [
@@ -331,12 +330,10 @@ class WaterSettingsPage extends StatelessWidget {
                                                 ),
                                               ),
                                             )),
-                                        const SizedBox(
-                                          width: 30,
-                                        ),
+                                        SizedBox(width: 30.w),
                                       ],
                                     ),),
-                                  SizedBox(height: size.height * 0.03,),
+                                  SizedBox(height: size.height * 0.03.h),
                                   FadeContainerWidget(
                                     child: Row(
                                       children: [
@@ -400,14 +397,12 @@ class WaterSettingsPage extends StatelessWidget {
                                                 ),
                                               ),
                                             )),
-                                        const SizedBox(
-                                          width: 30,
-                                        ),
+                                        SizedBox(width: 30.w),
                                       ],
                                     ),),
-                                  SizedBox(height: size.height * 0.08,),
+                                  SizedBox(height: size.height * 0.08.h),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 48.0),
+                                    padding: EdgeInsets.only(left: 48.w),
                                     child: Row(
                                       children: [
                                         SideButtonWidget(

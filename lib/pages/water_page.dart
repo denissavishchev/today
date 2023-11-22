@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/water_statistic_page.dart';
@@ -58,7 +59,7 @@ class WaterPage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: size.height * 0.07),
+                              SizedBox(height: size.height * 0.07.h),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -71,16 +72,16 @@ class WaterPage extends StatelessWidget {
                                       color: kOrange.withOpacity(0.7),
                                       size: 40,),),
                                   const Spacer(),
-                                  const Padding(
-                                    padding: EdgeInsets.only(right: 18.0),
-                                    child: SettingsButton(),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 18.w),
+                                    child: const SettingsButton(),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: size.height * 0.02,),
+                              SizedBox(height: size.height * 0.02.h),
                               SizedBox(
                                 width: size.width,
-                                height: size.height * 0.4,
+                                height: size.height * 0.36.h,
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
@@ -130,7 +131,7 @@ class WaterPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: size.height * 0.04,),
+                              SizedBox(height: size.height * 0.04.h),
                               ValueListenableBuilder(
                                 valueListenable: Boxes.addButtonToBase().listenable(),
                                   builder: (context, buttonsBox, _){
@@ -146,7 +147,7 @@ class WaterPage extends StatelessWidget {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(left: 4.0),
+                                                  padding: EdgeInsets.only(left: 4.w),
                                                   child: ListView.builder(
                                                       physics: const NeverScrollableScrollPhysics(),
                                                       shrinkWrap: true,
@@ -154,7 +155,7 @@ class WaterPage extends StatelessWidget {
                                                       itemCount: buttons.length,
                                                       itemBuilder: (context, index){
                                                         return Padding(
-                                                          padding: const EdgeInsets.only(right: 4),
+                                                          padding: EdgeInsets.only(right: 4.w),
                                                           child: DrinkButton(
                                                             onLongPress: () {
                                                               data.deleteMl(index, context, buttonsBox);
@@ -182,7 +183,7 @@ class WaterPage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 40,),
+                                        SizedBox(height: 40.h),
                                         DrinkButton(
                                             onLongPress: (){},
                                             onTap: () => data.createMl(

@@ -37,38 +37,6 @@ class WaterProvider with ChangeNotifier {
     }
   }
 
-  // Future percentToBase(List<DailyModel> tasks) async{
-  //   for(var d in tasks){
-  //     done.add(d.done);
-  //   }
-  //   for(var h in tasks){
-  //     all.add(h.howMany);
-  //   }
-  //   for (int i = 0; i < done.length; i++) {
-  //     int x = done[i];
-  //     int y = all[i];
-  //     final p = (x / y * 100).toInt();
-  //     percentage.add(p);
-  //   }
-  //   var sum = percentage.reduce((a, b) => a + b);
-  //   var percent = sum ~/ percentage.length;
-  //   all.clear();
-  //   done.clear();
-  //   percentage.clear();
-  //
-  //   final percents = PercentModel()
-  //     ..percent = percent
-  //     ..day = DateTime.now().day
-  //     ..month = DateTime.now().month
-  //     ..year = DateTime.now().year
-  //     ..dateTime = DateTime.now().toString();
-  //   final box = Boxes.addPercentToBase();
-  //   if (box.containsKey(DateTime.now().day)) {
-  //   }else{
-  //     await box.add(percents);
-  //   }
-  // }
-
   Future addButton(int value) async{
     final button = ButtonsModel()
       ..buttons = value;

@@ -22,6 +22,7 @@ dependencies:
   flutter_ringtone_player: ^3.2.0
   countup: ^0.1.4
   percent_indicator: ^4.2.3
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:

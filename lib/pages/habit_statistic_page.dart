@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/habit_storage_model.dart';
@@ -35,7 +36,7 @@ class HabitStatisticPage extends StatelessWidget {
                     sigmaY: 0.1,
                   ),
                   child: Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.07),
+                      padding: EdgeInsets.only(top: size.height * 0.07.h),
                       child: ValueListenableBuilder<Box<HabitStorageModel>>(
                         valueListenable: Boxes.addHabitStorageToBase().listenable(),
                         builder: (context, box, _){
@@ -63,11 +64,9 @@ class HabitStatisticPage extends StatelessWidget {
                                   const Spacer(),
                                 ],
                               ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
+                              SizedBox(height: size.height * 0.02.h),
                               Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                margin: EdgeInsets.symmetric(horizontal: 4.w),
                                 height: size.height * 0.8,
                                 decoration: BoxDecoration(
                                   color: Colors.white,

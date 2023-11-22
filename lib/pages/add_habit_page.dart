@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
 import '../constants.dart';
@@ -34,7 +35,7 @@ class AddHabitPage extends StatelessWidget {
                         sigmaY: 0.1,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.07),
+                        padding: EdgeInsets.only(top: size.height * 0.07.h),
                         child: Column(
                           children: [
                             Row(
@@ -50,7 +51,7 @@ class AddHabitPage extends StatelessWidget {
                                   child: Icon(Icons.arrow_back,
                                     color: kOrange.withOpacity(0.7),
                                     size: 40,),),
-                                const SizedBox(width: 100,),
+                                SizedBox(width: 100.h,),
                                 SideButtonWidget(
                                   width: 120,
                                   both: true,
@@ -64,15 +65,15 @@ class AddHabitPage extends StatelessWidget {
                                     size: 40,),),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.06,),
+                            SizedBox(height: size.height * 0.06.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.titleController,
                               hintText: 'Task',),
-                            SizedBox(height: size.height * 0.06,),
+                            SizedBox(height: size.height * 0.06.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.descriptionController,
                               hintText: 'Description',),
-                            SizedBox(height: size.height * 0.06,),
+                            SizedBox(height: size.height * 0.06.h,),
                             Row(
                               children: [
                                 SizedBox(
@@ -207,9 +208,7 @@ class AddHabitPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  width: 26,
-                                ),
+                                SizedBox(width: 26.w),
                               ],
                             ),
                             SizedBox(height: data.isTimer
@@ -305,15 +304,13 @@ class AddHabitPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
+                                  SizedBox(width: 24.w),
                                 ],
                               ),
                             ),
-                            SizedBox(height: size.height * 0.02,),
+                            SizedBox(height: size.height * 0.02.h,),
                             Padding(
-                              padding: const EdgeInsets.only(left: 48.0),
+                              padding: EdgeInsets.only(left: 48.w),
                               child: Row(
                                 children: [
                                   SideButtonWidget(

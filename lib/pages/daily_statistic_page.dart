@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/daily_provider.dart';
@@ -36,7 +37,7 @@ class DailyStatisticPage extends StatelessWidget {
                     sigmaY: 0.1,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(top: size.height * 0.07),
+                    padding: EdgeInsets.only(top: size.height * 0.07.h),
                     child: ValueListenableBuilder<Box<PercentModel>>(
                       valueListenable: Boxes.addPercentToBase().listenable(),
                       builder: (context, box, _){
@@ -67,7 +68,7 @@ class DailyStatisticPage extends StatelessWidget {
                                 Stack(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 18.0),
+                                      padding: EdgeInsets.only(right: 18.w),
                                       child: SideButtonWidget(
                                           width: 250,
                                           both: true,
@@ -83,7 +84,7 @@ class DailyStatisticPage extends StatelessWidget {
                                       child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left: 40.0),
+                                            padding: EdgeInsets.only(left: 40.w),
                                             child: Text('Productivity', style: kOrangeStyle,),
                                           )),
                                     ),
@@ -92,11 +93,11 @@ class DailyStatisticPage extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: size.height * 0.01,
+                              height: size.height * 0.03.h,
                             ),
                             Container(
                                 clipBehavior: Clip.hardEdge,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
+                                margin: EdgeInsets.symmetric(horizontal: 12.w),
                                 height: size.height * 0.8,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
