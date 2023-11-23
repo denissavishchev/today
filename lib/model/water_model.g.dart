@@ -20,13 +20,14 @@ class WaterSettingsModelAdapter extends TypeAdapter<WaterSettingsModel> {
       ..target = fields[0] as int
       ..wakeUpTime = fields[1] as String
       ..bedTime = fields[2] as String
-      ..weight = fields[3] as String;
+      ..weight = fields[3] as String
+      ..interval = fields[4] as int;
   }
 
   @override
   void write(BinaryWriter writer, WaterSettingsModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.target)
       ..writeByte(1)
@@ -34,7 +35,9 @@ class WaterSettingsModelAdapter extends TypeAdapter<WaterSettingsModel> {
       ..writeByte(2)
       ..write(obj.bedTime)
       ..writeByte(3)
-      ..write(obj.weight);
+      ..write(obj.weight)
+      ..writeByte(4)
+      ..write(obj.interval);
   }
 
   @override

@@ -60,7 +60,7 @@ class WaterSettingsPage extends StatelessWidget {
                                       const Spacer(),
                                           ],
                                         ),
-                                  SizedBox(height: size.height * 0.06.h),
+                                  SizedBox(height: size.height * 0.01.h),
                                   Row(
                                     children: [
                                       SizedBox(
@@ -247,7 +247,7 @@ class WaterSettingsPage extends StatelessWidget {
                                       SizedBox(width: 22.w),
                                     ],
                                   ),
-                                  SizedBox(height: size.height * 0.06,),
+                                  SizedBox(height: size.height * 0.04.h,),
                                   FadeContainerWidget(
                                       child: Padding(
                                         padding: EdgeInsets.only(left: 12.w, right: 32.w),
@@ -400,7 +400,104 @@ class WaterSettingsPage extends StatelessWidget {
                                         SizedBox(width: 30.w),
                                       ],
                                     ),),
-                                  SizedBox(height: size.height * 0.08.h),
+                                  SizedBox(height: size.height * 0.03.h),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.76,
+                                        child: FadeContainerWidget(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 12.w, right: 32.w),
+                                            child: const Row(
+                                              children: [
+                                                Text('Interval (Hour)',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24,),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Container(
+                                            width: 64,
+                                            height: 104,
+                                            decoration: BoxDecoration(
+                                                color: Colors.white.withOpacity(0.5),
+                                                borderRadius: const BorderRadius.all(Radius.circular(32)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Colors.black.withOpacity(0.5),
+                                                      blurRadius: 3,
+                                                      offset: const Offset(0, 2)
+                                                  ),
+                                                ]
+                                            ),
+                                          ),
+                                          Container(
+                                              width: 58,
+                                              height: 98,
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                const BorderRadius.all(Radius.circular(30)),
+                                                gradient: LinearGradient(
+                                                    colors: [
+                                                      const Color(0xffbebebc).withOpacity(0.5),
+                                                      const Color(0xff1a1a18).withOpacity(0.8),
+                                                    ],
+                                                    begin: Alignment.bottomCenter,
+                                                    end: Alignment.topCenter,
+                                                    stops: const [0, 0.75]),
+                                              ),
+                                              child: ListWheelScrollView(
+                                                controller: FixedExtentScrollController(
+                                                    initialItem: settings.isEmpty
+                                                        ? 1
+                                                        : int.parse(settings[0].interval.toString())),
+                                                onSelectedItemChanged: (index) {
+                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                  data.setInterval(index);
+                                                },
+                                                physics: const FixedExtentScrollPhysics(),
+                                                itemExtent: 58,
+                                                children: List.generate(5, (index){
+                                                  return Container(
+                                                    margin: const EdgeInsets.symmetric(vertical: 4),
+                                                    width: 50,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                        color: const Color(0xff91918f),
+                                                        border:
+                                                        Border.all(color: kOrange, width: 0.5),
+                                                        borderRadius: const BorderRadius.all(
+                                                            Radius.circular(25)),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                              color: Colors.black,
+                                                              blurRadius: 3,
+                                                              offset: Offset(0, 2)),
+                                                          BoxShadow(
+                                                              color: Color(0xff5e5e5c),
+                                                              blurRadius: 1,
+                                                              offset: Offset(0, -1)),
+                                                        ]),
+                                                    child: Center(child: Text('${index + 1}',
+                                                      style: kWhiteStyle,)),
+                                                  );
+                                                } ),
+                                              )
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 20.h,),
+                                    ],
+                                  ),
+                                  SizedBox(height: size.height * 0.02.h),
                                   Padding(
                                     padding: EdgeInsets.only(left: 48.w),
                                     child: Row(

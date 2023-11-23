@@ -11,4 +11,6 @@ class WaterSettingsModel extends HiveObject{
   late String bedTime;
   @HiveField(3)
   late String weight;
+  @HiveField(4)
+  late int interval;
 }

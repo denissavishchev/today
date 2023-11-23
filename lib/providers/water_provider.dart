@@ -24,6 +24,7 @@ class WaterProvider with ChangeNotifier {
   List<int> totalPercents = [];
   String hydration = '0';
   late Timer timer;
+  int interval = 1;
 
   String totalPercentWater(){
     if(waterDaily.isNotEmpty){
@@ -35,6 +36,11 @@ class WaterProvider with ChangeNotifier {
     }else{
       return '';
     }
+  }
+
+  void setInterval(int index){
+    interval = index;
+    notifyListeners();
   }
 
   Future addButton(int value) async{
@@ -202,7 +208,8 @@ class WaterProvider with ChangeNotifier {
         ..target = target
         ..wakeUpTime = initialWakeUpTime.toString().substring(10, 15)
         ..bedTime = initialBedTime.toString().substring(10, 15)
-        ..weight = weight;
+        ..weight = weight
+        ..interval = interval;
       final box = Boxes.addWaterSettingsToBase();
       box.add(settings);
     }else{
@@ -211,6 +218,7 @@ class WaterProvider with ChangeNotifier {
         ..wakeUpTime = initialWakeUpTime.toString().substring(10, 15)
         ..bedTime = initialBedTime.toString().substring(10, 15)
         ..weight = weight
+        ..interval = interval
       );
     }
   }
