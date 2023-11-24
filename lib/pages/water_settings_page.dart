@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/water_model.dart';
+import 'package:today/providers/hive_provider.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../providers/water_provider.dart';
@@ -20,8 +21,8 @@ class WaterSettingsPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: Consumer<WaterProvider>(
-            builder: (context, data, _) {
+          body: Consumer2<WaterProvider, HiveProvider>(
+            builder: (context, data, hiveData, _) {
               return ValueListenableBuilder(
                   valueListenable: Boxes.addWaterSettingsToBase().listenable(),
                   builder: (context, box, _){
@@ -507,6 +508,11 @@ class WaterSettingsPage extends StatelessWidget {
                                             width: 200,
                                             onTap: (){
                                               data.addSettingsToBase(box);
+                                              hiveData.addNotificationData(
+                                                  data.initialWakeUpTime,
+                                                  data.initialBedTime,
+                                                  data.interval);
+                                              hiveData.sendNotification();
                                               Navigator.of(context).pop();
                                               activePage = 3;
                                               mainPageController.initialPage = 3;

@@ -7,6 +7,7 @@ import 'package:today/model/water_model.dart';
 import 'package:today/pages/main_page.dart';
 import 'package:today/providers/daily_provider.dart';
 import 'package:today/providers/habit_provider.dart';
+import 'package:today/providers/hive_provider.dart';
 import 'package:today/providers/main_provider.dart';
 import 'package:today/providers/water_provider.dart';
 import 'package:today/providers/to_do_provider.dart';
@@ -39,6 +40,7 @@ Future main() async{
   await Hive.openBox<WaterSettingsModel>('water_settings');
   await Hive.openBox<WaterDailyModel>('water_daily');
   await Hive.openBox<ButtonsModel>('buttons');
+  await Hive.openBox('notifications');
   AwesomeNotifications().initialize(
       null,
       [
@@ -57,7 +59,8 @@ Future main() async{
       ],
     debug: false
   );
-  runApp(const MyApp());
+  runApp(ListenableProvider(create: (cobtext) => HiveProvider(),
+    child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
