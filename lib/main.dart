@@ -59,7 +59,7 @@ Future main() async{
       ],
     debug: false
   );
-  runApp(ListenableProvider(create: (cobtext) => HiveProvider(),
+  runApp(ListenableProvider(create: (context) => HiveProvider(),
     child: const MyApp()));
 }
 

@@ -8,6 +8,11 @@ class HiveProvider with ChangeNotifier{
   late Timer timer;
 
   Future<void> addNotificationData(TimeOfDay start, TimeOfDay end, int interval) async {
+    AwesomeNotifications().removeChannel('scheduled');
+    AwesomeNotifications().setChannel(NotificationChannel(
+            channelKey: 'scheduled',
+            channelName: 'Scheduled Notifications',
+            channelDescription: 'Notification channel for basic tests'));
     Box box = Hive.box('notifications');
     box.put('start', start.toString());
     box.put('end', end.toString());

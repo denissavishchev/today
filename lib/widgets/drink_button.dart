@@ -79,7 +79,7 @@ class DrinkButton extends StatelessWidget {
                         ),
                       ]
                   ),
-                  child: Center(child: Text(quantity, style: kOrangeStyle,)),
+                  child: Center(child: Text(quantity, style: kOrangeStyle)),
                 ),
               )
           ),
