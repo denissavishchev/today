@@ -459,10 +459,10 @@ class WaterSettingsPage extends StatelessWidget {
                                                 controller: FixedExtentScrollController(
                                                     initialItem: settings.isEmpty
                                                         ? 1
-                                                        : int.parse(settings[0].interval.toString())),
+                                                        : int.parse(settings[0].interval.toString()) - 1),
                                                 onSelectedItemChanged: (index) {
                                                   FocusManager.instance.primaryFocus?.unfocus();
-                                                  data.setInterval(index);
+                                                  data.setInterval(index + 1);
                                                 },
                                                 physics: const FixedExtentScrollPhysics(),
                                                 itemExtent: 58,
@@ -506,14 +506,12 @@ class WaterSettingsPage extends StatelessWidget {
                                         SideButtonWidget(
                                             both: true,
                                             width: 200,
-                                            onTap: (){
+                                            onTap: () {
                                               data.addSettingsToBase(box);
                                               hiveData.addNotificationData(
                                                   data.initialWakeUpTime,
                                                   data.initialBedTime,
                                                   data.interval);
-                                              hiveData.sendNotification();
-                                              Navigator.of(context).pop();
                                               activePage = 3;
                                               mainPageController.initialPage = 3;
                                               Navigator.push(context,
