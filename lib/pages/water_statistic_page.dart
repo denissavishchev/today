@@ -84,7 +84,7 @@ class WaterStatisticPage extends StatelessWidget {
                                             child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(left: 32.w),
+                                                  padding: EdgeInsets.only(left: 24.w),
                                                   child: Text('Hydration', style: kOrangeStyle,),
                                                 )),
                                           ),
