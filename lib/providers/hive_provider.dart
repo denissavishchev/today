@@ -14,7 +14,8 @@ class HiveProvider with ChangeNotifier{
     box.put('interval', interval);
     notifyListeners();
     int startTime = int.parse(box.get('start').toString().substring(10, 12));
-    int endTime = int.parse(box.get('end').toString().substring(10, 12));
+    int endTime = int.parse(box.get('end').toString().substring(10, 12)) == 0
+                  ? 24 : int.parse(box.get('end').toString().substring(10, 12));
     int intervalTime = box.get('interval');
     for(var i = 0; i < endTime - startTime + 1; i+=intervalTime){
       await AwesomeNotifications().createNotification(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -38,7 +39,7 @@ class AllHabitListWidget extends StatelessWidget {
           }
         },
         child: BasicContainerWidget(
-          height: 0.13,
+          height: 0.14.h,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
             child: habits[index].days < 0
