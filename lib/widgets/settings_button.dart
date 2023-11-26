@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/widgets/side_button_widget.dart';
@@ -40,9 +41,11 @@ class SettingsButton extends StatelessWidget {
                         const WaterSettingsPage()));
                   },
 
-                  child: Icon(Icons.settings,
-                    color: kOrange.withOpacity(0.7),
-                    size: 40,),);
+                  child: SvgPicture.asset('assets/icons/gear.svg',
+                      colorFilter: ColorFilter.mode(
+                          kOrange.withOpacity(0.7),
+                          BlendMode.srcIn)
+                  ),);
               });
         });
   }

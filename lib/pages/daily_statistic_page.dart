@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/daily_provider.dart';
@@ -59,10 +60,10 @@ class DailyStatisticPage extends StatelessWidget {
                                             builder: (context) =>
                                             const MainPage()));
                                   },
-                                  child: Icon(
-                                    Icons.arrow_back,
-                                    color: kOrange.withOpacity(0.7),
-                                    size: 40,
+                                  child: SvgPicture.asset('assets/icons/back_arrow.svg',
+                                      colorFilter: ColorFilter.mode(
+                                          kOrange.withOpacity(0.7),
+                                          BlendMode.srcIn)
                                   ),
                                 ),
                                 Stack(
@@ -70,6 +71,7 @@ class DailyStatisticPage extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.only(right: 18.w),
                                       child: SideButtonWidget(
+                                        padding: 0,
                                           width: 250,
                                           both: true,
                                           child: Center(

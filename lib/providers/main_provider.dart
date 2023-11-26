@@ -24,10 +24,11 @@ class MainProvider with ChangeNotifier {
   ];
 
   final List icon = [
-    Icons.playlist_add_check,
-    Icons.self_improvement,
-    Icons.supervisor_account,
-    Icons.water_drop,];
+    'assets/icons/todolist.svg',
+    'assets/icons/routine.svg',
+    'assets/icons/brain.svg',
+    'assets/icons/drop.svg',
+  ];
 
   void changePage(int index) {
     activePage = index;

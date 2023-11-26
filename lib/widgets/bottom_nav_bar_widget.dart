@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../providers/main_provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
   const BottomNavBarWidget({super.key,});
@@ -57,6 +58,7 @@ class BottomNavBarWidget extends StatelessWidget {
                         child: Container(
                           width: 48,
                           height: 48,
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: const Color(0xff91918f),
                             border: Border.all(
@@ -80,11 +82,13 @@ class BottomNavBarWidget extends StatelessWidget {
                               ),
                             ]
                           ),
-                          child: Icon(data.icon[index],
-                            color: activePage == index
-                                ? kOrange.withOpacity(0.7)
-                                : kWhite,
-                            size: 30,),
+                          child: SvgPicture.asset(data.icon[index],
+                            colorFilter: ColorFilter.mode(
+                                activePage == index
+                                    ? kOrange.withOpacity(0.7)
+                                    : kWhite,
+                                BlendMode.srcIn)
+                            ),
                         ),
                       )
                   ),

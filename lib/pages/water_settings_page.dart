@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/water_model.dart';
@@ -55,9 +56,11 @@ class WaterSettingsPage extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(builder: (context) => const MainPage()));
                                         },
-                                        child: Icon(Icons.arrow_back,
-                                          color: kOrange.withOpacity(0.7),
-                                          size: 40,),),
+                                        child: SvgPicture.asset('assets/icons/back_arrow.svg',
+                                            colorFilter: ColorFilter.mode(
+                                                kOrange.withOpacity(0.7),
+                                                BlendMode.srcIn)
+                                        ),),
                                       const Spacer(),
                                           ],
                                         ),
@@ -305,6 +308,7 @@ class WaterSettingsPage extends StatelessWidget {
                                                 child: Container(
                                                   width: 48,
                                                   height: 48,
+                                                  padding: const EdgeInsets.all(4),
                                                   decoration: BoxDecoration(
                                                       color: const Color(0xff91918f),
                                                       border:
@@ -323,10 +327,10 @@ class WaterSettingsPage extends StatelessWidget {
                                                             blurRadius: 1,
                                                             offset: Offset(0, -1)),
                                                       ]),
-                                                  child: Icon(
-                                                    Icons.watch_later_outlined,
-                                                    color: kOrange.withOpacity(0.7),
-                                                    size: 30,
+                                                  child: SvgPicture.asset('assets/icons/time.svg',
+                                                      colorFilter: ColorFilter.mode(
+                                                          kOrange.withOpacity(0.7),
+                                                          BlendMode.srcIn)
                                                   ),
                                                 ),
                                               ),
@@ -372,6 +376,7 @@ class WaterSettingsPage extends StatelessWidget {
                                                 child: Container(
                                                   width: 48,
                                                   height: 48,
+                                                  padding: const EdgeInsets.all(4),
                                                   decoration: BoxDecoration(
                                                       color: const Color(0xff91918f),
                                                       border:
@@ -390,10 +395,10 @@ class WaterSettingsPage extends StatelessWidget {
                                                             blurRadius: 1,
                                                             offset: Offset(0, -1)),
                                                       ]),
-                                                  child: Icon(
-                                                    Icons.watch_later_outlined,
-                                                    color: kOrange.withOpacity(0.7),
-                                                    size: 30,
+                                                  child: SvgPicture.asset('assets/icons/time.svg',
+                                                      colorFilter: ColorFilter.mode(
+                                                          kOrange.withOpacity(0.7),
+                                                          BlendMode.srcIn)
                                                   ),
                                                 ),
                                               ),
@@ -517,7 +522,11 @@ class WaterSettingsPage extends StatelessWidget {
                                               Navigator.push(context,
                                                   MaterialPageRoute(builder: (context) => const MainPage()));
                                             },
-                                            child: Icon(Icons.upload, color: kOrange.withOpacity(0.8), size: 40,)),
+                                            child: SvgPicture.asset('assets/icons/upload.svg',
+                                                colorFilter: ColorFilter.mode(
+                                                    kOrange.withOpacity(0.7),
+                                                    BlendMode.srcIn)
+                                            ),),
                                         const Spacer(),
                                       ],
                                     ),

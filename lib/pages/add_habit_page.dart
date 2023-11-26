@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
 import '../constants.dart';
@@ -48,9 +49,11 @@ class AddHabitPage extends StatelessWidget {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) => const MainPage()));
                                   },
-                                  child: Icon(Icons.arrow_back,
-                                    color: kOrange.withOpacity(0.7),
-                                    size: 40,),),
+                                  child: SvgPicture.asset('assets/icons/back_arrow.svg',
+                                      colorFilter: ColorFilter.mode(
+                                          kOrange.withOpacity(0.7),
+                                          BlendMode.srcIn)
+                                  ),),
                                 SizedBox(width: 100.h,),
                                 SideButtonWidget(
                                   width: 120,
@@ -58,11 +61,13 @@ class AddHabitPage extends StatelessWidget {
                                   onTap: (){
                                     data.setTimer();
                                   },
-                                  child: Icon(Icons.timer,
-                                    color: data.isTimer
-                                        ? kOrange.withOpacity(0.7)
-                                        : kWhite.withOpacity(0.3),
-                                    size: 40,),),
+                                  child: SvgPicture.asset('assets/icons/timer.svg',
+                                      colorFilter: ColorFilter.mode(
+                                          data.isTimer
+                                              ? kOrange.withOpacity(0.7)
+                                              : kWhite.withOpacity(0.3),
+                                          BlendMode.srcIn)
+                                  ),),
                               ],
                             ),
                             SizedBox(height: size.height * 0.06.h,),
@@ -326,7 +331,11 @@ class AddHabitPage extends StatelessWidget {
                                         Navigator.push(context,
                                             MaterialPageRoute(builder: (context) => const MainPage()));
                                       },
-                                      child: Icon(Icons.upload, color: kOrange.withOpacity(0.8), size: 40,)),
+                                      child: SvgPicture.asset('assets/icons/upload.svg',
+                                          colorFilter: ColorFilter.mode(
+                                              kOrange.withOpacity(0.7),
+                                              BlendMode.srcIn)
+                                      ),),
                                   const Spacer(),
                                 ],
                               ),

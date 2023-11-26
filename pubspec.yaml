@@ -1,5 +1,5 @@
 name: today
-description: A new Flutter project.
+description: to-do organizer
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -23,6 +23,7 @@ dependencies:
   countup: ^0.1.4
   percent_indicator: ^4.2.3
   flutter_screenutil: ^5.9.0
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -37,11 +38,12 @@ flutter:
 
   assets:
    - assets/images/
+   - assets/icons/
 
   fonts:
-   - family: GentiumBook
+   - family: Teko
      fonts:
-       - asset: assets/fonts/GentiumBook.ttf
+       - asset: assets/fonts/Teko.ttf
 
 
 

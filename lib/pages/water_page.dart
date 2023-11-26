@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/water_statistic_page.dart';
@@ -67,9 +68,11 @@ class WaterPage extends StatelessWidget {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
                                         const WaterStatisticPage())),
-                                    child: Icon(Icons.history_edu,
-                                      color: kOrange.withOpacity(0.7),
-                                      size: 40,),),
+                                    child: SvgPicture.asset('assets/icons/history.svg',
+                                        colorFilter: ColorFilter.mode(
+                                            kOrange.withOpacity(0.7),
+                                            BlendMode.srcIn)
+                                    ),),
                                   const Spacer(),
                                   Padding(
                                     padding: EdgeInsets.only(right: 18.w),
@@ -176,7 +179,7 @@ class WaterPage extends StatelessWidget {
                                                       daily.isNotEmpty
                                                       ? daily.last.dateMl.toString()
                                                       :DateTime.now().day.toString()),
-                                                  icon: Icons.add,
+                                                  icon: 'assets/icons/add.svg',
                                                 ),
                                               ],
                                             ),

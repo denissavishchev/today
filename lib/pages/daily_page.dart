@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
@@ -52,18 +53,22 @@ class DailyPage extends StatelessWidget {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) =>
                                       const DailyStatisticPage())),
-                                child: Icon(Icons.insights,
-                                  color: kOrange.withOpacity(0.7),
-                                  size: 40,),),
+                                child: SvgPicture.asset('assets/icons/analytics.svg',
+                                    colorFilter: ColorFilter.mode(
+                                        kOrange.withOpacity(0.7),
+                                        BlendMode.srcIn)
+                                ),),
                               SideButtonWidget(
                                 both: true,
                                 width: 90,
                                 onTap: () => Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) =>
                                     const TimerPage())),
-                                child: Icon(Icons.access_alarm,
-                                  color: kOrange.withOpacity(0.7),
-                                  size: 40,),),
+                                child: SvgPicture.asset('assets/icons/hourglass.svg',
+                                    colorFilter: ColorFilter.mode(
+                                        kOrange.withOpacity(0.7),
+                                        BlendMode.srcIn)
+                                ),),
                               SideButtonWidget(
                                 width: 100,
                                 right: false,
@@ -71,9 +76,11 @@ class DailyPage extends StatelessWidget {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
                                         const AddDailyPage())),
-                                child: Icon(Icons.add,
-                                  color: kOrange.withOpacity(0.7),
-                                  size: 40,),)
+                                child: SvgPicture.asset('assets/icons/add.svg',
+                                    colorFilter: ColorFilter.mode(
+                                        kOrange.withOpacity(0.7),
+                                        BlendMode.srcIn)
+                                ),)
                             ],
                           ),
                           SizedBox(height: size.height * 0.02.h),

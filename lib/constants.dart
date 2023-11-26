@@ -7,10 +7,10 @@ const kGrey = Color(0xffd9c4ab);
 const kOrange = Color(0xffff6600);
 const kWhite = Color(0xffd9d9d7);
 
-const kWhiteStyle = TextStyle(fontSize: 22, color: kWhite, fontWeight: FontWeight.bold, fontFamily: 'GentiumBook');
-final kOrangeStyle = TextStyle(fontSize: 28, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'GentiumBook');
-final kOrangeStyleSmall = TextStyle(fontSize: 12, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'GentiumBook');
-final kWhiteStyleSmall = TextStyle(fontSize: 12, color: kWhite.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'GentiumBook');
+const kWhiteStyle = TextStyle(fontSize: 22, color: kWhite, fontWeight: FontWeight.bold, fontFamily: 'Teko');
+final kOrangeStyle = TextStyle(fontSize: 38, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'Teko');
+final kOrangeStyleSmall = TextStyle(fontSize: 12, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'Teko');
+final kWhiteStyleSmall = TextStyle(fontSize: 12, color: kWhite.withOpacity(0.8), fontWeight: FontWeight.bold, fontFamily: 'Teko');
 
 final pickerTheme = ThemeData(
   timePickerTheme: TimePickerThemeData(

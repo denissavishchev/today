@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/to_do_model.dart';
@@ -47,9 +48,11 @@ class ToDoPage extends StatelessWidget {
                                 onTap: (){
                                   data.selectLists(context);
                                 },
-                                child: Icon(Icons.list,
-                                  color: kOrange.withOpacity(0.7),
-                                  size: 40,),),
+                                child: SvgPicture.asset('assets/icons/list.svg',
+                                    colorFilter: ColorFilter.mode(
+                                        kOrange.withOpacity(0.7),
+                                        BlendMode.srcIn)
+                                ),),
                               Positioned.fill(
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -69,9 +72,11 @@ class ToDoPage extends StatelessWidget {
                                   MaterialPageRoute(builder: (context) =>
                                   const AddTaskPage()));
                             },
-                            child: Icon(Icons.add,
-                              color: kOrange.withOpacity(0.7),
-                              size: 40,),)
+                            child: SvgPicture.asset('assets/icons/add.svg',
+                                colorFilter: ColorFilter.mode(
+                                    kOrange.withOpacity(0.7),
+                                    BlendMode.srcIn)
+                            ),)
                         ],
                       ),
                     ),

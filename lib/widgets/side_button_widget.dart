@@ -10,6 +10,7 @@ class SideButtonWidget extends StatelessWidget {
     required this.child,
     this.width = 80,
     required this.onTap,
+    this.padding = 8,
   });
 
   final bool right;
@@ -17,6 +18,7 @@ class SideButtonWidget extends StatelessWidget {
   final Widget child;
   final double width;
   final Function() onTap;
+  final double padding;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class SideButtonWidget extends StatelessWidget {
                   ),
                   child: Center(
                     child: Container(
+                      padding: EdgeInsets.all(padding),
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(

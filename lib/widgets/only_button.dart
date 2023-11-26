@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
 
@@ -10,7 +11,7 @@ class OnlyButton extends StatelessWidget {
   });
 
   final Function() onTap;
-  final IconData icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class OnlyButton extends StatelessWidget {
             child: Container(
               width: 48,
               height: 48,
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                   color: const Color(0xff91918f),
                   border:
@@ -51,10 +53,10 @@ class OnlyButton extends StatelessWidget {
                         blurRadius: 1,
                         offset: Offset(0, -1)),
                   ]),
-              child: Icon(
-                icon,
-                color: kOrange.withOpacity(0.7),
-                size: 30,
+              child: SvgPicture.asset(icon,
+                  colorFilter: ColorFilter.mode(
+                      kOrange.withOpacity(0.7),
+                      BlendMode.srcIn)
               ),
             ),
           ),
