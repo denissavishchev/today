@@ -40,10 +40,10 @@ flutter:
    - assets/images/
    - assets/icons/
 
-  fonts:
-   - family: Teko
-     fonts:
-       - asset: assets/fonts/Teko.ttf
+#  fonts:
+#   - family: Teko
+#     fonts:
+#       - asset: assets/fonts/Teko.ttf
 
 
 
