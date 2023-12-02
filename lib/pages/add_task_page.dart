@@ -63,15 +63,17 @@ class AddTaskPage extends StatelessWidget {
                             const Spacer(),
                           ],
                         ),
-                        SizedBox(height: size.height * 0.06.h,),
+                        SizedBox(height: size.height * 0.03.h,),
                         FadeTextFieldWidget(
                           textEditingController: data.titleController,
                           hintText: 'Task',),
-                        SizedBox(height: size.height * 0.06.h,),
+                        SizedBox(height: size.height * 0.03.h,),
                         FadeTextFieldWidget(
+                          height: 0.2,
+                          multiline: true,
                           textEditingController: data.descriptionController,
                           hintText: 'Description',),
-                        SizedBox(height: size.height * 0.06.h,),
+                        SizedBox(height: size.height * 0.03.h,),
                         FadeContainerWidget(
                           child: Row(
                             children: [
@@ -175,7 +177,7 @@ class AddTaskPage extends StatelessWidget {
                               ],
                             ),),
                         ),
-                        SizedBox(height: size.height * 0.06.h,),
+                        SizedBox(height: size.height * 0.04.h,),
                         Padding(
                           padding: EdgeInsets.only(left: 18.w),
                           child: Row(
@@ -206,7 +208,7 @@ class AddTaskPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: size.height * 0.06.h),
+                        SizedBox(height: size.height * 0.04.h),
                         Padding(
                           padding: EdgeInsets.only(left: 48.w),
                           child: Row(

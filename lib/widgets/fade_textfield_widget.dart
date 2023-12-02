@@ -6,16 +6,22 @@ class FadeTextFieldWidget extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.hintText,
+    this.height = 0.08,
+    this.multiline = false,
   });
 
   final TextEditingController textEditingController;
   final String hintText;
+  final double height;
+  final bool multiline;
 
   @override
   Widget build(BuildContext context) {
     return FadeContainerWidget(
+      height: height,
       child: TextField(
         controller: textEditingController,
+        maxLines: multiline ? 3 : 1,
         cursorColor: Colors.white,
         style: const TextStyle(fontSize: 24, color: Colors.white),
         decoration: InputDecoration(

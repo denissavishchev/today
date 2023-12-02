@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:today/functions.dart';
 import 'package:today/model/boxes.dart';
 import 'package:today/model/to_do_model.dart';
+import 'package:today/widgets/fade_container_widget.dart';
 import '../constants.dart';
 import '../pages/main_page.dart';
 import '../widgets/select_list_widget.dart';
@@ -436,6 +437,60 @@ class ToDoProvider with ChangeNotifier {
       ..date = tasks[index].date
       ..time = tasks[index].time
       ..list = 'Finished');
+  }
+
+  Future showComment(int index, List<ToDoModel> tasks, context) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height * 0.35,
+              margin: const EdgeInsets.fromLTRB(0, 12, 0, 220),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              decoration: BoxDecoration(
+                  border: const Border.symmetric(
+                      horizontal: BorderSide(width: 0.5, color: kOrange)),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/images/bg01.png'),
+                      fit: BoxFit.fitWidth),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        // spreadRadius: 2,
+                        blurRadius: 3,
+                        offset: const Offset(1, 1)
+                    ),
+                  ]
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SideButtonWidget(
+                        width: 80,
+                        right: false,
+                        child: Icon(Icons.cancel,
+                          color: kOrange.withOpacity(0.7),
+                          size: 40,),
+                        onTap: () => Navigator.of(context).pop()),
+                  ),
+                  FadeContainerWidget(
+                    height: 0.2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          child: Text(tasks[index].description,
+                            style: const TextStyle(color: Colors.white, fontSize: 22),),
+                        ),
+                      ),),
+                ],
+              )
+          );
+        });
   }
 }
 

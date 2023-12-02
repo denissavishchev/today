@@ -35,55 +35,64 @@ class AllToDoLists extends StatelessWidget {
               data.deleteTask(index, box, context);
             },
             child: BasicContainerWidget(
-              height: 0.12,
+              height: tasks[index].time == '00:00' ? 0.065 : 0.09,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
                     SizedBox(
                       width: 40,
-                      child: IconButton(
-                          onPressed: (){
-                            data.doneTask(index, box, tasks, context);
-                          },
-                          icon: const Icon(Icons.check, color: kOrange, size: 40,)),
-                    ),
+                      child: GestureDetector(
+                        onTap: () => data.doneTask(index, box, tasks, context),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Icon(Icons.check, color: kOrange, size: 32,),
+                          ))),
                     VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        width: 90,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(tasks[index].task,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(color: Colors.white,fontSize: 20),),
-                            Text(tasks[index].time == '00:00'
-                              ? ''
-                              : tasks[index].time,
-                              style: TextStyle(color: time.isAfter(DateTime.now())
-                                  ? kOrange : kGrey, fontSize: 16),),
-                            Text(tasks[index].date == '0-0-0000'
-                              ? ''
-                              : tasks[index].date,
-                              style: TextStyle(color: time.isAfter(DateTime.now())
-                                  ? kOrange : kGrey, fontSize: 16),),
-                          ],
-                        ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(tasks[index].task,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(color: Colors.white,fontSize: 20),),
+                          tasks[index].date != '0-0-0000' ? Row(
+                            children: [
+                              Text(tasks[index].date == '0-0-0000'
+                                  ? ''
+                                  : tasks[index].date,
+                                style: TextStyle(color: time.isAfter(DateTime.now())
+                                    ? kOrange : kGrey, fontSize: 16),),
+                              const SizedBox(width: 12,),
+                              Text(tasks[index].time == '00:00'
+                                ? ''
+                                : tasks[index].time,
+                                style: TextStyle(color: time.isAfter(DateTime.now())
+                                    ? kOrange : kGrey, fontSize: 16),),
+                            ],
+                          ) : const SizedBox.shrink()
+                        ],
                       ),
                     ),
                     VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: SizedBox(
-                        width: 140,
-                        height: 60,
-                        child: SingleChildScrollView(
-                          child: Text(tasks[index].description,
-                            style: const TextStyle(color: Colors.white, fontSize: 16),),
+                    SizedBox(
+                        width: 40,
+                        child: GestureDetector(
+                            onTap: () {
+                              if (tasks[index].description != ''){
+                                data.showComment(index, tasks, context);
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Icon(
+                                Icons.comment,
+                                color: tasks[index].description != ''
+                                    ? kOrange : kGrey,
+                                size: 32,),
+                            ),
                         ),
-                      ),
                     ),
                   ],
                 ),
