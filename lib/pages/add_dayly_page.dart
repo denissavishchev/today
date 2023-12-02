@@ -57,15 +57,17 @@ class AddDailyPage extends StatelessWidget {
                                 const Spacer(),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.06.h,),
+                            SizedBox(height: size.height * 0.03.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.titleController,
                               hintText: 'Task',),
-                            SizedBox(height: size.height * 0.06.h,),
+                            SizedBox(height: size.height * 0.03.h,),
                             FadeTextFieldWidget(
+                              height: 0.2,
+                              multiline: true,
                               textEditingController: data.descriptionController,
                               hintText: 'Description',),
-                            SizedBox(height: size.height * 0.1.h,),
+                            SizedBox(height: size.height * 0.04.h,),
                             Row(
                               children: [
                                 SizedBox(
@@ -156,7 +158,7 @@ class AddDailyPage extends StatelessWidget {
                                 SizedBox(width: 20.h,),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.1.h,),
+                            SizedBox(height: size.height * 0.06.h,),
                             Padding(
                               padding: const EdgeInsets.only(left: 48.0),
                               child: Row(

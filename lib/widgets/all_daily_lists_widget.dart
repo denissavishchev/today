@@ -33,25 +33,35 @@ class AllDailyLists extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: SizedBox(
-                        height: 40,
+                        height: 28,
                         child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            SizedBox(
-                              width: 140,
+                            Expanded(
                               child: Text(tasks[index].task,
-                                textAlign: TextAlign.center,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(color: Colors.white,fontSize: 20),),
                             ),
                             VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.9),),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(tasks[index].description,
-                                maxLines: 2,
-                                style: const TextStyle(color: Colors.white, fontSize: 16),),
+                            SizedBox(
+                              width: 32,
+                              child: GestureDetector(
+                                onTap: () {
+                                  if (tasks[index].description != ''){
+                                    data.showComment(index, tasks, context);
+                                  }
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Icon(
+                                    Icons.comment,
+                                    color: tasks[index].description != ''
+                                        ? kOrange : kGrey,
+                                    size: 32,),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -69,11 +79,11 @@ class AllDailyLists extends StatelessWidget {
                                     return GestureDetector(
                                       onTap: () {
                                         data.updateTask(index, tasks[index].done, tasks[index].howMany, box, tasks, context);
-                                      } ,
+                                      },
                                       child: Container(
                                         margin: const EdgeInsets.symmetric(horizontal: 2),
-                                          width: 24,
-                                          height: 24,
+                                          width: 26,
+                                          height: 26,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                             const BorderRadius.all(Radius.circular(30)),
@@ -88,8 +98,8 @@ class AllDailyLists extends StatelessWidget {
                                           ),
                                           child: Center(
                                             child: Container(
-                                              width: 20,
-                                              height: 20,
+                                              width: 21,
+                                              height: 21,
                                               decoration: BoxDecoration(
                                                   color: const Color(0xff91918f),
                                                   border:
@@ -111,7 +121,7 @@ class AllDailyLists extends StatelessWidget {
                                                 color: i < tasks[index].done
                                                         ? kOrange
                                                         : Colors.transparent,
-                                                size: 10,
+                                                size: 14,
                                               )),
                                             ),
                                           )),
@@ -121,8 +131,8 @@ class AllDailyLists extends StatelessWidget {
                             Visibility(
                               visible: tasks[index].done == tasks[index].howMany,
                               child: const SizedBox(
-                                width: 20,
-                                height: 20,
+                                width: 32,
+                                height: 32,
                                 child: Icon(Icons.check, color: kGreen,),
                               ),
                             )
