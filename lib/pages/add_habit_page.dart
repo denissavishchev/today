@@ -54,31 +54,20 @@ class AddHabitPage extends StatelessWidget {
                                           kOrange.withOpacity(0.7),
                                           BlendMode.srcIn)
                                   ),),
-                                SizedBox(width: 100.h,),
-                                SideButtonWidget(
-                                  width: 120,
-                                  both: true,
-                                  onTap: (){
-                                    data.setTimer();
-                                  },
-                                  child: SvgPicture.asset('assets/icons/timer.svg',
-                                      colorFilter: ColorFilter.mode(
-                                          data.isTimer
-                                              ? kOrange.withOpacity(0.7)
-                                              : kWhite.withOpacity(0.3),
-                                          BlendMode.srcIn)
-                                  ),),
+                                const Spacer(),
                               ],
                             ),
-                            SizedBox(height: size.height * 0.06.h,),
+                            SizedBox(height: size.height * 0.03.h,),
                             FadeTextFieldWidget(
                               textEditingController: data.titleController,
                               hintText: 'Task',),
-                            SizedBox(height: size.height * 0.06.h,),
+                            SizedBox(height: size.height * 0.03.h,),
                             FadeTextFieldWidget(
+                              height: 0.2,
+                              multiline: true,
                               textEditingController: data.descriptionController,
                               hintText: 'Description',),
-                            SizedBox(height: size.height * 0.06.h,),
+                            SizedBox(height: size.height * 0.03.h,),
                             Row(
                               children: [
                                 SizedBox(
@@ -216,104 +205,7 @@ class AddHabitPage extends StatelessWidget {
                                 SizedBox(width: 26.w),
                               ],
                             ),
-                            SizedBox(height: data.isTimer
-                                ? size.height * 0.04
-                                : size.height * 0.17,),
-                            Visibility(
-                              visible: data.isTimer,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: size.width * 0.76,
-                                    child: const FadeContainerWidget(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(left: 12.0),
-                                        child: Row(
-                                          children: [
-                                            Text('Time(min)',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24,),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Container(
-                                        width: 64,
-                                        height: 104,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(0.5),
-                                            borderRadius: const BorderRadius.all(Radius.circular(30)),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: Colors.black.withOpacity(0.5),
-                                                  blurRadius: 3,
-                                                  offset: const Offset(0, 2)
-                                              ),
-                                            ]
-                                        ),
-                                      ),
-                                      Container(
-                                          width: 58,
-                                          height: 98,
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            const BorderRadius.all(Radius.circular(30)),
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  const Color(0xffbebebc).withOpacity(0.5),
-                                                  const Color(0xff1a1a18).withOpacity(0.8),
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                                stops: const [0, 0.75]),
-                                          ),
-                                          child: ListWheelScrollView(
-                                            onSelectedItemChanged: (index) {
-                                              FocusManager.instance.primaryFocus?.unfocus();
-                                              data.setTime(index);
-                                            },
-                                            physics: const FixedExtentScrollPhysics(),
-                                            itemExtent: 58,
-                                            children: List.generate(59, (index){
-                                              return Container(
-                                                margin: const EdgeInsets.symmetric(vertical: 4),
-                                                width: 50,
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    color: const Color(0xff91918f),
-                                                    border:
-                                                    Border.all(color: kOrange, width: 0.5),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(25)),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                          color: Colors.black,
-                                                          blurRadius: 3,
-                                                          offset: Offset(0, 2)),
-                                                      BoxShadow(
-                                                          color: Color(0xff5e5e5c),
-                                                          blurRadius: 1,
-                                                          offset: Offset(0, -1)),
-                                                    ]),
-                                                child: Center(child: Text('${index + 1}', style: kWhiteStyle,)),
-                                              );
-                                            } ),
-                                          )
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(width: 24.w),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: size.height * 0.02.h,),
+                            SizedBox(height: size.height * 0.06.h,),
                             Padding(
                               padding: EdgeInsets.only(left: 48.w),
                               child: Row(

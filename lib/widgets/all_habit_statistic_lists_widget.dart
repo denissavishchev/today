@@ -20,44 +20,38 @@ class AllHabitStatisticLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Consumer<HabitProvider>(
         builder: (context, data, child){
           return BasicContainerWidget(
-            height: 0.11,
+            height: storage[index].description != '' ? 0.11 : 0.07,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              child: Column(
                 children: [
                   SizedBox(
-                    width: 80,
-                    child: Column(
+                    height: 34,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(storage[index].name,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: kOrangeStyle),
-                        const SizedBox(height: 4),
-                        Text('Days: ${storage[index].days}',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            style: kWhiteStyleSmall),
-                        const SizedBox(height: 4),
-                        Text('Skipped: ${storage[index].skipped}',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            style: kWhiteStyleSmall),
+                        Expanded(child: Text(storage[index].name, style: kOrangeStyle)),
+                        VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.7)),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Days: ${storage[index].days}',
+                              style: kWhiteStyleSmall,
+                            ),
+                            Text('Skipped: ${storage[index].skipped}',
+                              style: kWhiteStyleSmall,
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
-                  VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.9),),
-                  SizedBox(
-                    width: size.width * 0.65,
-                    height: size.height * 0.1,
-                    child: Text(storage[index].description,
-                      style: kWhiteStyleSmall),
-                  ),
+                  Expanded(
+                      child: SingleChildScrollView(
+                          child: Text(storage[index].description, style: kWhiteStyleSmall,))),
                 ],
               ),
             ),
