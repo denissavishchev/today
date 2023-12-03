@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../providers/main_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -82,13 +83,12 @@ class BottomNavBarWidget extends StatelessWidget {
                               ),
                             ]
                           ),
-                          child: SvgPicture.asset(data.icon[index],
-                            colorFilter: ColorFilter.mode(
-                                activePage == index
-                                    ? kOrange.withOpacity(0.7)
-                                    : kWhite,
-                                BlendMode.srcIn)
-                            ),
+                          child: IconSvgWidget(
+                            icon: data.icon[index],
+                            padding: 0,
+                            color: activePage == index
+                              ? kOrange.withOpacity(0.7)
+                              : kWhite,),
                         ),
                       )
                   ),

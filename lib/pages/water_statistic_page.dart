@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/water_daily_model.dart';
@@ -60,18 +61,13 @@ class WaterStatisticPage extends StatelessWidget {
                                                   builder: (context) =>
                                                   const MainPage()));
                                         },
-                                        child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                                            colorFilter: ColorFilter.mode(
-                                                kOrange.withOpacity(0.7),
-                                                BlendMode.srcIn)
-                                        ),
+                                        child: const IconSvgWidget(icon: 'back_arrow'),
                                       ),
                                       Stack(
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.only(right: 18.w),
                                             child: SideButtonWidget(
-                                              padding: 0,
                                                 width: 220,
                                                 both: true,
                                                 child: Center(

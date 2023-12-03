@@ -53,10 +53,13 @@ class OnlyButton extends StatelessWidget {
                         blurRadius: 1,
                         offset: Offset(0, -1)),
                   ]),
-              child: SvgPicture.asset(icon,
-                  colorFilter: ColorFilter.mode(
-                      kOrange.withOpacity(0.7),
-                      BlendMode.srcIn)
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: SvgPicture.asset(icon,
+                    colorFilter: ColorFilter.mode(
+                        kOrange.withOpacity(0.7),
+                        BlendMode.srcIn)
+                ),
               ),
             ),
           ),

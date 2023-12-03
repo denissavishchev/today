@@ -6,6 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/water_statistic_page.dart';
 import 'package:today/providers/water_provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/buttons_model.dart';
@@ -68,11 +69,7 @@ class WaterPage extends StatelessWidget {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
                                         const WaterStatisticPage())),
-                                    child: SvgPicture.asset('assets/icons/history.svg',
-                                        colorFilter: ColorFilter.mode(
-                                            kOrange.withOpacity(0.7),
-                                            BlendMode.srcIn)
-                                    ),),
+                                    child: const IconSvgWidget(icon: 'history', padding: 4,),),
                                   const Spacer(),
                                   Padding(
                                     padding: EdgeInsets.only(right: 18.w),

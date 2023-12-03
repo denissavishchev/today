@@ -10,6 +10,7 @@ import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/habit_model.dart';
 import '../widgets/all_habit_list_widget.dart';
+import '../widgets/icon_svg_widget.dart';
 import '../widgets/side_button_widget.dart';
 import 'add_habit_page.dart';
 
@@ -48,11 +49,7 @@ class HabitPage extends StatelessWidget {
                                 Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) =>
                                 const HabitStatisticPage())),
-                              child: SvgPicture.asset('assets/icons/history.svg',
-                                  colorFilter: ColorFilter.mode(
-                                      kOrange.withOpacity(0.7),
-                                      BlendMode.srcIn)
-                              ),),
+                                  child: const IconSvgWidget(icon: 'history', padding: 4,),),
                             const Spacer(),
                             SideButtonWidget(
                               width: 100,
@@ -61,11 +58,7 @@ class HabitPage extends StatelessWidget {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) =>
                                       const AddHabitPage())),
-                              child: SvgPicture.asset('assets/icons/add.svg',
-                                  colorFilter: ColorFilter.mode(
-                                      kOrange.withOpacity(0.7),
-                                      BlendMode.srcIn)
-                              ),)
+                              child: const IconSvgWidget(icon: 'add'),)
                           ],
                         ),
                         SizedBox(height: size.height * 0.02.h,),

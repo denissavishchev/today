@@ -6,6 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/habit_storage_model.dart';
 import 'package:today/widgets/all_habit_statistic_lists_widget.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../providers/habit_provider.dart';
@@ -56,11 +57,7 @@ class HabitStatisticPage extends StatelessWidget {
                                               builder: (context) =>
                                               const MainPage()));
                                     },
-                                    child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                                        colorFilter: ColorFilter.mode(
-                                            kOrange.withOpacity(0.7),
-                                            BlendMode.srcIn)
-                                    ),
+                                    child: const IconSvgWidget(icon: 'back_arrow'),
                                   ),
                                   const Spacer(),
                                 ],

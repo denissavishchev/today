@@ -200,7 +200,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                           ),
                           SizedBox(height: size.height * 0.01.h,),
                           SideButtonWidget(
-                            padding: 0,
                             width: 160,
                               both: true,
                               child: Center(
@@ -233,7 +232,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                             children: [
                               SizedBox(width: 40.w),
                               SideButtonWidget(
-                                padding: 0,
                                 both: true,
                                   width: 120,
                                   child: Icon(Icons.stop,

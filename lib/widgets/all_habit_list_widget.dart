@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/habit_model.dart';
@@ -61,7 +62,11 @@ class AllHabitListWidget extends StatelessWidget {
                                 habits[index].statisticDays,
                                 habits[index].skipped,
                               ),
-                                child: const Icon(Icons.storage, color: kOrange, size: 32),
+                                child: const SizedBox(
+                                    width: 32,
+                                    child: IconSvgWidget(
+                                      icon: 'history',
+                                      padding: 0,)),
                               );
                             }),
                       ],
@@ -73,10 +78,10 @@ class AllHabitListWidget extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.08,
                         child: habits[index].isDone
-                            ? const Icon(Icons.check, color: kOrange, size: 32)
+                            ? const IconSvgWidget(icon: 'check', padding: 0,)
                             : GestureDetector(
                             onTap: () => data.finishTask(index, box, habits, context),
-                              child: const Icon(Icons.cancel_outlined, color: kOrange, size: 32)),
+                              child: const IconSvgWidget(icon: 'uncheck', padding: 0, color: kWhite)),
                       ),
                       VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.7)),
                       Expanded(

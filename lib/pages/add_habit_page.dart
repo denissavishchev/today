@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../widgets/fade_container_widget.dart';
 import '../widgets/fade_textfield_widget.dart';
@@ -49,11 +50,7 @@ class AddHabitPage extends StatelessWidget {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) => const MainPage()));
                                   },
-                                  child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                                      colorFilter: ColorFilter.mode(
-                                          kOrange.withOpacity(0.7),
-                                          BlendMode.srcIn)
-                                  ),),
+                                  child: const IconSvgWidget(icon: 'back_arrow'),),
                                 const Spacer(),
                               ],
                             ),
@@ -223,11 +220,7 @@ class AddHabitPage extends StatelessWidget {
                                         Navigator.push(context,
                                             MaterialPageRoute(builder: (context) => const MainPage()));
                                       },
-                                      child: SvgPicture.asset('assets/icons/upload.svg',
-                                          colorFilter: ColorFilter.mode(
-                                              kOrange.withOpacity(0.7),
-                                              BlendMode.srcIn)
-                                      ),),
+                                      child: const IconSvgWidget(icon: 'upload'),),
                                   const Spacer(),
                                 ],
                               ),

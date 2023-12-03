@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/to_do_provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/to_do_model.dart';
 import 'basic_container_widget.dart';
@@ -46,7 +47,7 @@ class AllToDoLists extends StatelessWidget {
                         onTap: () => data.doneTask(index, box, tasks, context),
                           child: const Padding(
                             padding: EdgeInsets.only(left: 10.0),
-                            child: Icon(Icons.check, color: kOrange, size: 32,),
+                            child: IconSvgWidget(icon: 'check', padding: 0,),
                           ))),
                     VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.3),),
                     Expanded(
@@ -63,13 +64,13 @@ class AllToDoLists extends StatelessWidget {
                                   ? ''
                                   : tasks[index].date,
                                 style: TextStyle(color: time.isAfter(DateTime.now())
-                                    ? kOrange : kGrey, fontSize: 16),),
+                                    ? kOrange : kWhite, fontSize: 16),),
                               const SizedBox(width: 12,),
                               Text(tasks[index].time == '00:00'
                                 ? ''
                                 : tasks[index].time,
                                 style: TextStyle(color: time.isAfter(DateTime.now())
-                                    ? kOrange : kGrey, fontSize: 16),),
+                                    ? kOrange : kWhite, fontSize: 16),),
                             ],
                           ) : const SizedBox.shrink()
                         ],
@@ -86,11 +87,11 @@ class AllToDoLists extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10.0),
-                              child: Icon(
-                                Icons.comment,
+                              child: IconSvgWidget(
+                                padding: 0,
+                                icon: 'comment',
                                 color: tasks[index].description != ''
-                                    ? kOrange : kGrey,
-                                size: 32,),
+                                  ? kOrange : kWhite,)
                             ),
                         ),
                     ),

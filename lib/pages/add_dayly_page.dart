@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../providers/daily_provider.dart';
 import '../widgets/fade_container_widget.dart';
@@ -49,11 +50,7 @@ class AddDailyPage extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(builder: (context) => const MainPage()));
                                   },
-                                  child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                                      colorFilter: ColorFilter.mode(
-                                          kOrange.withOpacity(0.7),
-                                          BlendMode.srcIn)
-                                  ),),
+                                  child: const IconSvgWidget(icon: 'back_arrow'),),
                                 const Spacer(),
                               ],
                             ),
@@ -177,11 +174,7 @@ class AddDailyPage extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(builder: (context) => const MainPage()));
                                       },
-                                      child: SvgPicture.asset('assets/icons/upload.svg',
-                                          colorFilter: ColorFilter.mode(
-                                              kOrange.withOpacity(0.7),
-                                              BlendMode.srcIn)
-                                      ),),
+                                      child: const IconSvgWidget(icon: 'upload'),),
                                   const Spacer(),
                                 ],
                               ),

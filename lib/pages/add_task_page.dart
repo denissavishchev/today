@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../providers/to_do_provider.dart';
 import '../widgets/fade_container_widget.dart';
@@ -55,11 +56,7 @@ class AddTaskPage extends StatelessWidget {
                                       MaterialPageRoute(builder: (context) => const MainPage()));
                                 }
                               },
-                              child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                                  colorFilter: ColorFilter.mode(
-                                      kOrange.withOpacity(0.7),
-                                      BlendMode.srcIn)
-                              ),),
+                              child: const IconSvgWidget(icon: 'back_arrow',)),
                             const Spacer(),
                           ],
                         ),
@@ -165,11 +162,7 @@ class AddTaskPage extends StatelessWidget {
                                                     blurRadius: 1,
                                                     offset: Offset(0, -1)),
                                               ]),
-                                          child: SvgPicture.asset('assets/icons/time.svg',
-                                              colorFilter: ColorFilter.mode(
-                                                  kOrange.withOpacity(0.7),
-                                                  BlendMode.srcIn)
-                                          ),
+                                          child: const IconSvgWidget(icon: 'time', padding: 0,),
                                         ),
                                       ),
                                     )),
@@ -190,11 +183,7 @@ class AddTaskPage extends StatelessWidget {
                                     onTap: (){
                                       data.addSelectLists(context);
                                     },
-                                    child: SvgPicture.asset('assets/icons/list.svg',
-                                        colorFilter: ColorFilter.mode(
-                                            kOrange.withOpacity(0.7),
-                                            BlendMode.srcIn)
-                                    ),),
+                                    child: const IconSvgWidget(icon: 'list'),),
                                   Positioned.fill(
                                     child: Align(
                                         alignment: Alignment.centerLeft,
@@ -229,11 +218,7 @@ class AddTaskPage extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(builder: (context) => const MainPage()));
                                   },
-                                  child: SvgPicture.asset('assets/icons/upload.svg',
-                                      colorFilter: ColorFilter.mode(
-                                          kOrange.withOpacity(0.7),
-                                          BlendMode.srcIn)
-                                  ),),
+                                  child: const IconSvgWidget(icon: 'upload',),),
                               const Spacer(),
                             ],
                           ),

@@ -6,6 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
 import 'package:today/pages/daily_timer_page.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/daily_model.dart';
@@ -53,22 +54,14 @@ class DailyPage extends StatelessWidget {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) =>
                                       const DailyStatisticPage())),
-                                child: SvgPicture.asset('assets/icons/analytics.svg',
-                                    colorFilter: ColorFilter.mode(
-                                        kOrange.withOpacity(0.7),
-                                        BlendMode.srcIn)
-                                ),),
+                                child: const IconSvgWidget(icon: 'analytics', padding: 6,),),
                               SideButtonWidget(
                                 both: true,
                                 width: 90,
                                 onTap: () => Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) =>
                                     const TimerPage())),
-                                child: SvgPicture.asset('assets/icons/hourglass.svg',
-                                    colorFilter: ColorFilter.mode(
-                                        kOrange.withOpacity(0.7),
-                                        BlendMode.srcIn)
-                                ),),
+                                child: const IconSvgWidget(icon: 'hourglass'),),
                               SideButtonWidget(
                                 width: 100,
                                 right: false,
@@ -76,11 +69,7 @@ class DailyPage extends StatelessWidget {
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
                                         const AddDailyPage())),
-                                child: SvgPicture.asset('assets/icons/add.svg',
-                                    colorFilter: ColorFilter.mode(
-                                        kOrange.withOpacity(0.7),
-                                        BlendMode.srcIn)
-                                ),)
+                                child: const IconSvgWidget(icon: 'add'),)
                             ],
                           ),
                           SizedBox(height: size.height * 0.02.h),

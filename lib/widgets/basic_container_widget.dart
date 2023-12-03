@@ -18,7 +18,7 @@ class BasicContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+      margin: const EdgeInsets.fromLTRB(4, 8, 4, 0),
       padding: const EdgeInsets.all(2),
       width: size.width * width,
       height: size.height * height,

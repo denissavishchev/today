@@ -82,8 +82,9 @@ class ToDoProvider with ChangeNotifier {
       content: NotificationContent(
         id: DateTime.now().microsecondsSinceEpoch.remainder(200),
         channelKey: 'scheduled',
-        title: '${Emojis.light_light_bulb} Today is a good day for',
+        title: '${Emojis.time_alarm_clock} It`s exactly that time for:',
         body: title,
+        backgroundColor: kOrange
       ),
       schedule: NotificationCalendar(
           year: year,

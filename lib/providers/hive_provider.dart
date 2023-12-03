@@ -27,8 +27,7 @@ class HiveProvider with ChangeNotifier{
         content: NotificationContent(
           id: DateTime.now().microsecondsSinceEpoch.remainder(200),
           channelKey: 'scheduled',
-          title: '${Emojis.animals_camel} Drink some water',
-          body: 'Time: ${int.parse(box.get('start').toString().substring(10, 12)) + i}',
+          title: '${Emojis.wheater_droplet} Drink some water',
         ),
         schedule: NotificationCalendar(
             hour: int.parse(box.get('start').toString().substring(10, 12)) + i,

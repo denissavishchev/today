@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/daily_model.dart';
 import '../providers/daily_provider.dart';
@@ -53,14 +54,11 @@ class AllDailyLists extends StatelessWidget {
                                     data.showComment(index, tasks, context);
                                   }
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: Icon(
-                                    Icons.comment,
+                                child: IconSvgWidget(
+                                  padding: 0,
+                                    icon: 'comment',
                                     color: tasks[index].description != ''
-                                        ? kOrange : kGrey,
-                                    size: 32,),
-                                ),
+                                        ? kOrange : kWhite,),
                               ),
                             ),
                           ],
@@ -133,7 +131,10 @@ class AllDailyLists extends StatelessWidget {
                               child: const SizedBox(
                                 width: 32,
                                 height: 32,
-                                child: Icon(Icons.check, color: kGreen,),
+                                child: IconSvgWidget(
+                                  icon: 'check',
+                                  padding: 4,
+                                  color: kGreen,),
                               ),
                             )
                           ],
