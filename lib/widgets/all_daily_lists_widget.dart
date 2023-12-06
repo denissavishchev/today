@@ -36,7 +36,7 @@ class AllDailyLists extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: SizedBox(
-                        height: 28,
+                        height: 32,
                         child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
