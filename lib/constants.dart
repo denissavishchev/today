@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const kBlue = Color(0xff4f9892);
-const kPurple = Color(0xffd697bb);
 const kGreen = Color(0xffc4d60c);
 const kGrey = Color(0xffd9c4ab);
 const kOrange = Color(0xffff6600);
-const kWhite = Color(0xffd9d9d7);
+const kWhite = Color(0xfffefffd);
 
-const kWhiteStyle = TextStyle(fontSize: 22, color: kWhite, fontWeight: FontWeight.bold);
-final kOrangeStyle = TextStyle(fontSize: 22, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold);
-final kOrangeStyleSmall = TextStyle(fontSize: 12, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold);
-final kWhiteStyleSmall = TextStyle(fontSize: 12, color: kWhite.withOpacity(0.8), fontWeight: FontWeight.bold);
+final kWhiteStyle = TextStyle(fontSize: 22.sp, color: kWhite, fontWeight: FontWeight.bold);
+final kOrangeStyle = TextStyle(fontSize: 22.sp, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold);
+final kOrangeStyleSmall = TextStyle(fontSize: 13.sp, color: kOrange.withOpacity(0.8), fontWeight: FontWeight.bold);
+final kWhiteStyleSmall = TextStyle(fontSize: 13.sp, color: kWhite, fontWeight: FontWeight.bold);
+final kWhiteStyleBig = TextStyle(fontSize: 26.sp, color: kWhite, fontWeight: FontWeight.bold);
 
 final pickerTheme = ThemeData(
   timePickerTheme: TimePickerThemeData(
@@ -29,8 +29,7 @@ final pickerTheme = ThemeData(
       borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     entryModeIconColor: kOrange,
-    helpTextStyle:
-    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+    helpTextStyle: kWhiteStyleSmall,
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(

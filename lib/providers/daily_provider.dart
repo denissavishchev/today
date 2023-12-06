@@ -222,7 +222,7 @@ class DailyProvider with ChangeNotifier {
                       padding: const EdgeInsets.all(8.0),
                       child: SingleChildScrollView(
                         child: Text(tasks[index].description,
-                          style: const TextStyle(color: Colors.white, fontSize: 22),),
+                          style: kWhiteStyle),
                       ),
                     ),),
                 ],

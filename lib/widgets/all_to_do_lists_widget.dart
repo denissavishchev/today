@@ -36,7 +36,7 @@ class AllToDoLists extends StatelessWidget {
               data.deleteTask(index, box, context);
             },
             child: BasicContainerWidget(
-              height: tasks[index].time == '00:00' ? 0.065 : 0.09,
+              height: tasks[index].time == '00:00' ? 0.07 : 0.1,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
@@ -57,20 +57,20 @@ class AllToDoLists extends StatelessWidget {
                         children: [
                           Text(tasks[index].task,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(color: Colors.white,fontSize: 20),),
+                            style: kWhiteStyle),
                           tasks[index].date != '0-0-0000' ? Row(
                             children: [
                               Text(tasks[index].date == '0-0-0000'
                                   ? ''
                                   : tasks[index].date,
-                                style: TextStyle(color: time.isAfter(DateTime.now())
-                                    ? kOrange : kWhite, fontSize: 16),),
+                                style: time.isAfter(DateTime.now())
+                                    ? kOrangeStyleSmall : kWhiteStyleSmall),
                               const SizedBox(width: 12,),
                               Text(tasks[index].time == '00:00'
                                 ? ''
                                 : tasks[index].time,
-                                style: TextStyle(color: time.isAfter(DateTime.now())
-                                    ? kOrange : kWhite, fontSize: 16),),
+                                style: time.isAfter(DateTime.now())
+                                    ? kOrangeStyleSmall : kWhiteStyleSmall),
                             ],
                           ) : const SizedBox.shrink()
                         ],

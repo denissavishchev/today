@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
@@ -69,14 +68,12 @@ class AddDailyPage extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: size.width * 0.76,
-                                  child: const FadeContainerWidget(
+                                  child: FadeContainerWidget(
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text('How many sets per day',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,),
+                                          style: kWhiteStyle,
                                         ),
                                       ],
                                     ),

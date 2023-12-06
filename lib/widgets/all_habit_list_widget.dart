@@ -47,7 +47,7 @@ class AllHabitListWidget extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('Habit complete', style: kOrangeStyle,),
+                        Text('Habit complete', style: kWhiteStyle,),
                         const Spacer(),
                         VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.7)),
                         ValueListenableBuilder<Box<HabitModel>>(
@@ -88,23 +88,26 @@ class AllHabitListWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(habits[index].name, style: kOrangeStyle),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Start: '
-                                    '${habits[index].dateDay.toString().padLeft(2, '0')}'
-                                    ':${habits[index].dateMonth}',
-                                  style: kWhiteStyleSmall,
-                                ),
-                                Text('Days: ${habits[index].days}/${habits[index].statisticDays}',
-                                  style: kWhiteStyleSmall,
-                                ),
-                                Text('Skipped: ${habits[index].skipped}',
-                                  style: kWhiteStyleSmall,
-                                ),
-                                const SizedBox(width: 10)
-                              ],
+                            Text(habits[index].name,
+                                style: kWhiteStyle),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Start: '
+                                      '${habits[index].dateDay.toString().padLeft(2, '0')}'
+                                      ':${habits[index].dateMonth}',
+                                    style: kWhiteStyleSmall,
+                                  ),
+                                  Text('Days: ${habits[index].days}/${habits[index].statisticDays}',
+                                    style: kWhiteStyleSmall,
+                                  ),
+                                  Text('Skipped: ${habits[index].skipped}',
+                                    style: kWhiteStyleSmall,
+                                  ),
+                                ],
+                              ),
                             )
                           ],
                         ),

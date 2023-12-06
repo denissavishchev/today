@@ -3,7 +3,7 @@ import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../widgets/circular_background_painter.dart';
 import '../widgets/side_button_widget.dart';
@@ -106,11 +106,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin{
                                 context,
                                 MaterialPageRoute(builder: (context) => const MainPage()));
                           },
-                          child: SvgPicture.asset('assets/icons/back_arrow.svg',
-                              colorFilter: ColorFilter.mode(
-                                  kOrange.withOpacity(0.7),
-                                  BlendMode.srcIn)
-                          ),),
+                          child: const IconSvgWidget(icon: 'back_arrow')),
                         const Spacer(),
                       ],
                     ),

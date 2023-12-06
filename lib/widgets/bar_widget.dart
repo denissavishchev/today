@@ -56,10 +56,7 @@ class _AbilitiesState extends State<BarWidget> with SingleTickerProviderStateMix
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(widget.day, style:
-                      TextStyle(color: Colors.white.withOpacity(0.8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),),
+                  Text(widget.day, style: kWhiteStyleSmall),
                   Container(
                     width: 240,
                     height: 10,
@@ -78,9 +75,7 @@ class _AbilitiesState extends State<BarWidget> with SingleTickerProviderStateMix
                       alignment: Alignment.centerRight,
                       child: Countup(begin: 0, end: widget.percent.toDouble(),
                         duration: Duration(milliseconds: duration),
-                        style: const TextStyle(color: kOrange,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),),
+                        style: kOrangeStyleSmall),
                     ),
                   )
                 ],

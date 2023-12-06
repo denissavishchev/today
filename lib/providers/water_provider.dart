@@ -130,7 +130,7 @@ class WaterProvider with ChangeNotifier {
                       Stack(
                         children: [
                           SideButtonWidget(
-                            width: 240,
+                            width: 260,
                             onTap: (){
                               box.deleteAt(index);
                               Navigator.of(context).pop();

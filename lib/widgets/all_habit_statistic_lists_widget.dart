@@ -23,13 +23,13 @@ class AllHabitStatisticLists extends StatelessWidget {
     return Consumer<HabitProvider>(
         builder: (context, data, child){
           return BasicContainerWidget(
-            height: storage[index].description != '' ? 0.11 : 0.07,
+            height: storage[index].description != '' ? 0.12 : 0.08,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 34,
+                    height: 40,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

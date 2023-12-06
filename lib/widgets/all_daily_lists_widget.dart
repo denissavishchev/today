@@ -43,7 +43,7 @@ class AllDailyLists extends StatelessWidget {
                             Expanded(
                               child: Text(tasks[index].task,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(color: Colors.white,fontSize: 20),),
+                                style: kWhiteStyle,),
                             ),
                             VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.9),),
                             SizedBox(

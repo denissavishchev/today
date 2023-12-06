@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/water_model.dart';
@@ -69,12 +68,10 @@ class WaterSettingsPage extends StatelessWidget {
                                         child: FadeContainerWidget(
                                           child: Padding(
                                             padding: EdgeInsets.only(left: 12.w),
-                                            child: const Row(
+                                            child: Row(
                                               children: [
                                                 Text('Weight (kg)',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 24),
+                                                  style: kWhiteStyle,
                                                 ),
                                               ],
                                             ),
@@ -255,14 +252,10 @@ class WaterSettingsPage extends StatelessWidget {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Text('Target',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24,),),
+                                            Text('Target',
+                                              style: kWhiteStyle,),
                                             Text('${data.target}',
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 32,),),
+                                              style: kWhiteStyleBig),
                                           ],
                                         ),
                                       )
@@ -278,10 +271,7 @@ class WaterSettingsPage extends StatelessWidget {
                                             ':${data.initialWakeUpTime.minute < 10
                                             ? '0${data.initialWakeUpTime.minute}'
                                             : '${data.initialWakeUpTime.minute}'}',
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
+                                          style: kWhiteStyle,
                                         ),
                                         const Spacer(),
                                         Container(
@@ -342,10 +332,7 @@ class WaterSettingsPage extends StatelessWidget {
                                             ':${data.initialBedTime.minute < 10
                                             ? '0${data.initialBedTime.minute}'
                                             : '${data.initialBedTime.minute}'}',
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
+                                          style: kWhiteStyle,
                                         ),
                                         const Spacer(),
                                         Container(
@@ -403,12 +390,10 @@ class WaterSettingsPage extends StatelessWidget {
                                         child: FadeContainerWidget(
                                           child: Padding(
                                             padding: EdgeInsets.only(left: 12.w, right: 32.w),
-                                            child: const Row(
+                                            child: Row(
                                               children: [
                                                 Text('Interval (Hour)',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 24,),
+                                                  style: kWhiteStyle,
                                                 ),
                                               ],
                                             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:today/constants.dart';
 import 'fade_container_widget.dart';
 
 class FadeTextFieldWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class FadeTextFieldWidget extends StatelessWidget {
         controller: textEditingController,
         maxLines: multiline ? 3 : 1,
         cursorColor: Colors.white,
-        style: const TextStyle(fontSize: 24, color: Colors.white),
+        style: kWhiteStyle,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),

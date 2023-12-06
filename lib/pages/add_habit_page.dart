@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
@@ -69,15 +68,13 @@ class AddHabitPage extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: size.width * 0.6,
-                                  child: const FadeContainerWidget(
+                                  child: FadeContainerWidget(
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: 12.0),
+                                      padding: const EdgeInsets.only(left: 12.0),
                                       child: Row(
                                         children: [
                                           Text('Days',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24),
+                                            style: kWhiteStyle,
                                           ),
                                         ],
                                       ),

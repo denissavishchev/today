@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
@@ -79,18 +78,12 @@ class AddTaskPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(data.noDate,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
+                                    style: kWhiteStyle,
                                   ),
                                   Visibility(
                                     visible: data.noDate == 'Date not set',
                                     child: Text(data.noNotification,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),),
+                                      style: kWhiteStyleSmall),
                                   )
                                 ],
                               ),
@@ -116,10 +109,7 @@ class AddTaskPage extends StatelessWidget {
                                     ':${data.initialTime.minute < 10
                                     ? '0${data.initialTime.minute}'
                                     : '${data.initialTime.minute}'}',
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold),
+                                  style: kWhiteStyle,
                                 ),
                                 const Spacer(),
                                 Container(
