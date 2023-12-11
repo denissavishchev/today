@@ -1,9 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:today/model/to_do_model.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
+import '../model/boxes.dart';
 import '../providers/to_do_provider.dart';
 import '../widgets/fade_container_widget.dart';
 import '../widgets/fade_textfield_widget.dart';
@@ -192,23 +196,40 @@ class AddTaskPage extends StatelessWidget {
                           padding: EdgeInsets.only(left: 48.w),
                           child: Row(
                             children: [
-                              SideButtonWidget(
-                                both: true,
-                                width: 200,
-                                  onTap: (){
-                                    data.addToBase();
-                                    Navigator.of(context).pop();
-                                    data.titleController.clear();
-                                    data.descriptionController.clear();
-                                    data.noDate = 'Date not set';
-                                    data.addListTitle = 'Common';
-                                    activePage = 0;
-                                    mainPageController.initialPage = 0;
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => const MainPage()));
-                                  },
-                                  child: const IconSvgWidget(icon: 'upload',),),
+                              ValueListenableBuilder<Box<ToDoModel>>(
+                                  valueListenable: Boxes.addTaskToBase().listenable(),
+                                  builder: (context, box, _){
+                                    return SideButtonWidget(
+                                      both: true,
+                                      width: 200,
+                                      onTap: (){ data.isEdit
+                                          ? data.editToBase(
+                                          data.editIndex,
+                                          data.titleController.text,
+                                          data.descriptionController.text,
+                                          data.noDate,
+                                          data.initialTime.toString(),
+                                          data.addListTitle,
+                                          box)
+                                          : data.addToBase();
+                                      Navigator.of(context).pop();
+                                      data.titleController.clear();
+                                      data.descriptionController.clear();
+                                      data.noDate = 'Date not set';
+                                      data.addListTitle = 'Common';
+                                      activePage = 0;
+                                      mainPageController.initialPage = 0;
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const MainPage()));
+                                      },
+                                      child: data.isEdit
+                                      ? Icon(Icons.edit,
+                                        color: kOrange.withOpacity(0.7),
+                                        size: 40,)
+                                      : const IconSvgWidget(icon: 'upload',),);
+                                  }
+                              ),
                               const Spacer(),
                             ],
                           ),

@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:today/functions.dart';
 import 'package:today/model/boxes.dart';
 import 'package:today/model/to_do_model.dart';
+import 'package:today/pages/add_task_page.dart';
 import 'package:today/widgets/fade_container_widget.dart';
 import '../constants.dart';
 import '../pages/main_page.dart';
@@ -47,6 +48,8 @@ class ToDoProvider with ChangeNotifier {
   String noNotification = '(without notification)';
   DateTime dateTime = DateTime.now();
   TimeOfDay initialTime = const TimeOfDay(hour: 8, minute: 00);
+  int editIndex = 0;
+  bool isEdit = true;
 
   Future addToBase() async {
     final date = convertTime(dateTime.millisecondsSinceEpoch);
@@ -360,7 +363,7 @@ class ToDoProvider with ChangeNotifier {
         });
   }
 
-  Future deleteTask(int index, Box<ToDoModel> box, context) {
+  Future editDeleteTask(int index, Box<ToDoModel> box, List<ToDoModel> tasks, context) {
     return showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -393,6 +396,53 @@ class ToDoProvider with ChangeNotifier {
                       Stack(
                         children: [
                           SideButtonWidget(
+                            width: 200,
+                            onTap: (){
+                              isEdit = true;
+                              editTask(
+                                  index,
+                                  tasks[index].task,
+                                  tasks[index].description,
+                                  tasks[index].date,
+                                  tasks[index].time,
+                                  tasks[index].list);
+                              Navigator.of(context).pop();
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) =>
+                                      const AddTaskPage()));
+                            },
+                            child: Icon(Icons.edit,
+                              color: kOrange.withOpacity(0.7),
+                              size: 40,),),
+                          Positioned.fill(
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0, right: 40),
+                                  child: Text('Edit task', style: kOrangeStyle,),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SideButtonWidget(
+                        width: 120,
+                        right: false,
+                        child: Icon(Icons.cancel,
+                          color: kOrange.withOpacity(0.7),
+                          size: 40,),
+                        onTap: () => Navigator.of(context).pop()),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          SideButtonWidget(
                             width: 240,
                             onTap: (){
                               box.deleteAt(index);
@@ -406,29 +456,41 @@ class ToDoProvider with ChangeNotifier {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20.0, right: 40),
-                                  child: Text('Delete task?', style: kOrangeStyle,),
+                                  child: Text('Delete task', style: kOrangeStyle,),
                                 )),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  const Spacer(),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: SideButtonWidget(
-                        width: 150,
-                        right: false,
-                        child: Icon(Icons.cancel,
-                          color: kOrange.withOpacity(0.7),
-                          size: 40,),
-                        onTap: () => Navigator.of(context).pop()),
-                  ),
                   const SizedBox(height: 20,),
                 ],
               )
           );
         });
+  }
+
+  void editToBase(int index, String task, String description, String date, String time, String list, Box<ToDoModel> box){
+    box.putAt(index, ToDoModel()
+        ..task = task
+        ..description = description
+        ..date = date.substring(0, 10)
+        ..time = time.substring(10, 15)
+        ..list = list
+    );
+  }
+
+  void editTask(int index, String task, String description, String date, String time, String list){
+
+    titleController.text = task;
+    descriptionController.text = description;
+    noDate = date;
+    initialTime = TimeOfDay(
+        hour: int.parse(time.substring(0, 2)),
+        minute: int.parse(time.substring(3, 5)));
+    addListTitle = list;
+    editIndex = index;
+    notifyListeners();
   }
 
   void doneTask(int index, Box<ToDoModel> box, List<ToDoModel> tasks, context) {

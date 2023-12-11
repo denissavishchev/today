@@ -33,7 +33,7 @@ class AllToDoLists extends StatelessWidget {
           var time = DateTime.parse('$year-$month-$day ${tasks[index].time}');
           return GestureDetector(
             onLongPress: (){
-              data.deleteTask(index, box, context);
+              data.editDeleteTask(index, box, tasks, context);
             },
             child: BasicContainerWidget(
               height: tasks[index].time == '00:00' ? 0.07 : 0.1,

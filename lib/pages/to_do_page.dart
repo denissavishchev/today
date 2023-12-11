@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/model/to_do_model.dart';
@@ -64,6 +63,7 @@ class ToDoPage extends StatelessWidget {
                           SideButtonWidget(
                             right: false,
                             onTap: (){
+                              data.isEdit = false;
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(builder: (context) =>
