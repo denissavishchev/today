@@ -235,6 +235,7 @@ class DailyProvider with ChangeNotifier {
     done = done;
     day = DateTime.now().day;
     dateTime = DateTime.now().toString();
+    editIndex = index;
     notifyListeners();
   }
 
