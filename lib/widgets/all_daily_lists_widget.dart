@@ -25,7 +25,7 @@ class AllDailyLists extends StatelessWidget {
         builder: (context, data, child){
           return GestureDetector(
             onLongPress: (){
-              data.deleteTask(index, box, context);
+              data.editDeleteTask(index, box, tasks, context);
             },
             child: BasicContainerWidget(
               height: 0.11,

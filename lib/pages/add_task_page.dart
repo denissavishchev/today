@@ -202,15 +202,16 @@ class AddTaskPage extends StatelessWidget {
                                     return SideButtonWidget(
                                       both: true,
                                       width: 200,
-                                      onTap: (){ data.isEdit
+                                      onTap: (){
+                                            data.isEdit
                                           ? data.editToBase(
-                                          data.editIndex,
-                                          data.titleController.text,
-                                          data.descriptionController.text,
-                                          data.noDate,
-                                          data.initialTime.toString(),
-                                          data.addListTitle,
-                                          box)
+                                              data.editIndex,
+                                              data.titleController.text,
+                                              data.descriptionController.text,
+                                              data.noDate,
+                                              data.initialTime.toString(),
+                                              data.addListTitle,
+                                              box)
                                           : data.addToBase();
                                       Navigator.of(context).pop();
                                       data.titleController.clear();

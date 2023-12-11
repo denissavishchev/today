@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
@@ -65,10 +64,11 @@ class DailyPage extends StatelessWidget {
                               SideButtonWidget(
                                 width: 100,
                                 right: false,
-                                onTap: () =>
+                                onTap: () {
+                                  data.isEdit = false;
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>
-                                        const AddDailyPage())),
+                                        const AddDailyPage()));},
                                 child: const IconSvgWidget(icon: 'add'),)
                             ],
                           ),

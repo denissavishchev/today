@@ -474,14 +474,13 @@ class ToDoProvider with ChangeNotifier {
     box.putAt(index, ToDoModel()
         ..task = task
         ..description = description
-        ..date = date.substring(0, 10)
+        ..date = date == '0-0-0000' ? date : date.substring(0, 10)
         ..time = time.substring(10, 15)
         ..list = list
     );
   }
 
   void editTask(int index, String task, String description, String date, String time, String list){
-
     titleController.text = task;
     descriptionController.text = description;
     noDate = date;

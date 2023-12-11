@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
+import '../model/boxes.dart';
 import '../providers/daily_provider.dart';
 import '../widgets/fade_container_widget.dart';
 import '../widgets/fade_textfield_widget.dart';
@@ -157,21 +159,39 @@ class AddDailyPage extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 48.0),
                               child: Row(
                                 children: [
-                                  SideButtonWidget(
-                                      both: true,
-                                      width: 200,
-                                      onTap: (){
-                                        data.addToBase();
-                                        Navigator.of(context).pop();
-                                        data.titleController.clear();
-                                        data.descriptionController.clear();
-                                        activePage = 1;
-                                        mainPageController.initialPage = 1;
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => const MainPage()));
-                                      },
-                                      child: const IconSvgWidget(icon: 'upload'),),
+                                  ValueListenableBuilder(
+                                      valueListenable: Boxes.addDailyToBase().listenable(),
+                                      builder: (context, box, _){
+                                        return SideButtonWidget(
+                                          both: true,
+                                          width: 200,
+                                          onTap: (){
+                                            data.isEdit
+                                                ? data.editToBase(
+                                                data.editIndex,
+                                                data.titleController.text,
+                                                data.descriptionController.text,
+                                                data.howMany,
+                                                data.done.length,
+                                                DateTime.now().day,
+                                                DateTime.now().toString(),
+                                                box)
+                                                : data.addToBase();
+                                            Navigator.of(context).pop();
+                                            data.titleController.clear();
+                                            data.descriptionController.clear();
+                                            activePage = 1;
+                                            mainPageController.initialPage = 1;
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(builder: (context) => const MainPage()));
+                                          },
+                                          child: data.isEdit
+                                            ? Icon(Icons.edit,
+                                              color: kOrange.withOpacity(0.7),
+                                              size: 40,)
+                                            : const IconSvgWidget(icon: 'upload'),);
+                                      }),
                                   const Spacer(),
                                 ],
                               ),
