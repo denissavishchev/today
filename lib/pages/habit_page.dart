@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/habit_statistic_page.dart';
 import 'package:today/providers/habit_provider.dart';
+import 'package:today/widgets/description_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/habit_model.dart';
@@ -79,7 +79,10 @@ class HabitPage extends StatelessWidget {
                                     stops: const [0.1, 0.8]
                                 )
                             ),
-                            child: ScrollConfiguration(
+                            child: habits.isEmpty
+                              ? const DescriptionWidget(
+                                description: 'Create the right habits and train them every day to perfection')
+                              : ScrollConfiguration(
                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                                 child: ListView.builder(
                                   padding: EdgeInsets.only(bottom: size.height * 0.12.h),

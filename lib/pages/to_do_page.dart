@@ -9,6 +9,7 @@ import '../constants.dart';
 import '../model/boxes.dart';
 import '../providers/to_do_provider.dart';
 import '../widgets/all_to_do_lists_widget.dart';
+import '../widgets/description_widget.dart';
 import '../widgets/side_button_widget.dart';
 import 'add_task_page.dart';
 
@@ -108,7 +109,10 @@ class ToDoPage extends StatelessWidget {
                                     stops: const [0.1, 0.8]
                                 )
                             ),
-                            child: ScrollConfiguration(
+                            child: data.listCounts.values.every((e) => e == 0)
+                              ? const DescriptionWidget(
+                              description: 'Create your personal to-do list with or without notification and keep up with your plans',)
+                              : ScrollConfiguration(
                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                                 child: ListView.builder(
                                   padding: EdgeInsets.only(bottom: size.height * 0.12.h),
@@ -140,5 +144,7 @@ class ToDoPage extends StatelessWidget {
     );
   }
 }
+
+
 
 

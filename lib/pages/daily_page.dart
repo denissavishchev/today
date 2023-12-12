@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/add_dayly_page.dart';
 import 'package:today/pages/daily_timer_page.dart';
+import 'package:today/widgets/description_widget.dart';
 import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
@@ -90,7 +91,10 @@ class DailyPage extends StatelessWidget {
                                         stops: const [0.1, 0.8]
                                     )
                                 ),
-                                child: ScrollConfiguration(
+                                child: tasks.isEmpty
+                                  ? const DescriptionWidget(
+                                    description: 'Create your personal list of every day’s routine and have time to get everything done')
+                                  : ScrollConfiguration(
                                     behavior: const ScrollBehavior().copyWith(overscroll: false),
                                     child: ListView.builder(
                                       padding: EdgeInsets.only(bottom: size.height * 0.12.h),

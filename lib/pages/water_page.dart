@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/pages/water_statistic_page.dart';
@@ -115,7 +114,10 @@ class WaterPage extends StatelessWidget {
                                         color: kOrange,
                                       ),
                                     ),
-                                    Column(
+                                    settings.isEmpty
+                                    ? Text('Just drink \n enough water',
+                                      style: kOrangeStyle, textAlign: TextAlign.center,)
+                                    : Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
