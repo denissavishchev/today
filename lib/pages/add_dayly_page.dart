@@ -57,6 +57,7 @@ class AddDailyPage extends StatelessWidget {
                             ),
                             SizedBox(height: size.height * 0.03.h,),
                             FadeTextFieldWidget(
+                              height: 0.1,
                               textEditingController: data.titleController,
                               hintText: 'Task',),
                             SizedBox(height: size.height * 0.03.h,),

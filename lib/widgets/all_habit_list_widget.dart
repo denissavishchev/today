@@ -38,7 +38,7 @@ class AllHabitListWidget extends StatelessWidget {
           }
         },
         child: BasicContainerWidget(
-          height: habits[index].days <= 0 ? 0.06.h : 0.08.h,
+          height: habits[index].days <= 0 ? 0.065.h : 0.09.h,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
             child: habits[index].days <= 0
@@ -88,8 +88,14 @@ class AllHabitListWidget extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(habits[index].name,
-                                style: kWhiteStyle),
+                            SizedBox(
+                              width: 250,
+                              height: 38,
+                              child: SingleChildScrollView(
+                                child: Text(habits[index].name,
+                                    style: kWhiteStyle),
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(right: 4.0),
                               child: Row(

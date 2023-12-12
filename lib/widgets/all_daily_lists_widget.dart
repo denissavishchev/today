@@ -40,10 +40,13 @@ class AllDailyLists extends StatelessWidget {
                         child: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                              child: Text(tasks[index].task,
-                                overflow: TextOverflow.ellipsis,
-                                style: kWhiteStyle,),
+                            SizedBox(
+                              height: 36,
+                              width: 250,
+                              child: SingleChildScrollView(
+                                child: Text(tasks[index].task,
+                                  style: kWhiteStyle,),
+                              ),
                             ),
                             VerticalDivider(thickness: 2, color: kOrange.withOpacity(0.9),),
                             SizedBox(
