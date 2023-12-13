@@ -28,9 +28,9 @@ class AllDailyLists extends StatelessWidget {
               data.editDeleteTask(index, box, tasks, context);
             },
             child: BasicContainerWidget(
-              height: 0.11,
+              height: 1.8,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
                 child: Column(
                   children: [
                     Padding(

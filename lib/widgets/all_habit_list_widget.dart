@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/habit_provider.dart';
@@ -38,7 +37,7 @@ class AllHabitListWidget extends StatelessWidget {
           }
         },
         child: BasicContainerWidget(
-          height: habits[index].days <= 0 ? 0.065.h : 0.09.h,
+          height: habits[index].days <= 0 ? 1 : 1.5,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
             child: habits[index].days <= 0

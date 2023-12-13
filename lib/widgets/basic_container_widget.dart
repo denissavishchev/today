@@ -21,7 +21,7 @@ class BasicContainerWidget extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(4, 8, 4, 0),
       padding: const EdgeInsets.all(2),
       width: size.width * width,
-      height: size.height * height,
+      height: 50 * height,
       decoration: const BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.all(Radius.circular(16)),
