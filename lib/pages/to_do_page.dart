@@ -95,7 +95,7 @@ class ToDoPage extends StatelessWidget {
                           data.lists.clear();
                           return Container(
                             clipBehavior: Clip.hardEdge,
-                            width: size.width * 0.9.w,
+                            width: size.width,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: const BorderRadius.all(Radius.circular(24)),
@@ -111,7 +111,7 @@ class ToDoPage extends StatelessWidget {
                             ),
                             child: data.listCounts.values.every((e) => e == 0)
                               ? const DescriptionWidget(
-                              description: 'Create your personal to-do list with or without notification and keep up with your plans',)
+                              description: 'Create your personal\n to-do list with or\n without notification\n and keep up with\n your plans',)
                               : ScrollConfiguration(
                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
                                 child: ListView.builder(

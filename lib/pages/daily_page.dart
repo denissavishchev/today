@@ -77,7 +77,7 @@ class DailyPage extends StatelessWidget {
                           Expanded(
                               child: Container(
                                 clipBehavior: Clip.hardEdge,
-                                width: size.width * 0.9.w,
+                                width: size.width,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: const BorderRadius.all(Radius.circular(24)),
