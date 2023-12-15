@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:today/providers/daily_provider.dart';
@@ -9,8 +8,8 @@ import 'package:today/widgets/icon_svg_widget.dart';
 import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/percent_model.dart';
-import '../widgets/bar_widget.dart';
 import '../widgets/side_button_widget.dart';
+import '../widgets/statistic_chart_widget.dart';
 import 'main_page.dart';
 
 class DailyStatisticPage extends StatelessWidget {
@@ -96,7 +95,7 @@ class DailyStatisticPage extends StatelessWidget {
                             Container(
                                 clipBehavior: Clip.hardEdge,
                                 margin: EdgeInsets.symmetric(horizontal: 12.w),
-                                height: size.height * 0.8,
+                                height: size.height * 0.6,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: const BorderRadius.all(Radius.circular(24)),
@@ -109,17 +108,7 @@ class DailyStatisticPage extends StatelessWidget {
                                       end: Alignment.bottomCenter,
                                       stops: const [0.1, 0.8]
                                   ),),
-                                child: ScrollConfiguration(
-                                  behavior: const ScrollBehavior().copyWith(overscroll: false),
-                                  child: ListView.builder(
-                                      itemCount: percents.length < 33 ? percents.length : 33,
-                                      itemBuilder: (context, index) {
-                                        return BarWidget(
-                                          day: '${percents[index].day}.${percents[index].month}',
-                                          percent: percents[index].percent,
-                                        );
-                                      }),
-                                ),
+                                child: StatisticChartWidget(percents: percents),
                             ),
                           ],
                         );
@@ -135,3 +124,5 @@ class DailyStatisticPage extends StatelessWidget {
     );
   }
 }
+
+

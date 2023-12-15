@@ -130,7 +130,7 @@ class ToDoProvider with ChangeNotifier {
         backgroundColor: Colors.transparent,
         builder: (context) {
           return StatefulBuilder(
-              builder: (context, setState) {
+  builder: (context, setState) {
                 return Container(
                   height: MediaQuery.of(context).size.height * 0.45,
                   margin: const EdgeInsets.fromLTRB(32, 12, 32, 150),
