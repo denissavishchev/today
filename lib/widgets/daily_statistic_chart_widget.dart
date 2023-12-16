@@ -4,8 +4,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:today/constants.dart';
 import '../model/percent_model.dart';
 
-class StatisticChartWidget extends StatelessWidget {
-  const StatisticChartWidget({
+class DailyStatisticChartWidget extends StatelessWidget {
+  const DailyStatisticChartWidget({
     super.key,
     required this.percents,
   });

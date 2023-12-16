@@ -9,7 +9,7 @@ import '../constants.dart';
 import '../model/boxes.dart';
 import '../model/percent_model.dart';
 import '../widgets/side_button_widget.dart';
-import '../widgets/statistic_chart_widget.dart';
+import '../widgets/daily_statistic_chart_widget.dart';
 import 'main_page.dart';
 
 class DailyStatisticPage extends StatelessWidget {
@@ -108,7 +108,7 @@ class DailyStatisticPage extends StatelessWidget {
                                       end: Alignment.bottomCenter,
                                       stops: const [0.1, 0.8]
                                   ),),
-                                child: StatisticChartWidget(percents: percents),
+                                child: DailyStatisticChartWidget(percents: percents),
                             ),
                           ],
                         );
