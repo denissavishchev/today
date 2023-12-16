@@ -23,23 +23,15 @@ class WaterStatisticChartWidget extends StatelessWidget {
           primaryXAxis: DateTimeAxis(
               dateFormat: DateFormat('d MMM'),
               labelRotation: 90,
-              // borderWidth: 1.0,
-              borderColor: Colors.blue,
-              labelStyle: TextStyle(color: kWhite),
+              labelStyle: const TextStyle(color: kWhite),
               majorGridLines: const MajorGridLines(width: 0,),
-              // maximumLabels: 3
-              placeLabelsNearAxisLine: false
-
           ),
           primaryYAxis: CategoryAxis(
-            borderColor: kWhite,
-            // tickPosition: TickPosition.inside,
-            labelStyle: TextStyle(color: kWhite),
+            labelStyle: const TextStyle(color: kWhite),
             placeLabelsNearAxisLine: true,
             minimum: 0,
             maximum: 100,
             majorGridLines: const MajorGridLines(width: 0,),
-
           ),
           series: <CartesianSeries>[
             SplineAreaSeries<WaterDailyModel, DateTime>(
@@ -47,20 +39,30 @@ class WaterStatisticChartWidget extends StatelessWidget {
                 xValueMapper: (WaterDailyModel data, _) => DateTime.parse(data.dateTime),
                 yValueMapper: (WaterDailyModel data, _) => data.percentMl,
                 dataLabelSettings: const DataLabelSettings(
-                    isVisible: true
+                  isVisible: true,
+                  textStyle: TextStyle(color: kWhite, fontWeight: FontWeight.bold),
+                  margin: EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                  borderColor: kGreen,
+                  borderWidth: 1,
+                  color: kOrange,
+                  opacity: 0.8,
                 ),
+                borderColor: kGreen.withOpacity(0.5),
+                borderWidth: 2,
                 color: kOrange,
                 gradient: LinearGradient(
-                    colors: [kOrange, kWhite.withOpacity(0.6)],
-                  stops: [0.5, 1],
+                    colors: [kOrange.withOpacity(0.7), kWhite.withOpacity(0.4)],
+                  stops: const [0.5, 1],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter
                 ),
                 splineType: SplineType.cardinal,
-                markerSettings: MarkerSettings(
+                markerSettings: const MarkerSettings(
                     isVisible: true,
                     color: kOrange,
-                    borderColor: kOrange
+                    borderColor: kOrange,
+                  width: 2,
+                  height: 8
                 ),
                 animationDuration: 1000
             )
