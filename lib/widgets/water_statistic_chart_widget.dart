@@ -19,14 +19,17 @@ class WaterStatisticChartWidget extends StatelessWidget {
       width: size.width,
       height: size.height * 0.5,
       child: SfCartesianChart(
+          plotAreaBorderColor: Colors.transparent,
           enableAxisAnimation: true,
           primaryXAxis: DateTimeAxis(
-              dateFormat: DateFormat('d MMM'),
-              labelRotation: 90,
-              labelStyle: const TextStyle(color: kWhite),
-              majorGridLines: const MajorGridLines(width: 0,),
+            axisLine: const AxisLine(color: Colors.transparent),
+            dateFormat: DateFormat('d MMM'),
+            labelRotation: 90,
+            labelStyle: const TextStyle(color: kWhite),
+            majorGridLines: const MajorGridLines(width: 0,),
           ),
           primaryYAxis: CategoryAxis(
+            axisLine: const AxisLine(color: Colors.transparent),
             labelStyle: const TextStyle(color: kWhite),
             placeLabelsNearAxisLine: true,
             minimum: 0,
