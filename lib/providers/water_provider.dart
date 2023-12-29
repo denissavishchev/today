@@ -25,11 +25,12 @@ class WaterProvider with ChangeNotifier {
 
   String totalPercentWater(){
     if(waterDaily.isNotEmpty){
+      totalPercents.clear();
       for(var p in waterDaily){
         totalPercents.add(p.percentMl);
       }
       var sum = totalPercents.reduce((a, b) => a + b);
-      return hydration =  (sum / totalPercents.length).toStringAsFixed(0);
+      return hydration = (sum / totalPercents.length).toStringAsFixed(0);
     }else{
       return '';
     }
