@@ -32,7 +32,7 @@ class WaterProvider with ChangeNotifier {
       var sum = totalPercents.reduce((a, b) => a + b);
       return hydration = (sum / totalPercents.length).toStringAsFixed(0);
     }else{
-      return '';
+      return '0';
     }
   }
 

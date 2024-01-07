@@ -25,8 +25,7 @@ class AllToDoLists extends StatelessWidget {
         builder: (context, data, child){
           List splitDate = tasks[index].date.split('-');
           String year = splitDate[2];
-          String month = int.parse(splitDate[1]) < 10
-              ? '0${splitDate[1]}' : splitDate[1];
+          String month = splitDate[1];
           String day = int.parse(splitDate[0]) < 10
               ? '0${splitDate[0]}' : splitDate[0];
 
